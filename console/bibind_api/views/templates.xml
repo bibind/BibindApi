@@ -1,0 +1,24 @@
+<odoo>
+    <template id="console_template" name="Console Bibind">
+        <t t-call="website.layout">
+            <div class="container mt-3">
+                <h2>Tableau de bord - Mes Services Bibind</h2>
+                <div class="row">
+                    <t t-foreach="services" t-as="service">
+                        <div class="col s12 m6 l4">
+                            <div class="card">
+                                <div class="card-content">
+                                    <span class="card-title"><t t-esc="service.name"/></span>
+                                    <p><t t-esc="service.description"/></p>
+                                </div>
+                                <div class="card-action">
+                                    <a t-att-href="'/service/' + str(service.id)">Gérer</a>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

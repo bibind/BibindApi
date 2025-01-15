@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Cours principal avec le titre et scénario -->
+    <record id="elearning_course_magento" model="slide.channel">
+        <field name="name">Plan de formation Magento - Scénario pratique : création d'un site de produits via une API (Amazon)</field>
+        <field name="description">
+            <h1>Plan de formation Magento</h1>
+            <h2>Scénario pratique : Création d’un site de produits via une API (Amazon)</h2>
+            <p>
+                Vous êtes une agence en charge de développer un site e-commerce multimarques qui regroupe
+                et héberge des produits récupérés via l’API Amazon (Amazon Product Advertising API). Les produits récupérés seront affichés
+                avec leurs détails, et les utilisateurs pourront les ajouter à leur panier pour les acheter directement via votre plateforme.
+            </p>
+
+            <div class="accordion" id="accordionExample">
+                <!-- Objectifs pédagogiques -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingObj">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseObj" aria-expanded="true" aria-controls="collapseObj">
+                            Objectifs pédagogiques
+                        </button>
+                    </h2>
+                    <div id="collapseObj" class="accordion-collapse collapse show" aria-labelledby="headingObj" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <ol>
+                                <li>Comprendre et maîtriser les bases de Magento (modules, thèmes, etc.).</li>
+                                <li>Développer des modules personnalisés pour importer et gérer les produits d’une API externe.</li>
+                                <li>Intégrer ces produits au catalogue Magento.</li>
+                                <li>Personnaliser le frontend pour afficher des produits récupérés par l'API.</li>
+                                <li>Gérer les paniers et les commandes.</li>
+                                <li>Optimiser le site (performance, cache, sécurité, API).</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Public concerné -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingPublique">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePublique" aria-expanded="false" aria-controls="collapsePublique">
+                            Public concerné
+                        </button>
+                    </h2>
+                    <div id="collapsePublique" class="accordion-collapse collapse" aria-labelledby="headingPublique" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <ul>
+                                <li>Développeur junior et confirmé qui désirent maîtriser les différentes fonctionnalités de Magento avec l'utilisation du framework Zend Framework.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pré-requis -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingPrerequis">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePrerequis" aria-expanded="false" aria-controls="collapsePrerequis">
+                            Pré-requis
+                        </button>
+                    </h2>
+                    <div id="collapsePrerequis" class="accordion-collapse collapse" aria-labelledby="headingPrerequis" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <ul>
+                                <li>Connaître le POO en PHP.</li>
+                                <li>Connaître Magento en tant que développeur (routing, form API, database API…). Les bases du développement de module pour Magento sont indispensables.</li>
+                                <li>Connaître HTML et CSS (fortement recommandé).</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </field>
+        <field name="category_id" ref="base.module_category_custom"/>
+        <field name="is_published">True</field>
+    </record>
+    <!-- Section Jour 1 -->
+    <record id="section_jour1" model="slide.slide">
+        <field name="channel_id" ref="elearning_course_magento"/> <!-- Associer au cours principal -->
+        <field name="name">I - Jour 1 : Introduction et mise en place du projet</field>
+        <field name="slide_type">webpage</field> <!-- Type page web pour contenu enrichi -->
+        <field name="is_category">True</field> <!-- Déclare une section -->
+        <field name="sequence">10</field> <!-- Ordre de la section -->
+    </record>
+
+    <!-- Contenu Jour 1 -->
+    <record id="lesson_jour1_introduction" model="slide.slide">
+        <field name="channel_id" ref="elearning_course_magento"/> <!-- Associer au cours principal -->
+        <field name="name">Introduction</field> <!-- Nom du contenu -->
+        <field name="description">
+            <!-- Titre principal -->
+            <h3>Introduction</h3>
+
+            <!-- Contenu formaté -->
+            <p>
+                La première journée de cette formation a pour objectif de poser les bases essentielles
+                pour le développement avec <strong>Magento</strong>. Nous débuterons par une exploration
+                des concepts fondamentaux de Magento, son architecture robuste et modulaire, ainsi que
+                son écosystème riche. Ces notions théoriques permettront aux participants de mieux comprendre
+                la philosophie de cette plateforme, et de se familiariser avec la manière dont elle structure
+                et manipule ses fonctionnalités.
+            </p>
+
+            <hr/>
+
+            <!-- Sous-section 1 -->
+            <h4>Installation et configuration de l’environnement</h4>
+            <p>
+                Ensuite, nous nous concentrerons sur <strong>l'installation</strong> et la
+                <strong>configuration de l'environnement de développement</strong>.
+                Cela inclut l'utilisation d'outils pratiques comme <em>Docker</em> ou <em>DDEV</em>
+                pour simplifier et automatiser la préparation de notre infrastructure.
+            </p>
+            <ul>
+                <li>Création de conteneurs Docker personnalisés</li>
+                <li>Configuration de Magento pour un environnement de développement local</li>
+                <li>Automatisation via DDEV</li>
+            </ul>
+            <p>
+                Nous installerons une instance Magento fonctionnelle, prête à être personnalisée
+                tout au long de cette formation.
+            </p>
+
+            <hr/>
+
+            <!-- Sous-section 2 -->
+            <h4>Introduction à l’API Amazon Product Advertising</h4>
+            <p>
+                Enfin, la journée s’achèvera par une <strong>introduction à l’API Amazon Product Advertising</strong>,
+                que nous utiliserons tout au long de la formation pour alimenter notre site en produits externes.
+                Nous explorerons rapidement son fonctionnement :
+            </p>
+            <ul>
+                <li>La structure de l'API et ses principaux endpoints</li>
+                <li>Les méthodes d'<strong>authentification</strong> et d'accès</li>
+                <li>Les fonctionnalités essentielles pour récupérer les données produit</li>
+            </ul>
+
+            <hr/>
+
+            <p>
+                <strong>À la fin de cette première journée</strong>, vous aurez :
+            </p>
+            <ul>
+                <li>Installé et configuré un environnement fonctionnel.</li>
+                <li>Compris les bases de Magento et sa structuration modulaire.</li>
+                <li>Posé les fondations nécessaires pour démarrer l’intégration et le développement de modules personnalisés.</li>
+            </ul>
+        </field>
+        <field name="slide_type">webpage</field> <!-- Type page web pour contenu enrichi -->
+        <field name="is_published">True</field> <!-- Rendre le contenu visible publiquement -->
+        <field name="category_id" ref="section_jour1"/> <!-- Associer au chapitre Jour 1 -->
+    </record>
+    <!-- Contenu pour "Présentation et préparation de Magento" -->
+    <record id="lesson_presentation_magento" model="slide.slide">
+        <field name="channel_id" ref="elearning_course_magento"/> <!-- Relier au cours principal -->
+        <field name="name">1.1 Présentation et préparation de Magento</field> <!-- Titre du contenu -->
+        <field name="slide_type">webpage</field> <!-- Contenu de type webpage -->
+        <field name="is_published">True</field> <!-- Publié par défaut -->
+        <field name="category_id" ref="section_jour1"/> <!-- Relier à la section Jour 1 -->
+
+        <field name="description">
+            <!-- Widget Table des matières -->
+            <div id="table-of-contents" class="toc-widget">
+                <strong>Table des matières :</strong>
+                <ul>
+                    <li><a href="#objectifs-section">Objectifs</a></li>
+                    <li><a href="#decouvrir-magento">A - Découvrir Magento et son écosystème</a>
+                        <ul>
+                            <li><a href="#structure-magento">A.1. La structure de Magento</a></li>
+                            <li><a href="#fonctionnalites-magento">A.2. Fonctionnalités natives de Magento</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#installer-magento">B - Installation de Magento via Composer</a></li>
+                    <li><a href="#environnement-local">C - Mise en place de l’environnement local avec Docker ou DDEV</a></li>
+                    <li><a href="#conclusion">Conclusion</a></li>
+                </ul>
+            </div>
+
+            <!-- Objectifs -->
+            <h3 id="objectifs-section">Objectifs de cette section :</h3>
+            <ul>
+                <li>Comprendre les concepts fondamentaux et l’architecture de Magento.</li>
+                <li>Apprendre la structure modulaire de Magento et ses fichiers clefs.</li>
+                <li>Installer Magento grâce à Composer, puis mettre en place un environnement local optimisé avec Docker ou DDEV.</li>
+            </ul>
+
+            <hr/>
+
+            <!-- A. Découvrir Magento et son écosystème -->
+            <h3 id="decouvrir-magento">A - Découvrir Magento et son écosystème</h3>
+            <p>
+                Magento est l'une des plateformes e-commerce les plus utilisées, en raison de sa flexibilité et de sa robustesse. Lorsqu’on l’aborde, il est essentiel de comprendre que cette solution repose sur une architecture très modulaire basée sur :
+            </p>
+            <ul>
+                <li>Répartition en modules découplés pour une meilleure extensibilité.</li>
+                <li>Respect du pattern MVC (Model-View-Controller) combiné avec une architecture orientée service.</li>
+                <li>Structure utilisant des standards modernes de PHP (PSR-1/PSR-2, Dependency Injection, Composer, etc.).</li>
+            </ul>
+
+            <h4 id="structure-magento">A.1. La structure de Magento :</h4>
+            <p>Magento utilise une structure de dossiers bien définie, où chaque composant a un rôle précis :</p>
+            <ul>
+                <li><strong>app/ :</strong> Contient :
+                    <ul>
+                        <li><strong>code/ :</strong> Modules Magento personnalisés.</li>
+                        <li><strong>design/ :</strong> Thèmes Frontend et Backend.</li>
+                        <li><strong>etc/ :</strong> Configuration des modules.</li>
+                    </ul>
+                </li>
+                <li><strong>pub/ :</strong> Dossier public (accessible via le navigateur).</li>
+                <li><strong>vendor/ :</strong> Packages gérés avec Composer (Magento Core).</li>
+                <li><strong>generated/ :</strong> Code généré automatiquement (proxies, cache).</li>
+            </ul>
+
+            <h4 id="fonctionnalites-magento">A.2. Fonctionnalités natives de Magento :</h4>
+            <p>Magento est puissant grâce à de nombreuses fonctionnalités clés, telles que :</p>
+            <ul>
+                <li>Gestion Multiboutique : différentes langues, devises, sites.</li>
+                <li>Stockage des données via le modèle EAV pour une flexibilité exceptionnelle (ex : ajout d'attributs personnalisés).</li>
+                <li>Système de cache intégré (Full Page Cache, Redis).</li>
+                <li>APIs REST et GraphQL prêtes pour le développement headless.</li>
+            </ul>
+
+            <hr/>
+
+            <!-- B. Installation de Magento -->
+            <h3 id="installer-magento">B - Installation de Magento via Composer</h3>
+            <p>
+                Magento repose sur Composer pour la gestion des dépendances. Voici les étapes principales :
+            </p>
+            <ol>
+                <li>
+                    <strong>Accéder aux clés API de Magento Marketplace :</strong> Créez un compte sur Magento Marketplace, générez vos clés et configurez Composer :
+                    <pre>
+                        composer config --global http-basic.repo.magento.com &lt;public-key&gt; &lt;private-key&gt;
+                    </pre>
+                </li>
+                <li>
+                    <strong>Installer Magento :</strong> Utilisez la commande suivante pour créer une nouvelle instance Magento :
+                    <pre>
+                        composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition magento2
+                    </pre>
+                </li>
+                <li>
+                    <strong>Configurer Magento :</strong> Configurez Magento avec la commande :
+                    <pre>
+                        php bin/magento setup:install --base-url=http://magento.test/ --db-name=magento --admin-user=admin --admin-password=admin123
+                    </pre>
+                </li>
+            </ol>
+
+            <hr/>
+
+            <!-- C. Mise en place de l’environnement local -->
+            <h3 id="environnement-local">C - Mise en place de l’environnement local avec Docker ou DDEV</h3>
+            <p>
+                Utilisez Docker ou DDEV. Voici un exemple minimal avec un fichier <code>docker-compose.yml</code> :
+            </p>
+            <pre>
+                version: "3.7"
+                services:
+                web:
+                image: nginx:latest
+                ports:
+                - "80:80"
+                volumes:
+                - ./magento2:/var/www/html
+                php:
+                image: php:8.1-fpm
+                environment:
+                - PHP_MEMORY_LIMIT=2G
+                db:
+                image: mysql:8.0
+                environment:
+                MYSQL_USER: magento
+                MYSQL_PASSWORD: magento
+            </pre>
+
+            <hr/>
+
+            <!-- Conclusion -->
+            <h3 id="conclusion">Conclusion</h3>
+            <p>
+                À ce stade, vous devriez avoir une instance fonctionnelle de Magento, une compréhension claire de son architecture modulaire et un environnement local prêt à l'emploi. Ces bases vous permettront d’explorer le développement de modules personnalisés dès le Jour 2.
+            </p>
+        </field>
+    </record>
+
+
+
+</odoo>

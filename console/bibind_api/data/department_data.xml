@@ -1,0 +1,89 @@
+<odoo>
+
+
+
+    <!-- Département Direction Globale -->
+    <record id="department_global_direction" model="hr.department">
+        <field name="name">Direction</field>
+    </record>
+
+    <!-- Département E-commerce -->
+    <record id="department_ecommerce" model="hr.department">
+        <field name="name">E-commerce</field>
+    </record>
+    <record id="department_ecommerce_direction" model="hr.department">
+        <field name="name">Direction E-commerce</field>
+        <field name="parent_id" ref="department_ecommerce" />
+    </record>
+    <record id="department_ecommerce_conception" model="hr.department">
+        <field name="name">Conception</field>
+        <field name="parent_id" ref="department_ecommerce" />
+    </record>
+    <record id="department_ecommerce_production" model="hr.department">
+        <field name="name">Production</field>
+        <field name="parent_id" ref="department_ecommerce" />
+    </record>
+    <record id="department_ecommerce_marketing" model="hr.department">
+        <field name="name">Marketing & Commercial</field>
+        <field name="parent_id" ref="department_ecommerce" />
+    </record>
+
+    <!-- Département Centre de Formation -->
+    <record id="department_training_center" model="hr.department">
+        <field name="name">Centre de Formation</field>
+    </record>
+    <record id="department_training_direction" model="hr.department">
+        <field name="name">Direction Centre de Formation</field>
+        <field name="parent_id" ref="department_training_center" />
+    </record>
+    <record id="department_training_conception" model="hr.department">
+        <field name="name">Conception</field>
+        <field name="parent_id" ref="department_training_center" />
+    </record>
+    <record id="department_training_production" model="hr.department">
+        <field name="name">Production</field>
+        <field name="parent_id" ref="department_training_center" />
+    </record>
+    <record id="department_training_marketing" model="hr.department">
+        <field name="name">Marketing & Commercial</field>
+        <field name="parent_id" ref="department_training_center" />
+    </record>
+
+    <!-- Département IoT -->
+    <record id="department_iot" model="hr.department">
+        <field name="name">IoT</field>
+    </record>
+    <record id="department_iot_direction" model="hr.department">
+        <field name="name">Direction IoT</field>
+        <field name="parent_id" ref="department_iot" />
+    </record>
+    <record id="department_iot_conception" model="hr.department">
+        <field name="name">Conception</field>
+        <field name="parent_id" ref="department_iot" />
+    </record>
+    <record id="department_iot_production" model="hr.department">
+        <field name="name">Production</field>
+        <field name="parent_id" ref="department_iot" />
+    </record>
+    <record id="department_iot_marketing" model="hr.department">
+        <field name="name">Marketing & Commercial</field>
+        <field name="parent_id" ref="department_iot" />
+    </record>
+
+    <!-- Département Urbanisme -->
+    <record id="department_urbanism" model="hr.department">
+        <field name="name">Urbanisme</field>
+    </record>
+    <record id="department_urbanism_direction" model="hr.department">
+        <field name="name">Direction Urbanisme</field>
+        <field name="parent_id" ref="department_urbanism" />
+    </record>
+    <record id="department_urbanism_conception" model="hr.department">
+        <field name="name">Conception</field>
+        <field name="parent_id" ref="department_urbanism" />
+    </record>
+    <record id="department_urbanism_production" model="hr.department">
+        <field name="name">Production</field>
+        <field name="parent_id" ref="department_urbanism" />
+    </record>
+</odoo>

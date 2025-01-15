@@ -1,0 +1,7 @@
+<odoo>
+    <record id="base.main_company" model="res.company">
+        <field name="name">Bibind</field>
+        <field name="phone">+33 112345678</field>
+        <field name="email">contact@bibind.com</field>
+    </record>
+</odoo>

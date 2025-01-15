@@ -1,0 +1,141 @@
+<odoo>
+
+
+    <!-- Postes dans le système de recrutement -->
+    
+    <!-- Directeur général -->
+    <record id="hr_job_directeur_general" model="hr.job">
+        <field name="name">Directeur Général</field>
+        <field name="department_id" ref="department_freelance"/> <!-- Département interne -->
+        <field name="website_published">False</field> <!-- Visible publiquement -->
+        <field name="description">
+            <p>Responsable global de la société, définissant la stratégie et supervisant toutes les activités.</p>
+        </field>
+    </record>
+    
+    <!-- Directeur Technique -->
+    <record id="hr_job_directeur_technique" model="hr.job">
+        <field name="name">Directeur Technique</field>
+        <field name="department_id" ref="department_freelance"/> <!-- Département interne -->
+        <field name="website_published">False</field> <!-- Visible publiquement -->
+        <field name="description">
+            <p>Supervise la stratégie technique et veille à ce que les technologies déployées soient efficaces.</p>
+        </field>
+    </record>
+
+    <!-- Chef de Projet -->
+    <record id="hr_job_chef_projet" model="hr.job">
+        <field name="name">Chef de Projet</field>
+        <field name="department_id" ref="department_freelance"/>
+        <field name="website_published">False</field>
+        <field name="description"><p>Encadre et coordonne des projets techniques.</p></field>
+    </record>
+
+    <!-- Architecte Technique -->
+    <record id="hr_job_architecte_technique" model="hr.job">
+        <field name="name">Architecte Technique</field>
+        <field name="department_id" ref="department_freelance"/>
+        <field name="website_published">False</field>
+        <field name="description">
+            <p>Conçoit et structure les architectures des systèmes et applications techniques.</p>
+        </field>
+    </record>
+
+    <!-- Architecte Cloud -->
+    <record id="hr_job_architecte_cloud" model="hr.job">
+        <field name="name">Architecte Cloud</field>
+        <field name="department_id" ref="department_freelance"/>
+        <field name="website_published">False</field>
+        <field name="description"><p>Déploie et optimise des infrastructures cloud robustes.</p></field>
+    </record>
+
+    <!-- Tech Lead -->
+    <record id="hr_job_tech_lead" model="hr.job">
+        <field name="name">Tech Lead</field>
+        <field name="department_id" ref="department_freelance"/>
+        <field name="website_published">False</field>
+        <field name="description">
+            <p>Coordonne les équipes techniques tout en participant activement aux développements.</p>
+        </field>
+    </record>
+
+    <!-- Développeur Sénior -->
+    <record id="hr_job_dev_senior" model="hr.job">
+        <field name="name">Développeur Sénior</field>
+        <field name="department_id" ref="department_freelance"/>
+        <field name="website_published">False</field>
+        <field name="description"><p>Expert en développement logiciel avec plusieurs années d'expérience.</p></field>
+    </record>
+
+    <!-- Développeur Confirmé -->
+    <record id="hr_job_dev_confirme" model="hr.job">
+        <field name="name">Développeur Confirmé</field>
+        <field name="department_id" ref="department_freelance"/>
+        <field name="website_published">False</field>
+        <field name="description"><p>Contribue au développement technique des projets critiques.</p></field>
+    </record>
+
+    <!-- Designer -->
+    <record id="hr_job_designer" model="hr.job">
+        <field name="name">Designer</field>
+        <field name="department_id" ref="department_freelance"/>
+        <field name="website_published">False</field>
+        <field name="description"><p>Conçois et améliore les interfaces utilisateur et les visuels.</p></field>
+    </record>
+
+    <!-- Graphiste -->
+    <record id="hr_job_graphiste" model="hr.job">
+        <field name="name">Graphiste</field>
+        <field name="department_id" ref="department_freelance"/>
+        <field name="website_published">False</field>
+        <field name="description"><p>Création et traitement des supports graphiques.</p></field>
+    </record>
+
+    <!-- Expert Comptable -->
+    <record id="hr_job_expert_comptable" model="hr.job">
+        <field name="name">Expert Comptable</field>
+        <field name="department_id" ref="department_freelance"/>
+        <field name="website_published">False</field>
+        <field name="description"><p>Supervise la comptabilité et offre des conseils financiers.</p></field>
+    </record>
+
+    <!-- Community Manager -->
+    <record id="hr_job_cm" model="hr.job">
+        <field name="name">Community Manager</field>
+        <field name="department_id" ref="department_freelance"/>
+        <field name="website_published">False</field>
+        <field name="description"><p>Gère et anime la communication sur les réseaux sociaux.</p></field>
+    </record>
+
+    <!-- CTO -->
+    <record id="hr_job_cto" model="hr.job">
+        <field name="name">CTO</field>
+        <field name="department_id" ref="department_freelance"/>
+        <field name="website_published">True</field>
+        <field name="description"><p>Directeur Technique, chef des équipes développeurs.</p></field>
+    </record>
+
+    <!-- Product Owner -->
+    <record id="hr_job_po" model="hr.job">
+        <field name="name">Product Owner</field>
+        <field name="department_id" ref="department_freelance"/>
+        <field name="website_published">False</field>
+        <field name="description"><p>Définit les besoins et priorise les fonctionnalités des produits.</p></field>
+    </record>
+
+    <!-- Business Analyst -->
+    <record id="hr_job_ba" model="hr.job">
+        <field name="name">Business Analyst</field>
+        <field name="department_id" ref="department_freelance"/>
+        <field name="website_published">False</field>
+        <field name="description"><p>Analyse les besoins de l'entreprise et ajuste les processus.</p></field>
+    </record>
+
+    <!-- Responsable Ressources Humaines -->
+    <record id="hr_job_rh" model="hr.job">
+        <field name="name">Responsable Ressources Humaines</field>
+        <field name="department_id" ref="department_freelance"/>
+        <field name="website_published">False</field>
+        <field name="description"><p>Gère et optimise la stratégie RH de l'entreprise.</p></field>
+    </record>
+</odoo>

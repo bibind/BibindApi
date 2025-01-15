@@ -1,0 +1,10 @@
+<odoo>
+    <template id="assets_frontend" inherit_id="web.assets_frontend">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" href="/bibind_api/static/lib/materialize/css/materialize.min.css"/>
+            <link rel="stylesheet" href="/bibind_api/static/src/css/custom_styles.css"/>
+            <script type="text/javascript" src="/bibind_api/static/lib/materialize/js/materialize.min.js"/>
+            <script type="text/javascript" src="/bibind_api/static/src/js/custom_scripts.js"/>
+        </xpath>
+    </template>
+</odoo>

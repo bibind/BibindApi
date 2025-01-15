@@ -1,0 +1,134 @@
+<odoo>
+    <!-- 1. Configuration de la Société principale -->
+    <record id="main_company" model="res.company">
+        <field name="name">Bibind SA</field> <!-- Nom de la société -->
+        <field name="street">1 Rue des Entrepreneurs</field>
+        <field name="city">Paris</field>
+        <field name="country_id" ref="base.fr"/> <!-- Pays : France -->
+        <field name="currency_id" ref="base.EUR"/> <!-- Devise : Euro -->
+        <field name="email">contact@bibind.com</field>
+        <field name="phone">+33 1 23 45 67 89</field>
+        <field name="website">https://www.bibind.com</field>
+    </record>
+
+    <!-- Ajout d'un logo à la société (Facultatif, fichier statique dans static/) -->
+    <!-- <record id="main_company_logo" model="res.company">
+        <field name="logo" type="base64" file="module_name/static/src/img/logo.png"/>
+    </record> -->
+
+    <!-- 2. TVA (Taxes fiscales) utilisée par la société -->
+    <record id="tax_tva_20" model="account.tax">
+        <field name="name">TVA 20%</field>
+        <field name="type_tax_use">sale</field>
+        <field name="amount">20.0</field> <!-- Taux de TVA -->
+        <field name="amount_type">percent</field>
+        <field name="price_include">True</field> <!-- TVA incluse dans les prix -->
+        <field name="country_id" ref="base.fr"/> <!-- Pour la France -->
+    </record>
+
+    <!-- 3. Activation et utilisation de la langue française -->
+    <record id="lang_fr" model="res.lang">
+        <field name="name">Français</field>
+        <field name="code">fr_FR</field>
+        <field name="iso_code">fr</field>
+        <field name="active">True</field>
+        <field name="direction">ltr</field>
+    </record>
+
+    <record id="main_company_lang" model="res.company">
+        <field name="language">fr_FR</field> <!-- Définit le français pour la société -->
+    </record>
+
+    <!-- Active le mode multilingue (traduction) -->
+    <record id="enable_translations" model="ir.config_parameter">
+        <field name="key">base.setup_multilang</field>
+        <field name="value">True</field>
+    </record>
+
+    <!-- 4. Installation automatique de modules nécessaires -->
+    <record id="module_account" model="ir.module.module">
+        <field name="name">account</field> <!-- Module Facturation -->
+        <field name="state">installed</field>
+    </record>
+    <record id="module_project" model="ir.module.module">
+        <field name="name">project</field> <!-- Module Projet -->
+        <field name="state">installed</field>
+    </record>
+    <record id="module_website" model="ir.module.module">
+        <field name="name">website</field> <!-- Module Site Web -->
+        <field name="state">installed</field>
+    </record>
+    <record id="module_website_forum" model="ir.module.module">
+        <field name="name">website_forum</field> <!-- Module Forum -->
+        <field name="state">installed</field>
+    </record>
+    <record id="module_hr_recruitment" model="ir.module.module">
+        <field name="name">hr_recruitment</field> <!-- Module Recrutement -->
+        <field name="state">installed</field>
+    </record>
+    <record id="module_crm" model="ir.module.module">
+        <field name="name">crm</field> <!-- Module CRM -->
+        <field name="state">installed</field>
+    </record>
+
+    <!-- 5. Configuration initiale pour le site web -->
+    <!-- Exemple d'une page d'accueil simple -->
+    <record id="website_home_page" model="website.page">
+        <field name="name">Page d'Accueil</field>
+        <field name="url">/</field>
+        <field name="is_published">True</field>
+        <field name="content">
+            <value model="ir.ui.view">
+                <t t-name="website.homepage">
+                    <h1>Bienvenue sur le site Bibind !</h1>
+                    <p>Ici, vous pouvez découvrir nos formations, projets, et plus encore.</p>
+                </t>
+            </value>
+        </field>
+    </record>
+
+    <!-- 6. Ajouter un utilisateur initial -->
+    <record id="user_project_manager" model="res.users">
+        <field name="name">Responsable Projet</field>
+        <field name="login">chef.projet</field>
+        <field name="email">chef.projet@bibind.com</field>
+        <field name="password">admin</field>
+        <field name="groups_id" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <!-- 7. Paramètres supplémentaires pour les ventes et comptabilité -->
+    <record id="sale_margin_setting" model="ir.config_parameter">
+        <field name="key">sale.margin</field>
+        <field name="value">True</field> <!-- Activer le suivi des marges -->
+    </record>
+
+     <!-- Filtre Freelancer pour les employés, visible uniquement par Managers RH, activé par défaut -->
+    <record id="filter_emp_freelancer" model="ir.filters">
+        <field name="name">Freelancer</field>
+        <field name="model_id">hr.employee</field>
+        <field name="domain">[('type', '=', 'freelancer')]</field>
+        <field name="context">{}</field>
+        <field name="is_default">True</field>
+        <field name="groups_id" eval="[(4, ref('hr.group_hr_manager'))]" />
+    </record>
+
+    <!-- Filtre Salarié pour les employés, aucun accès restreint -->
+    <record id="filter_emp_salarie" model="ir.filters">
+        <field name="name">Salarié</field>
+        <field name="model_id">hr.employee</field>
+        <field name="domain">[('type', '=', 'salarié')]</field>
+        <field name="context">{}</field>
+        <field name="is_default">False</field>
+    </record>
+
+    <!-- Filtre des Freelancers pour partenaires, visible par tout le monde -->
+    <record id="filter_partner_freelancer" model="ir.filters">
+        <field name="name">Freelancer</field>
+        <field name="model_id">res.partner</field>
+        <field name="domain">[('category_id.name', '=', 'Freelancer')]</field>
+        <field name="context">{}</field>
+        <field name="is_default">False</field>
+    </record>
+
+
+</odoo>

@@ -1,0 +1,416 @@
+<odoo>
+    <!-- Formation Drupal pour Chef de Projet -->
+    <record id="channel_drupal_project_manager" model="slides.channel">
+        <field name="name">Formation Drupal pour Chef de Projet</field>
+        <field name="description">Apprenez à gérer des projets Drupal de A à Z avec cette formation complète.</field>
+        <field name="category">training</field>
+        <field name="is_published">True</field>
+        <field name="visibility">public</field>
+    </record>
+
+    <!-- **SECTIONS ET CONTENUS** -->
+
+    <!-- SECTION 1 : Introduction -->
+    <record id="section_intro" model="slides.slide">
+        <field name="channel_id" ref="channel_drupal_project_manager"/>
+        <field name="name">1. Introduction</field>
+        <field name="slide_type">section</field>
+        <field name="is_published">True</field>
+    </record>
+
+    <record id="slide_history" model="slides.slide">
+        <field name="channel_id" ref="channel_drupal_project_manager"/>
+        <field name="name">Un peu d'histoire</field>
+        <field name="slide_type">document</field>
+        <field name="description">Découvrez les origines de Drupal et son évolution.</field>
+        <field name="is_published">True</field>
+        <field name="section_id" ref="section_intro"/>
+    </record>
+  <!-- Sous-slide : Origines de Drupal -->
+    <record id="slide_drupal_origins" model="slides.slide">
+        <field name="channel_id" ref="channel_drupal_project_manager"/>
+        <field name="name">Origines de Drupal</field>
+        <field name="slide_type">text</field>
+        <field name="description">
+            <![CDATA[
+            Drupal est né en 2001, d'un projet universitaire initié par Dries Buytaert. D’abord conçu comme un forum privé pour les étudiants d’un réseau, Drupal a rapidement évolué.
+            Le nom est inspiré du mot néerlandais "druppel" (goutte d’eau). Grâce à sa licence open-source, il est devenu l’un des CMS les plus utilisés aujourd’hui !
+
+            ]]>
+        </field>
+        <field name="is_published">True</field>
+        <field name="section_id" ref="slide_history"/>
+    </record>
+
+    <!-- Sous-slide : Évolution des versions -->
+    <record id="slide_drupal_versions" model="slides.slide">
+        <field name="channel_id" ref="channel_drupal_project_manager"/>
+        <field name="name">Évolution des versions</field>
+        <field name="slide_type">text</field>
+        <field name="description">
+            <![CDATA[
+            - **Drupal 1.x (2001)** : Premier CMS destiné à structurer les contenus.
+            - **Drupal 7 (2011)** : Interface intuitive et champs personnalisables.
+            - **Drupal 8 (2015)** : Révolution technologique avec Symfony.
+            - **Drupal 9 (2020)** : Modernisation, suppression des héritages obsolètes.
+            - **Drupal 10 (2022)** : Améliorations en termes de design, performances et sécurité !
+            Chaque version reflète des avancées majeures pour s'adapter aux exigences modernes.
+            ]]>
+        </field>
+        <field name="is_published">True</field>
+        <field name="section_id" ref="slide_history"/>
+    </record>
+
+    <!-- Sous-slide : Grandes milestones -->
+    <record id="slide_drupal_milestones" model="slides.slide">
+        <field name="channel_id" ref="channel_drupal_project_manager"/>
+        <field name="name">Grandes milestones</field>
+        <field name="slide_type">text</field>
+        <field name="description">
+            <![CDATA[
+            Drupal a été adopté par des organisations prestigieuses :
+            - **La Maison-Blanche (WhiteHouse.gov)** : Migration en 2009 pour sa flexibilité et sécurité.
+            - **Universités comme Harvard, MIT** : Utilisé pour organiser cours, recherche et événements.
+            - **ONG et multinationales** : L’ONU, Amnesty International, Tesla, Pfizer lui font confiance.
+            Drupal prouve son adaptabilité à des projets complexes, robustes et diversifiés.
+            ]]>
+        </field>
+        <field name="is_published">True</field>
+        <field name="section_id" ref="slide_history"/>
+    </record>
+
+    <!-- Sous-slide : La communauté Drupal -->
+    <record id="slide_drupal_community" model="slides.slide">
+        <field name="channel_id" ref="channel_drupal_project_manager"/>
+        <field name="name">La communauté Drupal</field>
+        <field name="slide_type">text</field>
+        <field name="description">
+            <![CDATA[
+            Drupal repose sur une communauté active et passionnée :
+            - **40 000 modules contributifs** : Fonctions prêtes à être utilisées et étendues.
+            - **Événements communautaires** comme DrupalCons et DrupalCamps.
+            - Soutien dynamique via le site Drupal.org, forums et Slack.
+            La communauté est essentielle à l'évolution et à la richesse fonctionnelle de Drupal.
+            ]]>
+        </field>
+        <field name="is_published">True</field>
+        <field name="section_id" ref="slide_history"/>
+    </record>
+
+
+
+
+    <record id="slide_vocab" model="slides.slide">
+        <field name="channel_id" ref="channel_drupal_project_manager"/>
+        <field name="name">Le vocabulaire Drupal</field>
+        <field name="slide_type">text</field>
+        <field name="description">Comprenez les termes clés de l'univers Drupal.</field>
+        <field name="is_published">True</field>
+        <field name="section_id" ref="section_intro"/>
+    </record>
+
+    <!-- Slide : Vocabulaire de base -->
+    <record id="slide_drupal_vocab_components" model="slides.slide">
+        <field name="channel_id" ref="channel_drupal_project_manager"/>
+        <field name="name">Vocabulaire de base</field>
+        <field name="slide_type">text</field>
+        <field name="description">
+            <![CDATA[
+            - **Nœud (Node)** : Unité de contenu (article, page, événement).
+            - **Bloc (Block)** : Élément placé dans des régions spécifiques du thème.
+            - **Vues (Views)** : Listes ou affichages de contenu personnalisés.
+            - **Thèmes (Themes)** : Gestion de l'apparence visuelle du site.
+            - **Taxonomie** : Catégorisation via des mots-clés ou catégories.
+            - **Entités (Entities)** : Conteneurs modulaires (nœuds, termes, blocs).
+            Apprenez ces concepts pour mieux structurer vos projets Drupal !
+            ]]>
+        </field>
+        <field name="is_published">True</field>
+        <field name="section_id" ref="slide_vocab"/>
+    </record>
+
+    <!-- Slide : Modules "core" vs "contrib" -->
+    <record id="slide_drupal_modules" model="slides.slide">
+        <field name="channel_id" ref="channel_drupal_project_manager"/>
+        <field name="name">Modules "core" vs "contrib"</field>
+        <field name="slide_type">text</field>
+        <field name="description">
+            <![CDATA[
+            - **Modules "core"** : Fournis par défaut dans l'installation Drupal (Views, Taxonomy, etc.).
+            - **Modules "contrib"** : Développés par la communauté, à installer depuis Drupal.org.
+            Les modules "contrib" permettent d’ajouter des fonctionnalités spécifiques comme Pathauto ou Webform.
+            ]]>
+        </field>
+        <field name="is_published">True</field>
+        <field name="section_id" ref="slide_vocab"/>
+    </record>
+
+    <!-- Slide : Jargon du développement -->
+    <record id="slide_drupal_dev_jargon" model="slides.slide">
+        <field name="channel_id" ref="channel_drupal_project_manager"/>
+        <field name="name">Jargon du développement</field>
+        <field name="slide_type">text</field>
+        <field name="description">
+            <![CDATA[
+            - **Hooks (Crochets)** : Points d'extension qui permettent de modifier ou d'ajouter des comportements à Drupal.
+              Exemple : `hook_form_alter()` pour modifier des formulaires existants.
+            - **Templates (Twig)** : Fichiers `.html.twig` pour contrôler l'affichage personnalisé.
+            - **Configuration vs Contenu** :
+              - Configuration : Paramètres du site (types de contenu, permissions, vues).
+              - Contenu : Données dynamiques comme les articles et les images.
+            Apprenez ces concepts pour réussir vos personnalisations Drupal.
+            ]]>
+        </field>
+        <field name="is_published">True</field>
+        <field name="section_id" ref="slide_vocab"/>
+    </record>
+
+
+
+     <!-- SECTION : Les outils de développement -->
+ <record id="section_development_tools" model="slides.slide">
+        <field name="channel_id" ref="channel_drupal_project_manager"/>
+        <field name="name">4. Les outils de développement</field>
+        <field name="slide_type">section</field>
+        <field name="is_published">True</field>
+        <field name="section_id" ref="section_intro"/>
+    </record>
+    <!-- Slide : Outils nécessaires pour travailler avec Drupal -->
+    <record id="slide_drupal_tools" model="slides.slide">
+        <field name="channel_id" ref="channel_drupal_project_manager"/>
+        <field name="name">Outils nécessaires pour travailler avec Drupal</field>
+        <field name="slide_type">text</field>
+        <field name="description">
+            <![CDATA[
+            Les outils indispensables pour configurer votre environnement de travail avec Drupal :
+            - **Serveurs locaux :** XAMPP, MAMP (pour débutants), DDEV (modernité & Docker).
+            - **Gestion des versions :** Utilisez **Git** pour collaborer et suivre les modifications de votre projet.
+            - **IDE recommandés :** PhpStorm (complet & puissant), VS Code (léger et modulable).
+            Ces outils garantissent une préparation solide pour travailler correctement avec Drupal.
+            ]]>
+        </field>
+        <field name="is_published">True</field>
+        <field name="section_id" ref="section_development_tools"/>
+    </record>
+
+    <!-- Slide : Introduction à Drush -->
+    <record id="slide_drupal_drush" model="slides.slide">
+        <field name="channel_id" ref="channel_drupal_project_manager"/>
+        <field name="name">Introduction à Drush</field>
+        <field name="slide_type">text</field>
+        <field name="description">
+            <![CDATA[
+            **Drush (Drupal Shell)** est un outil en ligne de commande qui simplifie la gestion des sites Drupal.
+            Principales commandes utiles de Drush :
+            - Installer Drupal : `drush site-install`.
+            - Gérer les modules : `drush en` (activer), `drush pm-uninstall` (désactiver).
+            - Vider le cache : `drush cr`.
+            - Exporter/importer la configuration : `drush config-export`, `drush config-import`.
+            Drush est essentiel pour automatiser et accélérer vos tâches de gestion.
+            ]]>
+        </field>
+        <field name="is_published">True</field>
+        <field name="section_id" ref="section_development_tools"/>
+    </record>
+
+    <!-- Slide : Présentation de Composer -->
+    <record id="slide_drupal_composer" model="slides.slide">
+        <field name="channel_id" ref="channel_drupal_project_manager"/>
+        <field name="name">Présentation de Composer</field>
+        <field name="slide_type">text</field>
+        <field name="description">
+            <![CDATA[
+            **Composer** est un outil incontournable pour gérer les dépendances dans Drupal :
+            - **Installer des modules via Composer :**
+              Commande : `composer require drupal/[nom_du_module]`.
+              Exemple : `composer require drupal/pathauto`.
+            - **Mettre à jour les modules :** `composer update`.
+            - **Structure d’un projet Drupal :** Dossiers modulaires / `web/core`.
+            Composer garantit que les dépendances restent compatibles et simplifie les mises à jour.
+            ]]>
+        </field>
+        <field name="is_published">True</field>
+        <field name="section_id" ref="section_development_tools"/>
+    </record>
+
+
+
+
+
+
+
+
+
+
+<!-- Section : Sous-section dans l'introduction -->
+    <record id="section_install_drupal" model="slides.slide">
+        <field name="channel_id" ref="channel_drupal_project_manager"/>
+        <field name="name">2. Installer et configurer Drupal 10</field>
+        <field name="slide_type">section</field>
+        <field name="is_published">True</field>
+        <field name="section_id" ref="section_intro"/>
+    </record>
+
+    <!-- Slide : Téléchargement de Drupal 10 -->
+    <record id="slide_drupal_download" model="slides.slide">
+        <field name="channel_id" ref="channel_drupal_project_manager"/>
+        <field name="name">Téléchargement de Drupal 10</field>
+        <field name="slide_type">text</field>
+        <field name="description">
+            <![CDATA[
+            La méthode la plus utilisée pour obtenir Drupal 10 est via **Composer** :
+            ```bash
+            composer create-project drupal/recommended-project my_drupal10
+            ```
+            Cela télécharge Drupal avec toutes ses dépendances automatiquement.
+            <br/>
+            Pour les débutants, il est possible de visiter le site : [https://www.drupal.org/download](https://www.drupal.org/download) pour télécharger une archive manuellement.
+            ]]>
+        </field>
+        <field name="is_published">True</field>
+        <field name="section_id" ref="section_install_drupal"/>
+    </record>
+
+    <!-- Slide : Configuration du serveur local -->
+    <record id="slide_drupal_local_server" model="slides.slide">
+        <field name="channel_id" ref="channel_drupal_project_manager"/>
+        <field name="name">Configuration du serveur local</field>
+        <field name="description">
+            <![CDATA[
+            Drupal 10 nécessite **PHP 8.1 ou supérieur**. Assurez-vous que votre serveur local (XAMPP, MAMP ou DDEV) utilise cette version.
+            <br/>
+            **Avec XAMPP :**
+            1. Placez les fichiers Drupal dans `/htdocs/my_drupal10`.
+            2. Accédez à votre site via `http://localhost/my_drupal10/web`.
+            **Avec DDEV :**
+            ```bash
+            ddev config --project-type=drupal10 --docroot=web --create-docroot
+            ddev start
+            ```
+            ]]>
+        </field>
+        <field name="is_published">True</field>
+        <field name="section_id" ref="section_install_drupal"/>
+    </record>
+
+    <!-- Slide : Installation + Tableau -->
+    <record id="slide_drupal_installation" model="slides.slide">
+        <field name="name">Installation et exploration</field>
+        <field name="description">
+            <![CDATA[
+            **Étapes d’installation de Drupal 10 :**
+            1. Accédez à : `http://localhost/my_drupal10/web`.
+            2. Configurez la base (root / mot de passe vide pour XAMPP).
+            3. Explorez les nouveautés comme :
+            - Le thème **Olivero** (site frontend).
+            - Le tableau administratif **Claro** (plus ergonomique).
+            ]]>
+        </field>
+        <field name="is_published">True</field>
+        <field name="section_id" ref="section_install_drupal"/>
+    </record>
+
+
+
+
+
+
+
+    <!-- SECTION 2 : La création et la publication de contenu -->
+    <record id="section_content_creation" model="slides.slide">
+        <field name="channel_id" ref="channel_drupal_project_manager"/>
+        <field name="name">2. La création et la publication de contenu</field>
+        <field name="slide_type">section</field>
+        <field name="is_published">True</field>
+    </record>
+
+    <record id="slide_create_blocks" model="slides.slide">
+        <field name="channel_id" ref="channel_drupal_project_manager"/>
+        <field name="name">Créer des blocs</field>
+        <field name="slide_type">document</field>
+        <field name="description">Apprenez à créer et gérer des blocs dans Drupal.</field>
+        <field name="is_published">True</field>
+        <field name="section_id" ref="section_content_creation"/>
+    </record>
+
+    <record id="slide_create_content" model="slides.slide">
+        <field name="channel_id" ref="channel_drupal_project_manager"/>
+        <field name="name">La création de contenu</field>
+        <field name="slide_type">text</field>
+        <field name="description">Les bases pour créer du contenu dans Drupal.</field>
+        <field name="is_published">True</field>
+        <field name="section_id" ref="section_content_creation"/>
+    </record>
+
+    <record id="slide_wysiwyg" model="slides.slide">
+        <field name="channel_id" ref="channel_drupal_project_manager"/>
+        <field name="name">Configurer et utiliser l'éditeur WYSIWYG</field>
+        <field name="slide_type">text</field>
+        <field name="description">Apprenez à configurer l'éditeur pour simplifier la création de contenu.</field>
+        <field name="is_published">True</field>
+        <field name="section_id" ref="section_content_creation"/>
+    </record>
+
+    <record id="slide_content_rights" model="slides.slide">
+        <field name="channel_id" ref="channel_drupal_project_manager"/>
+        <field name="name">Les droits d'accès du contenu</field>
+        <field name="slide_type">text</field>
+        <field name="description">Paramétrage des droits d'accès pour les contenus Drupal.</field>
+        <field name="is_published">True</field>
+        <field name="section_id" ref="section_content_creation"/>
+    </record>
+
+    <!-- SECTION 3 : L'affichage des contenus -->
+    <record id="section_content_display" model="slides.slide">
+        <field name="channel_id" ref="channel_drupal_project_manager"/>
+        <field name="name">3. L'affichage des contenus</field>
+        <field name="slide_type">section</field>
+        <field name="is_published">True</field>
+    </record>
+
+    <record id="slide_customize_view_mode" model="slides.slide">
+        <field name="channel_id" ref="channel_drupal_project_manager"/>
+        <field name="name">Personnaliser l'affichage : view mode et form mode</field>
+        <field name="slide_type">text</field>
+        <field name="description">Apprenez à personnaliser l'affichage des contenus dans Drupal.</field>
+        <field name="is_published">True</field>
+        <field name="section_id" ref="section_content_display"/>
+    </record>
+
+    <record id="slide_views_module_basic" model="slides.slide">
+        <field name="channel_id" ref="channel_drupal_project_manager"/>
+        <field name="name">Créer une vue avec le module Views</field>
+        <field name="slide_type">document</field>
+        <field name="description">Initiation au module Views pour afficher du contenu.</field>
+        <field name="is_published">True</field>
+        <field name="section_id" ref="section_content_display"/>
+    </record>
+
+    <record id="slide_views_module_advanced" model="slides.slide">
+        <field name="channel_id" ref="channel_drupal_project_manager"/>
+        <field name="name">Utilisation avancée du module Views</field>
+        <field name="slide_type">document</field>
+        <field name="description">Explorez les fonctionnalités avancées du module Views.</field>
+        <field name="is_published">True</field>
+        <field name="section_id" ref="section_content_display"/>
+    </record>
+
+    <!-- Continuez à ajouter les sections et contenus, en respectant la même structure -->
+
+    <!-- SECTION FINALE : Certification -->
+    <record id="section_certification" model="slides.slide">
+        <field name="channel_id" ref="channel_drupal_project_manager"/>
+        <field name="name">11. Certification : Drupal Webmaster</field>
+        <field name="slide_type">section</field>
+        <field name="is_published">True</field>
+    </record>
+
+    <record id="slide_certification" model="slides.slide">
+        <field name="channel_id" ref="channel_drupal_project_manager"/>
+        <field name="name">Certification : Drupal Webmaster</field>
+        <field name="slide_type">text</field>
+        <field name="description">Préparez votre certification officielle de Drupal Webmaster.</field>
+        <field name="is_published">True</field>
+        <field name="section_id" ref="section_certification"/>
+    </record>
+</odoo>
