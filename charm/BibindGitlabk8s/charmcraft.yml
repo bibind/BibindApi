@@ -1,0 +1,41 @@
+type: charm  # Indique que ce projet est un charm Juju
+
+# Bases : définit les environnements de construction (build-on) et d'exécution (run-on)
+bases:
+  - build-on:
+      - name: ubuntu  # Base sur laquelle le charm sera construit
+        channel: "22.04"  # Version d'Ubuntu
+        architectures: [amd64]  # Architecture supportée
+    run-on:
+      - name: ubuntu  # Base sur laquelle le charm peut être exécuté
+        channel: "22.04"
+        architectures: [amd64]
+
+parts:
+  bibindapi:
+    plugin: python  # Projet basé sur Python
+    source: .  # Utilise le répertoire courant comme source pour créer le charm
+    build-packages:  # Dépendances système pour la construction
+      - python3-dev
+      - libffi-dev
+      - gcc
+    stage-packages:  # Dépendances système pour l'exécution
+      - python3-pip
+      - python3-venv
+      - python3-wheel
+    python-packages:  # Packages Python nécessaires
+      - fastapi
+      - authlib
+      - python-jose[cryptography]
+      - ops
+    prime:  # Inclure uniquement ces fichiers dans le charm final
+      - src  # Répertoire source principal
+      - requirements.txt
+      - templates  # Facultatif, pour inclure des fichiers de template si nécessaires
+
+    # Variables d'environnement pour la construction (OIDC avec Hydra)
+    build-environment:
+      - OIDC_AUTHORIZATION_URL: http://hydra.iam.svc.cluster.local:4444/oauth2/auth
+      - OIDC_TOKEN_URL: http://hydra.iam.svc.cluster.local:4444/oauth2/token
+      - OIDC_CLIENT_ID: bibindapi-client
+      - OIDC_REDIRECT_URI: http://bibindapi.svc.cluster.local/auth/callback

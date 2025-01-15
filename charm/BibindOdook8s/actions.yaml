@@ -1,0 +1,14 @@
+backup:
+  description: Effectuer un backup complet de la base de données Odoo.
+  params:
+    location:
+      type: string
+      description: Chemin ou déposer le backup.
+      required: true
+restore:
+  description: Restaurer un backup de la base de données Odoo.
+  params:
+    location:
+      type: string
+      description: Chemin du fichier de backup.
+      required: true

@@ -1,0 +1,53 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile-backend
+    container_name: bindingapi-backend
+    env_file:
+      - .env.local
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile-frontend
+    container_name: bindingapi-frontend
+    env_file:
+      - .env.local
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+  db:
+    image: postgres:15
+    container_name: bindingapi-db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-bibind_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-bibind_password}
+      POSTGRES_DB: ${POSTGRES_DB:-bibindapi_db}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # Conteneur temporaire pour exécuter les tests
+  tests:
+    build:
+      context: ./docker
+      dockerfile: Dockerfile-backend
+    container_name: bindingapi-tests
+    depends_on:
+      - db
+    env_file:
+      - .env.local
+    command: ["pytest", "tests/"]  # Lance pytest dans le répertoire tests/
+
+volumes:
+  postgres_data:

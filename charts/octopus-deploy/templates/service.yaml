@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "octopus.fullname" . }}
+  labels:
+    app: {{ template "octopus.name" . }}
+    chart: {{ template "octopus.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: {{ .Values.octopus.service.type }}
+  selector:
+    app: {{ template "octopus.name" . }}
+  ports:
+    - name: web
+      port: {{.Values.octopus.webPort}}
+      targetPort: 8080
+      protocol: TCP
+  {{- if (eq (.Values.octopus.replicaCount | int) 1)}} # If there is only one node, expose the tentacle along with the web port
+    - name: tentacle
+      port: {{.Values.octopus.tentaclePort}}
+      targetPort: 10943
+      protocol: TCP
+  {{- end }}
+  {{- if (gt (.Values.octopus.replicaCount | int) 1)}}
+  {{- $root := . -}}
+  {{- range untilStep 0 (.Values.octopus.replicaCount | int) 1 }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: octopus-deploy-node{{ . }}
+  labels:
+    app: {{ template "octopus.name" $ }}
+    chart: {{ template "octopus.chart" $ }}
+    release: {{ $.Release.Name }}
+    heritage: {{ $.Release.Service }}
+spec:
+  type: {{ $root.Values.octopus.service.type }}
+  ports:
+    - name: web
+      port: {{$root.Values.octopus.webPort}}
+      targetPort: 8080
+      protocol: TCP
+    - name: tentacle
+      port: {{$root.Values.octopus.tentaclePort}}
+      targetPort: 10943
+      protocol: TCP
+  selector:
+    statefulset.kubernetes.io/pod-name: {{ template "octopus.fullname" $ }}-{{ . }}
+{{- end }}
+{{- end }}

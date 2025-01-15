@@ -1,0 +1,16 @@
+# Dockerfile-requirements
+
+FROM python:3.10-slim
+
+WORKDIR /app
+
+# Installer GCC et libpq-dev pour se préparer à la compilation
+RUN apt-get update && apt-get install -y gcc libpq-dev && \
+    rm -rf /var/lib/apt/lists/*
+
+# Copier le fichier requirements.txt
+COPY requirements.txt /app/
+
+# Installer les dépendances
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt

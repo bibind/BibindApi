@@ -1,0 +1,63 @@
+version: "3.8"
+
+services:
+  # Gestion des identités (Kratos)
+  kratos:
+    image: oryd/kratos:latest
+    container_name: kratos
+    restart: unless-stopped
+    environment:
+      DSN: postgres://kratos:kratos_password@kratos-db:5432/kratos?sslmode=disable
+      KRATOS_ADMIN_URL: http://kratos:4434/         # API Admin
+      KRATOS_PUBLIC_URL: http://localhost:4433/    # API Public accessible aux clients
+      KRATOS_BROWSER_URL: http://localhost:3000/   # Frontend (ex: Bibind API ou App personnalisée)
+    depends_on:
+      - kratos-db
+    ports:
+      - "4433:4433" # API publique
+      - "4434:4434" # API admin
+
+  kratos-db:
+    image: postgres:13
+    container_name: kratos-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: kratos
+      POSTGRES_USER: kratos
+      POSTGRES_PASSWORD: kratos_password
+    volumes:
+      - kratos-db-data:/var/lib/postgresql/data
+
+  # Gestion des authentifications OAuth2 (Hydra)
+  hydra:
+    image: oryd/hydra:latest
+    container_name: hydra
+    restart: unless-stopped
+    environment:
+      DSN: postgres://hydra:hydra_password@hydra-db:5432/hydra?sslmode=disable
+      URLS_SELF_ISSUER: http://localhost:4444/        # URL de l'IdP (Hydra local)
+      URLS_LOGIN: http://localhost:3000/login        # URL de la page de connexion (gérée par Kratos ou votre frontend)
+      URLS_CONSENT: http://localhost:3000/consent    # URL pour gérer les consentements du client
+      URLS_POST_LOGOUT_REDIRECT: http://localhost/   # Redirection après déconnexion
+      SECRETS_SYSTEM: secretSuperSecure12345         # Clé secrète pour sécuriser Hydra
+      OIDC_SUBJECT_IDENTIFIERS_SUPPORTED_TYPES: public
+    depends_on:
+      - hydra-db
+    ports:
+      - "4444:4444" # API publique Hydra
+      - "4445:4445" # API admin Hydra
+
+  hydra-db:
+    image: postgres:13
+    container_name: hydra-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: hydra
+      POSTGRES_USER: hydra
+      POSTGRES_PASSWORD: hydra_password
+    volumes:
+      - hydra-db-data:/var/lib/postgresql/data
+
+volumes:
+  kratos-db-data:
+  hydra-db-data:

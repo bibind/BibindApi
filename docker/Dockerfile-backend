@@ -1,0 +1,30 @@
+# Utilisation d'une image Python slim pour une image légère
+FROM python:3.10-slim
+
+# Définit le répertoire de travail dans le conteneur
+WORKDIR /app
+
+# Installation des dépendances système nécessaires
+# Ici nous installons gcc (compilateur) qui peut être requis pour certaines dépendances Python
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copier les fichiers requirements en première étape (optimisation des couches Docker/cache)
+COPY ./requirements.txt /app/requirements.txt
+
+# Installer les dépendances Python
+# Utilisation des meilleures pratiques pour pip (pas de cache/dépendances strictement gérées)
+RUN pip install --no-cache-dir --upgrade pip \
+    && pip install --no-cache-dir -r /app/requirements.txt
+
+# Copier uniquement le code source du backend
+# Avec le contexte ./docker défini dans le Makefile, ../api doit être copié via ./api
+COPY ./api /app
+
+# Exposer le port utilisé par l'application
+EXPOSE 8000
+
+# Commande de démarrage (exécute l'application via Uvicorn)
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

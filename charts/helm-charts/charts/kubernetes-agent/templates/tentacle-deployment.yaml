@@ -1,0 +1,112 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{printf "%s-tentacle" (include "kubernetes-agent.name" .) }}
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "kubernetes-agent.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "kubernetes-agent.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "kubernetes-agent.labels" . | nindent 8 }}
+	      {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "kubernetes-agent.serviceAccountName" . }}
+      {{- with .Values.podSecurityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: {{printf "%s-tentacle" (include "kubernetes-agent.name" .) }}
+          {{- with .Values.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end}}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default (printf "%s-linux-amd64" .Chart.AppVersion) }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: "ACCEPT_EULA"
+              value: {{ .Values.tentacle.ACCEPT_EULA | quote }}
+            - name: "TargetName"
+              value: {{ .Values.tentacle.targetName | quote }}
+            - name: "ServerCommsAddress"
+              value: {{ .Values.tentacle.serverCommsAddress | quote }}
+            - name: "ServerUrl"
+              value: {{ .Values.tentacle.serverUrl | quote }}
+            - name: "Space"
+              value: {{ .Values.tentacle.space | quote }}
+            - name: "TargetEnvironment"
+              value: {{ join "," .Values.tentacle.targetEnvironments | quote }}
+            - name: "TargetRole"
+              value: {{ join "," .Values.tentacle.targetRoles | quote }}
+            - name: "OCTOPUS__K8STENTACLE__NAMESPACE"
+              value: {{ .Release.Namespace | quote }}
+            - name: "OCTOPUS__K8STENTACLE__JOBSERVICEACCOUNTNAME"
+              value: {{ include "kubernetes-agent.jobServiceAccountName" . | quote }}
+            - name: "OCTOPUS__K8STENTACLE__JOBVOLUMEYAML"
+              value: {{ (include "kubernetes-agent.jobVolumeYaml" . | fromYaml).volumes  | toJson  | quote}}
+            - name: "OCTOPUS__K8STENTACLE__FORCE"
+              value: "True"
+            - name: "OCTOPUS__K8STENTACLE__HELMRELEASENAME"
+              value: {{ .Release.Name | quote}}
+            - name: "OCTOPUS__K8STENTACLE__HELMCHARTVERSION"
+              value: {{ .Chart.Version | quote}}
+            - name: "TentacleHome"
+              value: "/octopus"
+            - name: "TentacleApplications"
+              value: "/octopus/Applications"
+            {{- if .Values.tentacle.serverApiKey }}
+            - name: "ServerApiKey"
+              valueFrom:
+                secretKeyRef: 
+                  name: {{ include "kubernetes-agent.secrets.serverAuth" . }}
+                  key: api-key
+            {{- end }}
+            {{- if .Values.tentacle.bearerToken }}
+            - name: "BearerToken"
+              valueFrom:
+                secretKeyRef: 
+                  name: {{ include "kubernetes-agent.secrets.serverAuth" . }}
+                  key: bearer-token
+            {{- end }}
+            {{- if .Values.tentacle.listeningPort }}
+            - name: "ListeningPort"
+              value: {{ .Values.tentacle.listeningPort | quote }}
+            {{- end }}
+          {{- with .Values.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end}}
+          {{- if .Values.storage.useNFSContainer }}
+          volumeMounts:
+            - mountPath: /octopus
+              name: nfs-pod
+          {{- else if or .Values.volumeMounts }}
+          volumeMounts:
+            {{- .Values.volumeMounts | toYaml | nindent 12 }}
+          {{- end }}
+      {{- if .Values.storage.useNFSContainer }}
+      volumes:
+        - name: nfs-pod
+          nfs:
+            server: {{ .Values.storage.nfsPort }} 
+            path: /
+      {{- else if .Values.volumes }}
+      volumes:
+        {{- .Values.volumes | toYaml | nindent 8 }}
+      {{- end }}

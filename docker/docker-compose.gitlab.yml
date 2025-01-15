@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  gitlab:
+    image: gitlab/gitlab-ce:latest
+    ports:
+      - "8080:80"  # Interface Web GitLab
+      - "443:443"  # HTTPS si vous configurez TLS
+      - "2222:22"  # SSH pour Git
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://localhost:8080'
+    volumes:
+      - gitlab-data:/var/opt/gitlab
+      - gitlab-logs:/var/log/gitlab
+
+  gitlab-runner:
+    image: gitlab/gitlab-runner:latest
+    environment:
+      - RUNNER_NAME=my-docker-runner
+    restart: always
+
+volumes:
+  gitlab-data:
+  gitlab-logs:

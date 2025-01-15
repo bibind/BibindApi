@@ -1,0 +1,11 @@
+# Exclure les fichiers inutiles et sensibles
+*.pyc
+__pycache__/
+.env        # Exclure .env (on utilise spécialement env.local)
+.env.*      # Exclure tous les autres fichiers de type .env.* sauf env.local
+secrets/    # Par exemple, répertoires contenant des secrets
+node_modules/
+build/
+dist/
+*.log
+.dockerignore

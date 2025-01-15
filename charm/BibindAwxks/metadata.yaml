@@ -1,0 +1,22 @@
+name: bibindapi  # Nom unique du charm
+summary: "Charm pour l'API BindingAPI avec authentification OIDC"
+description: |
+  Ce charm déploie l'application BibindAPI, un backend conçu pour l'authentification OAuth2/OpenID Connect
+  (OIDC) avec Hydra/Kratos. BindingAPI se connecte facilement à Hydra comme fournisseur d'identité et
+  prend en charge les intégrations avec des IDP externes (Google, Facebook, etc.).
+
+maintainer: admin@bibind.com  # Mainteneur responsable
+subordinate: false  # Ce charm est autonome
+tags:
+  - application
+  - identity
+  - oidc
+  - fastapi
+series:
+  - k8s  # Conçu pour fonctionner sur Kubernetes avec MicroK8s ou Charmed Kubernetes
+
+requires:
+  oidc:
+    interface: oidc-client  # Interface nécessaire pour communiquer avec un fournisseur d'identité
+    limit: 1  # Un seul Identity Provider peut être lié à ce charm
+    optional: false  # Cette relation est obligatoire (Hydra requis)

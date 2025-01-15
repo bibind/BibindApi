@@ -1,0 +1,145 @@
+octopus:
+  # Must be set to "Y" (including the quotes) to accept the EULA at https://octopus.com/legal/customer-agreement
+  acceptEula: "Y"
+
+  ## Allows the secrets to be managed via an external secrets provider
+  createSecrets: true
+
+  # The below 5 options are not required if createSecrets is false 10.43.175.172
+  # The master key is used to encrypt secrets. Generate a key with: openssl rand 16 | base64
+  masterKey: F/lC1w09INVvEceNW1+28A==
+  databaseConnectionString: Server=tcp:mssql,1433;Initial Catalog=OctopusDeploy;Persist Security Info=False;User ID=SA;Password=Password01!;MultipleActiveResultSets=False;Encrypt=True;Connection Timeout=30;
+  # The Octopus admin username
+  username: admin
+  # The Octopus admin password
+  password: fjfh155fdGhgsh@!
+  # the octopus license key in base 64 format
+  licenseKeyBase64:
+
+  # The Octopus admin email
+  email: audreyroch.houssou@gmail.com
+
+  # The Octopus server image. 
+  # Visit https://hub.docker.com/r/octopusdeploy/octopusdeploy for the available versions.
+  image:
+    # The repository defaults to DockerHub
+    repository: octopusdeploy/octopusdeploy
+    # The tag will default to using the chart appVersion
+    tag: 
+  # The port the website is exposed on
+  webPort: 80 
+  # The port polling tentacles will connect via https://www.octopus.com/docs/infrastructure/deployment-targets/windows-targets/tentacle-communication#polling-tentacles 
+  tentaclePort: 10943 
+  # The number of server nodes to maintain  
+  replicaCount: 1
+
+  # Resource requests and limits can be set
+  #resources:
+  #  requests:
+  #    memory: "4Gi"
+  #    cpu: "2"
+  #  limits:
+  #    memory: "8Gi"
+  #    cpu: "6"
+
+  # The built in worker can use execution containers to run steps inside special Docker images.
+  # https://octopus.com/docs/deployment-process/execution-containers-for-workers.
+  # This requires supporting Docker in Docker, which in turn means the Octopus image must be run with
+  # all privileges. Disabling this setting disables Docker-In-Docker and does not set the privileged mode.
+  enableDockerInDocker: true
+
+  # Volume used for Octopus server logs: https://octopus.com/docs/support/log-files
+  # Each Octopus node mounts its own server log volume (this volume is not shared across nodes)
+  serverLogVolume:
+    size: 200Mi 
+    storageClassName: ""
+
+  # The package repository, artifact, and task log volumes below are all shared across Octopus nodes.
+  # For each, an optional persistent volume claim class name can be supplied. This storage class must support
+  # ReadWriteMany access modes for HA clusters.
+  # ReadWriteOnce or ReadWriteMany can be used for single node clusters.
+  # A dash (i.e. "-") means use an empty string as the storageClass attribute. This effectively means there
+  # is no automatic provisioning of persistent volumes, and the PV's need to be created externally outside of this chart.
+  # An falsy value (https://helm.sh/docs/chart_template_guide/control_structures/#ifelse defines falsy) means the
+  # storageClass attribute is not defined, and the default value may be used. Most cloud providers support automatic
+  # provisioning of ReadWriteOnce volumes.
+  # Just be aware that ReadWriteOnce volumes can only be used with a replicaCount of 1, as higher replica counts means
+  # multiple Octopus nodes writing to the same volume at the same time,
+  # requiring ReadWriteMany volumes. Also note that the storageAccessMode value is automatically set to ReadWriteMany
+  # when replicaCount is greater than 1.
+
+  # The volume used for persisting packages pushed to the Octopus built-in package repository: https://octopus.com/docs/packaging-applications/package-repositories/built-in-repository
+  packageRepositoryVolume:
+    size: 1Gi 
+    storageClassName: ""
+    storageAccessMode: ReadWriteOnce
+  # The volume used for persisting deployment artifacts: https://octopus.com/docs/projects/deployment-process/artifacts
+  artifactVolume:
+    size: 1Gi 
+    storageClassName: ""
+    storageAccessMode: ReadWriteOnce
+ # Volume used for task logs: https://octopus.com/docs/support/get-the-raw-output-from-a-task
+  taskLogVolume: 
+    size: 1Gi 
+    storageClassName: ""
+    storageAccessMode: ReadWriteOnce
+
+  service:
+    type: NodePort 
+  
+  ingress:
+    enabled: true
+    annotations: {}
+    labels: {}
+    path: /
+    hosts: [octopus.bibind.local]
+
+  statefulSet:
+    annotations: {}
+    labels: {}
+  pods:
+    annotations: {}
+    labels: {}
+
+  # For minimum resource indications see https://octopus.com/docs/administration/managing-infrastructure/performance#minimum-requirements 
+  resources: {} 
+  #  requests:
+  #    memory: "400M"
+  #    cpu: "100m"
+  #  limits:
+  #    memory: "4G"
+  #    cpu: "1"
+
+  tolerations: [] 
+
+  serviceAccount:
+    create: false
+    ## The name of the ServiceAccount to use.
+    ## If not set and create is true, a name is generated using the fullname template
+    name:
+    ## Service Account annotations
+    annotations: {}
+    automountServiceAccountToken: false
+  rbac:
+    create: false
+    role:
+      ## Rules to create. It follows the role specification
+      rules:
+        - apiGroups:
+            - ''
+          resources:
+            - services
+            - endpoints
+            - pods
+          verbs:
+            - get
+            - watch
+            - list
+
+dockerHub:
+  # Set to true to create a secret containing the docker registry password
+  login: false
+  # The base 64 encoded Docker config JSON. This value can be created with the command: 
+  # kubectl create secret docker-registry regcred --docker-username=myusername --docker-password=mypassword --dry-run=client -o="jsonpath={.data.\.dockerconfigjson}"
+  # See https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+  creds:

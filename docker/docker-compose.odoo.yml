@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  odoo:
+    image: odoo:latest
+    ports:
+      - "8069:8069"  # Web Odoo
+    environment:
+      POSTGRES_HOST: odoo-db
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: odoo_password
+    volumes:
+      - ./console:/mnt/extra-addons  # Répertoire où se trouvent vos modules
+
+  odoo-db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: odoo_password
+      POSTGRES_DB: odoo
+    volumes:
+      - odoo-db-data:/var/lib/postgresql/data
+
+volumes:
+  odoo-db-data:

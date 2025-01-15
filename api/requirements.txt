@@ -1,0 +1,9 @@
+fastapi                     # Framework FastAPI
+uvicorn[standard]           # Serveur ASGI
+python-jose                 # JWT pour la gestion des tokens
+passlib[bcrypt]             # Hachage sécurisé des mots de passe
+sqlalchemy                  # ORM SQLAlchemy
+asyncpg                     # Driver PostgreSQL pour SQLAlchemy
+python-decouple             # Gestion des variables d'environnement
+psycopg2-binary
+#psycopg2                    # Driver PostgreSQL (sync)

@@ -1,0 +1,18 @@
+name: bibind-gitlab-k8s
+description: Charm pour déployer GitLab CE sur MicroK8s.
+maintainers:
+  - "Votre Nom <votre.email@example.com>"
+tags:
+  - gitlab
+  - k8s
+series:
+  - focal
+  - jammy
+containers:
+  gitlab:
+    resource: gitlab-image
+    ports:
+      - 80/tcp
+      - 443/tcp
+provides: {}
+requires: {}

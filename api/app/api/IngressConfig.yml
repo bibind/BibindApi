@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: identity-platform-login-ui-ingress
+  namespace: default
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls: "true"
+spec:
+  rules:
+  - host: iam.bibind.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: identity-platform-login-ui-operator
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - iam.bibind.com
+    secretName: ctkgn07mp25c74p0it0g-2 # Remplace par le nom exact du secret

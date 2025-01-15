@@ -1,0 +1,38 @@
+# Utilisation d'une image Python slim (légère) pour réduire la taille de l'image
+FROM python:3.10-slim
+
+# Définition du répertoire de travail du conteneur
+WORKDIR /app
+
+# Installation des dépendances système nécessaires
+# gcc est requis pour certaines dépendances Python comme asyncpg
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc \
+    libpq-dev \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Étape 1 : Copier requirements.txt pour installer les dépendances Python en première étape
+COPY ./requirements.txt /app/requirements.txt
+
+# Étape 2 : Installer les dépendances Python
+RUN pip install --no-cache-dir --upgrade pip \
+    && pip install --no-cache-dir -r /app/requirements.txt
+
+# Étape 3 : Copier uniquement le fichier `.env.local` dans le conteneur
+#COPY ./.env /app/.env
+
+# Étape 4 : Copier tout le code source dans l'image Docker (attention à exclure node_modules si nécessaire via .dockerignore)
+COPY . /app/
+
+# Ne pas inclure de secrets ou fichiers sensibles dans l'image finale
+# Exemple : chmod 400 pour un éventuel fichier de secrets utilisé (si applicable)
+
+# Exposition du port de l'application (par défaut 8000)
+EXPOSE 8000
+
+# Commande de démarrage (Uvicorn pour le serveur FastAPI)
+# Options :
+# --host 0.0.0.0 : Permet au conteneur d'être accessible depuis l'hôte.
+# --port 8000    : Par défaut, configurable si changé dans le fichier env.local.
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]

@@ -1,0 +1,13 @@
+options:
+  db-host:
+    type: string
+    default: localhost
+    description: Adresse de l'hôte pour la base de données.
+  db-name:
+    type: string
+    default: awx
+    description: Nom de la base de données.
+  replicas:
+    type: int
+    default: 1
+    description: Nombre d'instances pour AWX.
