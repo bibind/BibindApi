@@ -1,0 +1,41 @@
+## **Synthèse de l'existant technique**
+L'infrastructure actuelle pour le projet **Bibind** repose sur un serveur dédié chez OVH, accompagné de technologies variées pour la virtualisation, le stockage, l’orchestration et l’hébergement des applications. Ce serveur sert de base pour héberger les services de Bibind et soutenir son évolution à court et moyen terme.
+### **1. Infrastructure matérielle**
+- **Serveur dédié OVH** :
+    - **Nom** : `ns5000508.ip-51-161-86.net`
+    - **Configuration** :
+        - CPU : AMD Epyc 7313, 16 cœurs / 32 threads
+        - Mémoire : 64 Go ECC
+        - Stockage : 2×960 Go SSD NVMe (Soft RAID)
+        - Réseau : Bande passante 1 Gbps (entrant et sortant)
+        - Emplacement : Beauharnois (Canada)
+
+    - IP publiques :
+        - **IPv4 primaire** : `51.161.86.9`
+        - Bloc d’IP supplémentaire : `158.69.31.144/29`
+        - **IPv6** : fourni avec un bloc subnet (/64).
+
+### **2. Système réseau**
+- Utilisation de **Netplan** pour gérer la configuration réseau.
+    - VLAN, ponts réseau (`br-ex`, `br-int`), et interfaces physiques (`eno1`, `eno2`) bien conçus pour séparer les communications internes (gestion, stockage, tenant) et externes.
+
+### **3. Outils déployés**
+1. **LXD** : Virtualisation basée sur conteneurs et machines virtuelles.
+    - **Instances en cours d'utilisation** :
+        - Contrôleurs OpenStack (`ctrl01`, `ctrl02`)
+        - Compute pour OpenStack (`compute01`)
+
+    - Réseaux LXD intégrés au Ceph et OpenStack.
+    - Un profil "interfaces" est déjà configuré pour gérer les réseaux efficacement.
+
+2. **Ceph** : Système de stockage distribué déployé sur les nœuds `ctrl01`, `ctrl02` et `compute01`.
+    - **État actuel** : Quelques alertes (**HEALTH_WARN**) : certaines instances (mon, osd) et services Cephadm nécessitent une attention particulière.
+    - Pools : Glance, Nova, Cinder, etc. intégrés à OpenStack pour images, volumes et backups.
+
+3. **OpenStack avec Kolla-Ansible** : Plateforme cloud IaaS.
+    - Contrôleurs et compute déjà configurés.
+    - Services activés : Keystone, Nova, Neutron, Glance, Horizon, Designate, Heat, etc.
+    - Services externes accessibles via `*.bibind.com`.
+
+4. **HAProxy** : Utilisé comme proxy pour les différents services (OpenStack, Ceph, etc.) avec configuration SSL établie.
+5. **Certificats SSL** : Certificat Let's Encrypt en place pour `bibind.com` et autres sous-domaines.

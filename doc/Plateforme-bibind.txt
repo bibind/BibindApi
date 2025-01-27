@@ -1,0 +1,90 @@
+## **Architecture technique enrichie de Bibind**
+L’écosystème Bibind repose sur une orchestration avancée basée sur **Juju**, qui déploiera et gérera différents **modèles (models)** d’applications au sein d’un **cluster Kubernetes (MicroK8s)**. L’intégration d’un système de gestion des secrets (**Vault**) renforce la sécurité tout en garantissant une modularité et une automatisation fluide, tant pour les processus internes que pour les offres clients.
+### **1. Juju : orchestrateur multi-cloud et gestion des modèles applicatifs**
+Juju est l’un des piliers de l’écosystème technique. L’orchestrateur sera configuré pour déployer et surveiller différents **models** (concept de Juju) dans le cluster **MicroK8s**. Chaque modèle correspond à un ensemble d’applications ou de services étroitement liés pour une fonctionnalité spécifique.
+Voici la répartition prévue des modèles et leurs composants principaux :
+#### **1.1. Modèle IAM : gestion des identités et secrets**
+Le modèle IAM centralise la gestion des identités et des accès aux différents services de Bibind. Il inclut :
+- **Hydra** : pour l’autorisation basée sur OAuth2 et OpenID Connect.
+- **Kratos** : pour la gestion des utilisateurs et de leur cycle de vie (IAM).
+- **Vault** : pour gérer les secrets et la distribution sécurisée des informations sensibles (API keys, certificats, mots de passe).
+    - Les secrets gérés par Vault seront accessibles à tous les autres modèles qui en ont besoin, comme **GitLab**, **Odoo** et **AWX**.
+
+#### **1.2. Modèle JIMM : gestion des ressources Juju**
+Ce modèle déploie **JIMM (Juju Intelligent Model Manager)**, qui aide à organiser et à gérer les différents modèles hébergés sur Juju ainsi que leurs relations.
+Les avantages incluent :
+- Une vision centralisée des relations entre les modèles (par exemple, IAM -> Automate).
+- Une gestion simplifiée des mises à jour et changements d’état pour chaque composant applicatif.
+
+#### **1.3. Modèle Bibind : ERP (Odoo) et modules personnalisés**
+Ce modèle inclut l’ERP principal de Bibind basé sur **Odoo**, déployé via un **charm Kubernetes** (BibindOdooK8s). Ce charm gère également :
+- **Le déploiement de Helm pour Odoo**, en combinant des scripts Helm Chart pour automatiser les aspects récurrents.
+- **Les modules personnalisés d’Odoo**, adaptés aux besoins spécifiques des utilisateurs et des services Bibind :
+    - **Console utilisateur Bibind** : centralisation des commandes et services.
+    - Modules pour connecter les offres (OpenStack, AWX, GitLab, etc.).
+
+- Intégration des comptes utilisateurs avec **le modèle IAM** (Hydra/Kratos).
+
+#### **1.4. Modèle Delivery : gestion CI/CD avec GitLab**
+Ce modèle inclut le déploiement de **GitLab** via un **charm Kubernetes** (gitlab-operator).
+- GitLab est le service principal pour le développement et la maintenance des applications Bibind.
+- Ce modèle gère :
+    - Les pipelines CI/CD internes pour les différentes offres Bibind.
+    - Une **offre GitLab CI/CD clé en main** pour les clients Bibind.
+    - L’accès sécurisé aux dépôts clients grâce à l’intégration avec Hydra/Kratos (IAM).
+
+#### **1.5. Modèle Automate : automatisation avec AWX**
+Ce modèle déploie **AWX** via un **charm Kubernetes** (awx-operator). AWX est utilisé comme moteur central pour l’automatisation des offres Bibind.
+- Automatisation des provisionnements pour les clients Bibind (machines, configurations, environnements logiciels).
+- Exécution batch des playbooks Ansible pour gérer et maintenir les services déployés sur OpenStack, Kubernetes et autres infrastructures connectées.
+- Intégration via API avec **l’application ApiBibind** (model ApiBibind).
+
+#### **1.6. Modèle ApiBibind : FastAPI**
+L’application **ApiBibind**, déployée sous ce modèle, joue un rôle crucial dans toute l’architecture de Bibind. Elle fournit :
+- **Une API REST publique**, permettant aux clients d’interagir avec leurs services :
+    - Consultation et gestion des machines virtuelles via l’API OpenStack.
+    - Gestion des pipelines CI/CD via l’API GitLab.
+    - Exécution des tâches d’automatisation via l’API AWX.
+
+- **Fonctionnalités CLI pour ApiBibind** : en complément de l’API REST, un client en ligne de commande (CLI) sera fourni pour les utilisateurs avancés. La CLI permettra :
+    - La gestion rapide des fonctionnalités sans utiliser d’interface graphique.
+    - Une intégration fluide pour les workflows DevOps.
+
+### **2. Gestion des secrets avec Vault**
+**Vault** est intégré dans le modèle **IAM** pour sécuriser et gérer les secrets nécessaires à l’ensemble des applications et services de Bibind. Sa mise en œuvre garantit :
+- **Chiffrement en transit et au repos** des secrets.
+- Un contrôle strict des accès grâce à des politiques RBAC (Role-Based Access Control).
+- Une intégration étroite avec :
+    - Les pipelines GitLab (sécurisation des variables sensibles dans CI/CD).
+    - Les configurations d’Odoo, AWX et de l’ApiBibind.
+
+L’utilisation de Vault permet également une **rotation automatique des secrets** pour éviter l’exposition prolongée des données sensibles.
+### **3. Flux d’API et interconnexions**
+L’écosystème technique Bibind repose sur l’interconnexion fluide entre chaque service via leurs **API respectives**. L’application **ApiBibind** centralisera ces services et servira d'interface principale pour l’ensemble des interactions automatisées et des fonctionnalités utilisateurs.
+#### **API connectées :**
+1. **OpenStack API :** gestion des machines virtuelles et des environnements déployés pour les clients.
+2. **GitLab API :** consultation et gestion des pipelines CI/CD et des projets.
+3. **AWX API :** exécution des playbooks pour automatiser les tâches clients et internes.
+4. **Odoo API :** gestion des offres et modules personnalisés.
+5. **Vault API :** accès sécurisé aux secrets liés aux services et utilisateurs.
+6. **ApiBibind :** orchestration centrale pour toutes les interactions API.
+
+#### **Rôles de l’ApiBibind :**
+- Centralisation des appels API pour simplifier les intégrations clients.
+- Fourniture de points d’entrée codifiés pour les développeurs via une UI ou une CLI.
+
+### **4. Approche pour le démarrage de l’infrastructure**
+Pour lancer ce vaste écosystème dans un cadre restreint en termes de ressources :
+1. **Serveur dédié OVH** : hébergement d’un cluster MicroK8s et des VMs nécessaires (OpenStack et orchestrateur Juju).
+2. **Premier déploiement simplifié** :
+    - Modèle IAM (Hydra/Kratos/Vault).
+    - Modèle Delivery : GitLab pour pipelines CI/CD internes.
+    - Modèle Automate : AWX pour provisionnement des bases des offres Bibind.
+    - Modèle Bibind : Odoo pour la gestion initiale des offres.
+
+Cette architecture minimaliste est déjà opérationnelle tout en laissant place à une montée en charge future.
+### **Résumé de l’architecture Bibind**
+1. **OpenStack** : cloud privé pour provisionner des machines virtuelles et environnements.
+2. **Juju + MicroK8s** : déployés avec 6 modèles principaux (IAM, JIMM, Bibind, Delivery, Automate, ApiBibind).
+3. **Vault** : gestion des secrets (partagé entre tous les modèles).
+4. **ApiBibind** : centralisation API/CLI pour utilisateurs et services internes.

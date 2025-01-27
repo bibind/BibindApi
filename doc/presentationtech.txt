@@ -1,0 +1,781 @@
+Présenation technique du projet Bibind de la société bibind
+
+existant technique :
+
+1/serveur ovh :
+nom du serveur :ns5000508.ip-51-161-86.net
+Nom commercial
+RISE-4 | AMD Epyc 7313
+
+Région
+North America (Canada - East - Beauharnois)
+ca-east-bhs
+
+Zone
+ca-east-bhs-a
+
+datacenter
+BHS7
+
+Baie
+B715B11
+Serveur ID
+481199
+
+CPU
+AMD Epyc 7313 - 16c/32t - 3 GHz/3.7 GHz
+RAM
+64 Go ECC 3200 MHz
+
+Disques de données
+2×960 Go SSD NVMe
+
+Soft RAID
+
+Bande passante sortante
+ 1 Gbps
+ 1 Gbps
+
+Bande passante entrante
+ 1 Gbps
+ 1 Gbps
+
+ipv4
+51.161.86.9
+Gateway IPv4
+51.161.86.254
+IPv6
+2607:5300:203:7409::/64
+Gateway IPv6
+2607:5300:0203:74ff:00ff:00ff:00ff:00ff
+
+
+Reverse
+ ns5000508.ip-51-161-86.net
+
+interface
+eno1 : mac address :a0:42:3f:51:d0:5b ip: 51.161.86.9
+eno2 : mac address: a0:42:3f:51:d0:5c vrack : pn-1189215
+
+2 / Additional IP
+
+158.69.31.144/29
+
+3 /le nom de domain
+
+bibind.com
+
+
+bibind.com.
+0	TXT	"1|www.bibind.com"
+
+www.bibind.com.
+0	TXT	"3|welcome"
+
+www.bibind.com.
+0	TXT	"l|fr"
+
+bibind.com.
+0	NS	dns11.ovh.net.
+
+bibind.com.
+0	NS	ns11.ovh.net.
+
+bibind.com.
+0	A	51.161.86.9
+
+www.bibind.com.
+0	CNAME	bibind.com.
+
+bibind.com.
+0	MX	1 mx1.mail.ovh.net.
+
+bibind.com.
+0	MX	5 mx2.mail.ovh.net.
+
+bibind.com.
+0	MX	100 mx3.mail.ovh.net.
+
+bibind.com.
+0	SPF	v=spf1 include:mx.ovh.com ~all
+
+ovhmo3050185-selector2._domainkey.bibind.com.
+0	CNAME	ovhmo3050185-selector2._domainkey.761358.fd.dkim.mail.ovh.net.
+
+ovhmo3050185-selector1._domainkey.bibind.com.
+0	CNAME	ovhmo3050185-selector1._domainkey.761359.fd.dkim.mail.ovh.net.
+
+*.bibind.com.
+0	A	51.161.86.9
+
+_acme-challenge.bibind.com.
+0	TXT	"4AF_-YaZ46pEGwpYMq9ppZ4m37_Fj54qSitvIU0usug"
+
+
+letencrype
+Installation de cerbot sur le serveur ovh
+création des certificat letencrype pour bibind.com et *.bibind.com
+
+
+
+4 / configuration du réseau netplan sur le serveur ns5000508.ip-51-161-86.net
+
+sudo cat /etc/netplan/50-cloud-init.yaml
+# This file is generated from information provided by the datasource.  Changes
+# to it will not persist across an instance reboot.  To disable cloud-init's
+# network configuration capabilities, write a file
+# /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg with the following:
+# network: {config: disabled}
+network:
+    version: 2
+    ethernets:
+        eno1:
+            accept-ra: false
+            addresses:
+            - 2607:5300:203:7409::/56
+            dhcp4: true
+            match:
+                macaddress: a0:42:3f:51:d0:5b
+            nameservers:
+                addresses:
+                - 2001:41d0:3:163::1
+            routes:
+            -   to: default
+                via: 2607:5300:203:74ff:ff:ff:ff:ff
+            -   to: 2607:5300:203:7440::/58
+            set-name: eno1
+
+
+config personnalisé sur le 51-cloud-init.yaml
+
+sudo cat /etc/netplan/51-cloud-init.yaml
+# This file is generated from information provided by the datasource.  Changes
+# to it will not persist across an instance reboot.  To disable cloud-init's
+# network configuration capabilities, write a file
+# /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg with the following:
+# network: {config: disabled}
+network:
+    version: 2
+    ethernets:
+        eno2:
+          match:
+            macaddress: a0:42:3f:51:d0:5c
+
+    vlans:
+      # opintV10:
+      #    id: 10
+      #    link: eno2
+      #    addresses:
+      #      - 192.168.0.12/24
+      #  cephintV20:
+      #    id: 20
+      #    link: eno2
+      #    addresses:
+      #      - 192.168.10.12/24
+        vlan50:
+          id: 50
+          link: eno2
+          addresses:
+            - 192.168.50.12/24
+        eno2.100:
+          id: 100
+          link: eno2
+          addresses: []
+          mtu: 1500
+    bridges:
+      # Pont externe : utilisé pour Floating IPs et le réseau externe d'OpenStack
+        br-ex:
+          interfaces:
+            - eno2.100
+          mtu: 1500
+          addresses:
+            - 10.197.93.1/24
+          optional: true
+
+      # Pont interne : utilisé pour les communications internes (management, tenant networks)
+        br-int:
+          dhcp4: false
+          addresses: []  # Pas d'adresse ici non plus (management/tenant intégré à OpenStack)
+          optional: true
+
+
+
+5/ installation de haproxy comme proxy des différentes application bibind.
+
+configuration de haproxy
+sudo cat /etc/haproxy/haproxy.cfg
+global
+	log /dev/log	local0
+	log /dev/log	local1 notice
+	chroot /var/lib/haproxy
+	stats socket /run/haproxy/admin.sock mode 660 level admin expose-fd listeners
+	stats timeout 30s
+	user haproxy
+	group haproxy
+	daemon
+
+	# Default SSL material locations
+	ca-base /etc/ssl/certs
+	crt-base /etc/ssl/private
+
+	# See: https://ssl-config.mozilla.org/#server=haproxy&server-version=2.0.3&config=intermediate
+        ssl-default-bind-ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384
+        ssl-default-bind-ciphersuites TLS_AES_128_GCM_SHA256:TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256
+        ssl-default-bind-options ssl-min-ver TLSv1.2 no-tls-tickets
+
+defaults
+	log	global
+	mode	http
+	option	httplog
+	option	dontlognull
+        timeout connect 5000
+        timeout client  50000
+        timeout server  50000
+	errorfile 400 /etc/haproxy/errors/400.http
+	errorfile 403 /etc/haproxy/errors/403.http
+	errorfile 408 /etc/haproxy/errors/408.http
+	errorfile 500 /etc/haproxy/errors/500.http
+	errorfile 502 /etc/haproxy/errors/502.http
+	errorfile 503 /etc/haproxy/errors/503.http
+	errorfile 504 /etc/haproxy/errors/504.http
+
+#frontend ceph_op_front
+#        mode http
+#        bind *:9443 	ssl crt /etc/haproxy/certs/selfsigned.pem
+#	option forwardfor except 127.0.0.1
+#   	http-request add-header X-Forwarded-Proto https if { ssl_fc }
+	#option tcplog
+#        default_backend ceph_op_back
+
+#backend ceph_op_back
+	#mode http
+	#option httpchk GET /
+	#http-check expect status 200
+        #server ctrl01_ceph 10.197.92.9:8443 ssl check verify none
+
+
+userlist mycredentials
+  user audreyroch  insecure-password Test@test44
+
+
+#---------------
+# frontend pour ssh instance
+# ---------------
+
+# Frontend pour gérer le trafic SSH
+#frontend ssh_in
+    #bind *:22
+    #mode tcp
+    #option tcplog
+    #default_backend instance01_ssh
+
+
+# Backend pour rediriger vers l'instance
+#backend instance01_ssh
+    #mode tcp
+    #server instance01 10.197.93.11:22 check
+
+# -------------------------
+# Frontend pour chaque service
+# -------------------------
+
+frontend horizon_front
+	mode http
+	option tcplog
+	bind 51.161.86.9:80
+	bind *:443	ssl crt /etc/haproxy/certs/bibind.com.pem alpn h2,http/1.1
+	http-request redirect scheme https unless { ssl_fc }
+	#acl network_allowed src 88.177.86.139
+        #acl restricted_page path_beg /admin
+        #acl restricted_page path_beg /helpdesk
+        #http-request deny if !network_allowed
+	#http-request auth unless { http_auth(mycredentials) }
+
+	use_backend horizon_servers if { req.hdr(host) -i horizon.bibind.com }
+	use_backend skyline_servers if { req.hdr(host) -i skyline.bibind.com }
+	use_backend ceph_back if { req.hdr(host) -i ceph.bibind.com }
+	#use_backend dashboard_back if { req.hdr(host) -i dashboard.bibind.com }
+
+
+frontend glance_front
+    mode http
+    bind 0.0.0.0:9292 ssl crt /etc/haproxy/certs/public_bibind.pem
+    default_backend glance_back
+
+frontend nova_front
+    mode http
+    bind 0.0.0.0:8774 ssl crt /etc/haproxy/certs/public_bibind.pem
+    default_backend nova_back
+
+frontend cinder_front
+    mode http
+    bind 0.0.0.0:8776 ssl crt /etc/haproxy/certs/public_bibind.pem
+    default_backend cinder_back
+
+frontend neutron_front
+    mode http
+    bind 0.0.0.0:9696 ssl crt /etc/haproxy/certs/public_bibind.pem
+    default_backend neutron_back
+
+frontend heat_front
+    mode http
+    bind 0.0.0.0:8004 ssl crt /etc/haproxy/certs/public_bibind.pem
+    default_backend heat_back
+
+frontend heat_cfn_front
+    mode http
+    bind 0.0.0.0:8000 ssl crt /etc/haproxy/certs/public_bibind.pem
+    default_backend heat_cfn_back
+
+
+frontend keystone_front
+    mode http
+    option httplog
+    bind 51.161.86.9:5000 ssl crt /etc/haproxy/certs/public_bibind.pem
+    default_backend keystone_back
+
+
+frontend designate_front
+    mode http
+    bind 0.0.0.0:9001 ssl crt /etc/haproxy/certs/public_bibind.pem
+    default_backend designate_back
+
+frontend placement_front
+    mode http
+    bind 0.0.0.0:8780 ssl crt /etc/haproxy/certs/public_bibind.pem
+    default_backend placement_back
+
+
+frontend vnc_front
+    mode http
+    bind 0.0.0.0:6080 ssl crt /etc/haproxy/certs/public_bibind.pem
+    default_backend vnc_back
+
+
+# --------------------------
+# Backends pour chaque service
+# --------------------------
+
+
+backend vnc_back
+    mode http
+    server vnc_srv 10.197.92.222:6080 check ssl verify none
+
+
+backend glance_back
+    mode http
+    server glance_srv 10.197.92.222:9292 check ssl verify none
+
+backend nova_back
+    mode http
+    server nova_srv 10.197.92.222:8774 check ssl verify none
+
+backend cinder_back
+    mode http
+    server cinder_srv 10.197.92.222:8776 check ssl verify none
+
+backend neutron_back
+    mode http
+    server neutron_srv 10.197.92.222:9696 check ssl verify none
+
+backend heat_back
+    mode http
+    server heat_srv 10.197.92.222:8004 check ssl verify none
+
+backend heat_cfn_back
+    mode http
+    server heat_cfn_srv 10.197.92.222:8000 check ssl verify none
+
+backend designate_back
+    mode http
+    server designate_srv 10.197.92.222:9001 check ssl verify none
+
+
+backend placement_back
+    mode http
+    server placement_srv 10.197.92.222:8780 check ssl verify none
+
+backend horizon_servers
+        mode http
+        server horizon_srv 10.197.92.222:443 ssl check verify none
+
+
+backend skyline_servers
+        mode http
+        server skyline_srv 10.197.92.222:9999 ssl check verify none
+
+
+backend ceph_back
+	mode http
+    	option httpchk GET /
+    	http-check expect status 200
+    	server ceph_srv 10.197.92.9:8443  ssl check verify none
+
+
+
+backend keystone_back
+    mode http
+    server keystone_srv 10.197.92.222:5000 ssl check verify none
+
+
+6  / installation de LXD sur le serveur ns5000508.ip-51-161-86.net
+
+création de réseau
+
++--------------+----------+---------+------------------+---------------------------+-------------+---------+---------+
+|     NAME     |   TYPE   | MANAGED |       IPV4       |           IPV6            | DESCRIPTION | USED BY |  STATE  |
++--------------+----------+---------+------------------+---------------------------+-------------+---------+---------+
+| br-ex        | bridge   | NO      |                  |                           |             | 6       |         |
++--------------+----------+---------+------------------+---------------------------+-------------+---------+---------+
+| br-int       | bridge   | NO      |                  |                           |             | 0       |         |
++--------------+----------+---------+------------------+---------------------------+-------------+---------+---------+
+| cephclstrbr0 | bridge   | YES     | 10.36.56.1/24    | fd42:bcf0:d4b3:3619::1/64 |             | 13      | CREATED |
++--------------+----------+---------+------------------+---------------------------+-------------+---------+---------+
+| cephint      | bridge   | YES     | 192.168.10.12/24 | fd42:f8c5:4a64:8330::1/64 |             | 6       | CREATED |
++--------------+----------+---------+------------------+---------------------------+-------------+---------+---------+
+| eno1         | physical | NO      |                  |                           |             | 0       |         |
++--------------+----------+---------+------------------+---------------------------+-------------+---------+---------+
+| eno2         | physical | NO      |                  |                           |             | 0       |         |
++--------------+----------+---------+------------------+---------------------------+-------------+---------+---------+
+| eno2.100     | vlan     | NO      |                  |                           |             | 0       |         |
++--------------+----------+---------+------------------+---------------------------+-------------+---------+---------+
+| eno3         | physical | NO      |                  |                           |             | 0       |         |
++--------------+----------+---------+------------------+---------------------------+-------------+---------+---------+
+| eno4         | physical | NO      |                  |                           |             | 0       |         |
++--------------+----------+---------+------------------+---------------------------+-------------+---------+---------+
+| lxdfan0      | bridge   | YES     |                  |                           |             | 15      | CREATED |
++--------------+----------+---------+------------------+---------------------------+-------------+---------+---------+
+| neutronbr0   | bridge   | YES     | none             | none                      |             | 9       | CREATED |
++--------------+----------+---------+------------------+---------------------------+-------------+---------+---------+
+| opextbr0     | bridge   | YES     | 10.197.92.1/24   | none                      |             | 13      | CREATED |
++--------------+----------+---------+------------------+---------------------------+-------------+---------+---------+
+| opint        | bridge   | YES     | 192.168.0.12/24  | fd42:c46d:ad74:69ae::1/64 |             | 6       | CREATED |
++--------------+----------+---------+------------------+---------------------------+-------------+---------+---------+
+| vlan50       | vlan     | NO      |                  |                           |             | 0       |         |
++--------------+----------+---------+------------------+---------------------------+-------------+---------+---------+
+
+profile interfaces
+
+lxc profile show interfaces
+config:
+  cloud-init.user-data: |
+    #cloud-config
+    packages:
+      - ssh
+      - lvm2
+      - vim
+    users:
+      - name: ubuntu
+        groups: sudo
+        sudo: ['ALL=(ALL) NOPASSWD:ALL']
+        lock_passwd: true
+        shell: /bin/bash
+        ssh_authorized_keys:
+          - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDH+IsS5aAHO5BaY944qNVg3gQKGrOJNQ27AMt8fEFBvC0S6LIAkz8Z23++s3OsFNmuPRNLTQ7uZmAtfL7nVK2jvPbWFeEeDX5XXXoLO5xxKjCB5+xzQPPz499Tr20Gfa+grgw7dnKVX1SG9MGGdSxPjz+/7O+DjKA2ELqsYvoq0xM/MbruIByfzRQk/nNvC+tQh//jfFOXvSwu5j+NQH5tbmc9rsBmDWyH3xVLnwEO6yIjD/vJj5nGbT5W+lR/VZmUPqHtGwqi4yitzbBelKkthB85+PySu31J9fwrJTd0mqaQbrJs0qnmpOy6LEKm2/xJQ+b1fVI8yc4/K8852+eE5XHkpll6FwQmYDPX0Jf8CwenO0fHMe9tpGB+TOYMfed+SLM0z48LMVq+Ut6KQ7vyEb/AOdmAOptH1ARgf1mgsXqTD3Cvq7o89R1GL3TdwekvKkEAP5LIY6ekKJF32iZ2kjWGuLOU1M3CJY6Ph70Iuihi+9APgeHmKfQ1ZtKpVjs= houssou@houssou-Katana-15-B12VGK
+description: profile for openstack interfaces
+devices:
+  eth0:
+    name: enp5s0
+    network: lxdfan0
+    type: nic
+  eth1:
+    name: enp6s0
+    nictype: bridged
+    parent: br-ex
+    type: nic
+  eth2:
+    name: enp7s0
+    network: opextbr0
+    type: nic
+  eth3:
+    name: enp8s0
+    nictype: bridged
+    parent: opint
+    type: nic
+  eth4:
+    name: enp9s0
+    network: cephclstrbr0
+    type: nic
+  eth5:
+    name: enp10s0
+    nictype: bridged
+    parent: cephint
+    type: nic
+  root:
+    path: /
+    pool: default
+    type: disk
+name: interfaces
+used_by:
+- /1.0/instances/ctrl01
+- /1.0/instances/ctrl02
+- /1.0/instances/ctrl03
+- /1.0/instances/compute01
+
+lxc list
++-----------+---------+-------------------------+--------------------------------------------------+-----------------+-----------+-----------+
+|   NAME    |  STATE  |          IPV4           |                       IPV6                       |      TYPE       | SNAPSHOTS | LOCATION  |
++-----------+---------+-------------------------+--------------------------------------------------+-----------------+-----------+-----------+
+| bibind    | STOPPED |                         |                                                  | VIRTUAL-MACHINE | 0         | ns5000508 |
++-----------+---------+-------------------------+--------------------------------------------------+-----------------+-----------+-----------+
+| compute01 | RUNNING | 240.9.0.204 (enp5s0)    | fd42:f8c5:4a64:8330:216:3eff:fe5b:2bcc (enp10s0) | VIRTUAL-MACHINE | 0         | ns5000508 |
+|           |         | 192.168.10.12 (enp10s0) | fd42:c46d:ad74:69ae:216:3eff:fe37:6489 (enp8s0)  |                 |           |           |
+|           |         | 192.168.0.12 (enp8s0)   | fd42:bcf0:d4b3:3619:216:3eff:fea9:5f85 (enp9s0)  |                 |           |           |
+|           |         | 10.36.56.12 (enp9s0)    |                                                  |                 |           |           |
+|           |         | 10.197.92.12 (enp7s0)   |                                                  |                 |           |           |
++-----------+---------+-------------------------+--------------------------------------------------+-----------------+-----------+-----------+
+| compute02 | STOPPED |                         |                                                  | VIRTUAL-MACHINE | 0         | ns5000508 |
++-----------+---------+-------------------------+--------------------------------------------------+-----------------+-----------+-----------+
+| ctrl01    | RUNNING | 240.9.0.203 (enp5s0)    | fd42:f8c5:4a64:8330:216:3eff:fef1:286f (enp10s0) | VIRTUAL-MACHINE | 1         | ns5000508 |
+|           |         | 192.168.10.9 (enp10s0)  | fd42:c46d:ad74:69ae:216:3eff:fe67:ff31 (enp8s0)  |                 |           |           |
+|           |         | 192.168.0.9 (enp8s0)    | fd42:bcf0:d4b3:3619:216:3eff:febf:4e6 (enp9s0)   |                 |           |           |
+|           |         | 192.168.0.222 (enp8s0)  |                                                  |                 |           |           |
+|           |         | 10.36.56.9 (enp9s0)     |                                                  |                 |           |           |
+|           |         | 10.197.92.9 (enp7s0)    |                                                  |                 |           |           |
+|           |         | 10.197.92.222 (enp7s0)  |                                                  |                 |           |           |
++-----------+---------+-------------------------+--------------------------------------------------+-----------------+-----------+-----------+
+| ctrl02    | RUNNING | 240.9.0.144 (enp5s0)    | fd42:f8c5:4a64:8330:216:3eff:fe09:6dc1 (enp10s0) | VIRTUAL-MACHINE | 1         | ns5000508 |
+|           |         | 192.168.10.10 (enp10s0) | fd42:c46d:ad74:69ae:216:3eff:febb:5512 (enp8s0)  |                 |           |           |
+|           |         | 192.168.0.10 (enp8s0)   | fd42:bcf0:d4b3:3619:216:3eff:fead:3f6e (enp9s0)  |                 |           |           |
+|           |         | 10.36.56.10 (enp9s0)    |                                                  |                 |           |           |
+|           |         | 10.197.92.10 (enp7s0)   |                                                  |                 |           |           |
++-----------+---------+-------------------------+--------------------------------------------------+-----------------+-----------+-----------+
+| ctrl03    | STOPPED |                         |                                                  | VIRTUAL-MACHINE | 0         | ns5000508 |
++-----------+---------+-------------------------+--------------------------------------------------+-----------------+-----------+-----------+
+
+les vm ctrl03 et compute02 avaient été créée pour ceph et openstack, elle ont été stop pour ne pas prendre trop de resourcces pour openstack .
+
+7/ installation de ceph ctrl01, ctrl02 , compute01
+
+ceph status
+  cluster:
+    id:     5fc57a8a-9e78-11ef-982f-00163ee47667
+    health: HEALTH_WARN
+            2 failed cephadm daemon(s)
+            2 hosts fail cephadm check
+            1/3 mons down, quorum ctrl01,ctrl02
+
+  services:
+    mon: 3 daemons, quorum ctrl01,ctrl02 (age 4m), out of quorum: compute01
+    mgr: ctrl01.gzdchg(active, since 45h)
+    osd: 5 osds: 3 up (since 12h), 3 in (since 4d)
+
+  data:
+    pools:   5 pools, 129 pgs
+    objects: 1.48k objects, 5.6 GiB
+    usage:   117 GiB used, 133 GiB / 250 GiB avail
+    pgs:     129 active+clean
+
+
+
+ceph orch host ls
+HOST       ADDR         LABELS          STATUS
+compute01  10.36.56.12  osd
+compute02  10.36.56.13  osd             Offline
+ctrl01     10.36.56.9   _admin,mon,osd
+ctrl02     10.36.56.10  mon,osd
+ctrl03     10.36.56.11  mon,osd         Offline
+5 hosts in cluster
+
+ceph mon stat
+e9: 3 mons at {compute01=[v2:10.36.56.12:3300/0,v1:10.36.56.12:6789/0],ctrl01=[v2:10.36.56.9:3300/0,v1:10.36.56.9:6789/0],ctrl02=[v2:10.36.56.10:3300/0,v1:10.36.56.10:6789/0]} removed_ranks: {} disallowed_leaders: {}, election epoch 66678, leader 0 ctrl01, quorum 0,1 ctrl01,ctrl02
+
+ceph osd tree
+ID   CLASS  WEIGHT   TYPE NAME           STATUS  REWEIGHT  PRI-AFF
+ -1         0.24399  root default
+ -3         0.04880      host compute01
+  0    hdd  0.04880          osd.0           up   1.00000  1.00000
+ -7         0.04880      host compute02
+  1    hdd  0.04880          osd.1         down         0  1.00000
+-11         0.04880      host ctrl01
+  2    hdd  0.04880          osd.2           up   1.00000  1.00000
+ -5         0.04880      host ctrl02
+  4    hdd  0.04880          osd.4           up   1.00000  1.00000
+ -9         0.04880      host ctrl03
+  3    hdd  0.04880          osd.3         down         0  1.00000
+
+
+
+8/ installation d'openstack sur les vm ctrl01 , ctrl02, compute01 avec kolla-ansible .
+
+installation de kolla-ansible sur ctrl01 .
+
+configuration global de kolla
+
+cat /etc/kolla/globals.yml
+---
+# globals.yml.j2
+kolla_base_distro: "ubuntu"
+kolla_install_type: "source"
+openstack_release: "master"
+network_interface: "enp8s0"
+neutron_external_interface: "enp6s0"
+kolla_internal_vip_address: "192.168.0.222"
+kolla_external_vip_address: "10.197.92.222"
+kolla_internal_fqdn: "internal.bibind.com"
+kolla_external_fqdn: "public.bibind.com"
+workaround_ansible_issue_8743: yes
+kolla_external_vip_interface: "enp7s0"
+api_interface: "enp8s0"
+tunnel_interface: "enp8s0"
+neutron_plugin_agent: "openvswitch"
+neutron_bridge_mappings: "physnet1:br-ex"
+neutron_dns_integration: "yes"
+neutron_dns_domain: "bibind.com."
+kolla_enable_tls_internal: "yes"
+kolla_enable_tls_external: "yes"
+kolla_copy_ca_into_containers: "yes"
+openstack_cacert: "/etc/ssl/certs/ca-certificates.crt"
+#enable_central_logging: "yes"
+kolla_enable_tls_backend: "yes"
+kolla_verify_tls_backend: "no"
+enable_openstack_core: "yes"
+keystone_multi_domain: "yes"
+keystone_default_domain: "default"
+enable_cinder: "yes"
+cinder_cluster_name: "ceph"
+enable_fluentd: "no"
+enable_neutron_provider_networks: "yes"
+ceph_glance_user: "glance"
+ceph_glance_keyring: "client.glance.keyring"
+ceph_glance_pool_name: "images"
+ceph_cinder_user: "cinder"
+ceph_cinder_keyring: "client.cinder.keyring"
+ceph_cinder_pool_name: "volumes"
+ceph_cinder_backup_user: "cinder-backup"
+ceph_cinder_backup_keyring: "client.cinder-backup.keyring"
+ceph_cinder_backup_pool_name: "backups"
+ceph_nova_keyring: "client.nova.keyring"
+ceph_nova_user: "nova"
+ceph_nova_pool_name: "vms"
+glance_backend_ceph: "yes"
+cinder_backend_ceph: "yes"
+nova_backend_ceph:  "yes"
+nova_compute_virt_type: "kvm"
+#neutron_ovn_distributed_fip: "yes"
+horizon_keystone_multidomain: "yes"
+enable_horizon: "yes"
+enable_skyline: "yes"
+enable_heat: "yes"
+enable_designate: "yes"
+#enable_redis: "yes"
+#enable_letsencrypt: "yes"
+#letsencrypt_email: "audreyroch.houssou@gmail.com"
+- /1.0/instances/compute02
+
+
+9/openstack
+
+openstack --os-cloud kolla-admin  endpoint list
++----------------------------------+-----------+--------------+----------------+---------+-----------+---------------------------------------------------+
+| ID                               | Region    | Service Name | Service Type   | Enabled | Interface | URL                                               |
++----------------------------------+-----------+--------------+----------------+---------+-----------+---------------------------------------------------+
+| 0ca524f6275a4c44bd00601c6f42c1fa | RegionOne | skyline      | panel          | True    | public    | https://public.bibind.com:9998                    |
+| 13705d70b98648ffbf87e4a835ccb835 | RegionOne | keystone     | identity       | True    | public    | https://public.bibind.com:5000                    |
+| 1ba4d69c29114038a763d97fad7e3e7d | RegionOne | skyline      | panel          | True    | internal  | https://internal.bibind.com:9998                  |
+| 2047f61cce284334995851c10271f472 | RegionOne | heat         | orchestration  | True    | internal  | https://internal.bibind.com:8004/v1/%(tenant_id)s |
+| 2b7c79e4fc024416b053f0d3dbe74c46 | RegionOne | nova         | compute        | True    | public    | https://public.bibind.com:8774/v2.1               |
+| 2e7177a53bd64632a41fa8bdf1184c1c | RegionOne | cinderv3     | volumev3       | True    | public    | https://public.bibind.com:8776/v3/%(tenant_id)s   |
+| 3ca696e5236c40fba0b07c29399c8644 | RegionOne | glance       | image          | True    | public    | https://public.bibind.com:9292                    |
+| 55cf56fac66449c5921cc2f9d19a4cdb | RegionOne | designate    | dns            | True    | internal  | https://internal.bibind.com:9001                  |
+| 5d9cb6ac94f44053acf087175d636502 | RegionOne | glance       | image          | True    | internal  | https://internal.bibind.com:9292                  |
+| 72a7ff9ca3fa41678a6df09d0aae7a96 | RegionOne | heat-cfn     | cloudformation | True    | public    | https://public.bibind.com:8000/v1                 |
+| 84588aad6be14815b580e8fcc387f805 | RegionOne | neutron      | network        | True    | public    | https://public.bibind.com:9696                    |
+| 922d42fd1d7148f58d49496d20b3fb2e | RegionOne | placement    | placement      | True    | internal  | https://internal.bibind.com:8780                  |
+| acfb2d2c23ac429999df1eb661a38afb | RegionOne | heat-cfn     | cloudformation | True    | internal  | https://internal.bibind.com:8000/v1}              |
+| b14d47e7523f44a7a0746fa9694c7a95 | RegionOne | heat         | orchestration  | True    | public    | https://public.bibind.com:8004/v1/%(tenant_id)s   |
+| bc71967e37d64b87a8a9f82a8d7410a8 | RegionOne | placement    | placement      | True    | public    | https://public.bibind.com:8780                    |
+| bd14a3976b424316bddc996008540e32 | RegionOne | keystone     | identity       | True    | internal  | https://internal.bibind.com:5000                  |
+| c0698b6cf96e41ea9990bba38e3fc983 | RegionOne | cinderv3     | volumev3       | True    | internal  | https://internal.bibind.com:8776/v3/%(tenant_id)s |
+| c42a8c5d738e4148913175e4b8406762 | RegionOne | neutron      | network        | True    | internal  | https://internal.bibind.com:9696                  |
+| ccf8cbea4dc1416a93b0d49738c38d67 | RegionOne | nova         | compute        | True    | internal  | https://internal.bibind.com:8774/v2.1             |
+| e7bc4dc925df4bac80bd495e3652933b | RegionOne | designate    | dns            | True    | public    | https://public.bibind.com:9001                    |
++----------------------------------+-----------+--------------+----------------+---------+-----------+---------------------------------------------------+
+
+
+openstack --os-cloud kolla-admin  service list
++----------------------------------+-----------+----------------+
+| ID                               | Name      | Type           |
++----------------------------------+-----------+----------------+
+| 2096851ccd1b4f14846fc16b4370914b | heat-cfn  | cloudformation |
+| 3e46de39dacc404984432abe9c057880 | placement | placement      |
+| 41216b7c324444caa21a71618b104dc5 | cinderv3  | volumev3       |
+| 484f2dda23e148b89ef06df588b35fe2 | heat      | orchestration  |
+| 606e5d8c34b34b27b110abd62599ac29 | nova      | compute        |
+| 6d53a943b5124724abbea856bb8cee1c | skyline   | panel          |
+| 8926008e9efb4e6cbd2ec18e1b892167 | keystone  | identity       |
+| bd0ee653151042178ddf0474ea7723b7 | neutron   | network        |
+| c161b97c47c047c0883163fa0c457aee | glance    | image          |
+| ffe56669f31548a1894eeb20e3758887 | designate | dns            |
++----------------------------------+-----------+----------------+
+
+openstack --os-cloud kolla-admin  network agent list
++--------------------------------------+--------------------+-----------+-------------------+-------+-------+---------------------------+
+| ID                                   | Agent Type         | Host      | Availability Zone | Alive | State | Binary                    |
++--------------------------------------+--------------------+-----------+-------------------+-------+-------+---------------------------+
+| 33158e4c-f9e0-4d2a-9686-d55f39e7cbae | Open vSwitch agent | compute01 | None              | :-)   | UP    | neutron-openvswitch-agent |
+| 3cadb885-4308-4793-ac20-a28fd5b724ff | Open vSwitch agent | ctrl02    | None              | :-)   | UP    | neutron-openvswitch-agent |
+| 4ea2cfc9-16c8-43ce-b861-a6d49785f245 | L3 agent           | ctrl01    | nova              | :-)   | UP    | neutron-l3-agent          |
+| 55e6caf7-c010-4216-8d7c-4e80627ed098 | Open vSwitch agent | ctrl01    | None              | :-)   | UP    | neutron-openvswitch-agent |
+| 60452c38-e78c-4324-a904-518694639c6d | L3 agent           | ctrl02    | nova              | :-)   | UP    | neutron-l3-agent          |
+| 8d39ea48-89c9-43a6-9f07-2c1fdc140515 | DHCP agent         | ctrl02    | nova              | :-)   | UP    | neutron-dhcp-agent        |
+| 9b8cd6da-1ce9-4a98-a77e-971c9707b429 | DHCP agent         | ctrl01    | nova              | :-)   | UP    | neutron-dhcp-agent        |
+| ac6dd5bb-4b6b-41eb-88fa-9cb2cdfb5fc4 | Metadata agent     | ctrl01    | None              | :-)   | UP    | neutron-metadata-agent    |
+| d4057785-dfe9-4b0d-8653-ebc1f012f812 | Metadata agent     | ctrl02    | None              | :-)   | UP    | neutron-metadata-agent    |
++--------------------------------------+--------------------+-----------+-------------------+-------+-------+---------------------------+
+
+9/les dashboard
+ceph dashboard https://ceph.bibind.com
+horizon https:/horizon.bibind.com
+skyline https://skyline.bibind.com
+
+
+
+B/A faire sur le serveur ovh :
+
+
+
+dans la vm Bibind
+
+Installer l'ochestrateur juju https://juju.bibind.com
+installer microk8s ou kubernetes canonical pour installer dans kubernetes :
+odoo https://bibind.com
+gitlab https://gitlab.bibind.com (
+awx https://awx.bibind.com
+hydra et kratos
+ApiBibind
+installer JAAS pour utiliser jim
+installer Vault pour la gestion des secrets .
+
+faire de gitlab.bibind.com , le registre des images openstack bibind, les depots des diffrentes appli bibind (ApiBibind ) et des roles, playbook à envoyer à awx.bibind.com
+
+Installer les modules odoo
+développer l'api ApiBbind
+
+intégrer les formation dans odoo .
+
+C/ Automatisation de l'approvisionnement
+
+Automatisation de l'aprovisionnement des noeud de kubernetes ou est installer odoo, gitlab, aws, Apibibind
+
+Automatisation de l'approvisionnement des machine juju pour l'orchestration des différents cloud (openstack Bibind, aws, azur, GPC )
+
+Automatisation des services Bibind ( service e-commerc- service iot, service protail, service SAAS e-commerc, SAAS formation, SAAS ERP odoo )
+
+
+
+D/ automatiser le plan de montéen charge des différentes infrastructure et applications.
+
+Monté en charge d'openstack en lui même, comment rajouter des noeud à kolla-ansible pour que openstack puisse avoir suffisement de resource pour tourné si il y a plus de client et de traffic .
+
+monté en charge de la structure multiRégion d'openstack .
+
+Monté en charge des compute (hyperviseur ) , des réseaux et du stockage pourqu'openstack puisse continuer à fournir des instance, réseau à des demande s'augmentant .
+
+monté en charge de kubernetes pour qu'odoo, gitlab, awx, hydra et juju jaas et jim puisse tenir l'augmenation de traffic et de charge .
+
+
+
+E/ Pland de sauvegarde
+Suavegarde de odoo, gitlab,
+

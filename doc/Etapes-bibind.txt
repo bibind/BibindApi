@@ -1,0 +1,94 @@
+## **II. À faire : Prochaines étapes et travaux nécessaires**
+Bien que les bases soient posées, plusieurs composants et automatisations devront être implémentés pour achever l’infrastructure Bibind et répondre aux besoins des services. Ces travaux peuvent être divisés en plusieurs axes.
+### **1. Orchestration avec Juju et Kubernetes**
+**Objectif** : Centraliser l’orchestration et simplifier le déploiement avec Juju et Kubernetes.
+1. **Travaux nécessaires** :
+    - Installer **Juju** (orchestrateur) sur la VM `Bibind`.
+    - Mettre en place **MicroK8s** pour héberger des services comme Odoo, AWX, GitLab, Hydra, Kratos, et ApiBibind.
+    - Installer **JAAS** (Juju-as-a-Service) pour le modèle `JIMM` (gestion des modèles Juju).
+
+2. **Utilisations prévues** :
+    - **Kubernetes** gérera :
+        - `odoo.bibind.com` (hébergement Odoo et modules personnalisés)
+        - `gitlab.bibind.com` (CI/CD pipelines et registres d'images Docker)
+        - `awx.bibind.com` (Automatisation avec AWX).
+
+    - **Juju** orchestrera l’ensemble des applications hébergées.
+
+3. **Actions prioritaires** :
+    - Configurer le modèle pour :
+        - **Vault** (gestion de secrets),
+        - Création de charmes Kubernetes pour les applications Bibind.
+
+### **2. Automatisation de l’approvisionnement**
+**Objectif** : Automatiser le provisioning de nœuds et services pour Kubernetes, OpenStack et les applications.
+1. **Pour Kubernetes** :
+    - Installer des playbooks Ansible dans **AWX** pour automatiser :
+        - L’ajout ou retrait des nœuds Kubernetes en fonction des besoins.
+        - Le déploiement facile des services comme Odoo, Hydra, et GitLab.
+
+2. **Pour OpenStack** :
+    - Configurer Kolla-Ansible pour permettre l’ajout de nouveaux nœuds au cluster.
+    - Automatiser la gestion des quotas et le provisioning multirégion.
+    - **Services à intégrer** : Ajouter des ressources réseau, compute (hyperviseurs) et stockage à OpenStack si la demande de trafic et clients augmente.
+
+3. **Infrastructure globale** :
+    - Provisionner automatiquement des machines Juju pour orchestrer des infrastructures multiclouds :
+        - OpenStack Bibind, AWS, Azure, Google Cloud Platform (GCP).
+
+### **3. Applications Bibind spécifiques**
+**Objectif** : Étendre les capacités des applications et services Bibind.
+1. **GitLab (`gitlab.bibind.com`)** :
+    - Devenir **le registre central des images Docker** pour OpenStack et Bibind.
+    - Gérer les dépôts des applications spécifiques :
+        - Dépôts de l’API **ApiBibind**
+        - Dépôts de rôles ou playbooks utilisés par AWX.
+
+2. **Odoo (`odoo.bibind.com`)** :
+    - Installer et configurer **les modules personnalisés** pour Bibind :
+        - ERP général
+        - Gestion des formations (module à créer ou intégrer).
+
+3. **ApiBibind** :
+    - Développer l’API REST principale et le CLI (interface en ligne de commande) pour permettre aux utilisateurs de :
+        - Gérer leurs machines OpenStack/programmes SaaS.
+        - Intégrer aisément d’autres outils (par exemple : Bowtie pour CI/CD).
+
+4. **Vault** :
+    - Centraliser la gestion de secrets pour l’ensemble de l’écosystème :
+        - Tokens d’accès OpenStack.
+        - Identifiants d’application (Odoo, GitLab).
+        - Secrets pour pipelines CI/CD GitLab.
+
+### **4. Sauvegardes et résilience**
+**Objectif** : Garantir un plan de sauvegarde et de montée en charge opérationnel pour tous les services.
+1. **Plans de sauvegarde :**
+    - **Outils à sauvegarder** :
+        - Odoo (données d'entreprise, formations, modules)
+        - GitLab (pipelines, dépôts, images Docker).
+
+    - **Proposition technique** :
+        - Configurer Backups Ceph pour Odoo et GitLab.
+        - Externaliser (backup hors-site) sur un espace cloud (AWS Glacier, Azure Blob Storage).
+
+2. **Montée en charge :**
+    - **OpenStack** :
+        - Déploiement de nouveaux hyperviseurs (nœuds compute).
+        - Gestion multirégion (BHS actuellement, mais ajouter d'autres régions OVH ou cloud publics).
+
+    - **Kubernetes** :
+        - Ajouter des nœuds en fonction des pics de trafic.
+
+### **5. Automatisation des services SaaS**
+**Objectif** : Penser à l’échelle pour offrir des services clients sous forme SaaS.
+- Services prévus :
+    - **e-commerce SaaS** : Basé sur Odoo + modules Bibind personnalisés.
+    - **SaaS formations** : Proposer une interface de gestion et des formations à travers Odoo.
+    - **IoT et automatisation** : Jeter les bases d'un module IoT dans OpenStack ou Kubernetes.
+
+### **III. Résumé : Priorités immédiates et roadmap**
+#### **Priorités immédiates (3-6 mois) :**
+1. Mettre en place Juju et Kubernetes.
+2. Configurer MicroK8s pour Odoo, GitLab, et AWX.
+3. Installer Vault pour sécuriser les secrets.
+4. Développer une première version de l’API ApiBibind.

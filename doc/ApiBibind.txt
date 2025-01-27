@@ -1,0 +1,81 @@
+
+#### **Endpoints API à développer pour Bibind**
+Afin de moderniser et renforcer les fonctionnalités, plusieurs endpoints API spécifiques à Bibind devront être créés. Les services REST API centraux seront regroupés sous la nouvelle infrastructure **ApiBibind** et intégrés aux autres systèmes.
+##### **1. ApiBibind (proposer une API REST pour tous les services)**
+**Base d’URL suggérée pour tous les endpoints** :
+`https://apibibind.bibind.com/v1`
+##### Catégorisation des endpoints ApiBibind :
+###### **a. Gestion des Instances Cloud**
+- Créer et gérer les machines virtuelles OpenStack.
+    1. `POST /instances` :
+Créer une nouvelle machine virtuelle.
+    2. `GET /instances/{id}` :
+Récupérer les informations d’une VM.
+    3. `PUT /instances/{id}` :
+Mettre à jour une instance existante (RAM, stockage).
+    4. `DELETE /instances/{id}` :
+Supprimer une machine virtuelle.
+
+###### **b. Gestion des Réseaux**
+S’appuyer sur les intégrations avec OpenStack **Neutron** :
+1. `POST /network` :
+Créer un nouveau réseau logique.
+2. `GET /network/{id}` :
+Charger les informations du réseau.
+3. `POST /floating-ip` :
+Assigner une adresse IP flottante à une instance.
+4. `POST /load-balancer` :
+Créer un équilibreur de charge.
+
+###### **c. Gestion des Stockages**
+Exploiter OpenStack **Cinder**, **Ceph** :
+1. `POST /volume` :
+Créer un volume de stockage pour une instance.
+2. `POST /snapshot` :
+Effectuer une sauvegarde d’un volume.
+3. `GET /snapshot/{id}` :
+Récupérer l’état des backups d’un volume.
+
+###### **d. Sécurité et Authentification**
+1. `POST /authenticate` :
+Authentification clé/secret pour utiliser l’API.
+2. `GET /token/validate` :
+Vérifier si le token est valide.
+3. `GET /logs/security` :
+Pister les actions pour chaque utilisateur.
+
+###### **e. Automatisation**
+1. `POST /automation/provision` :
+Automatiser et provisionner des ressources (infrastructure Odoo, GitLab et AWX).
+
+##### **2. Intégration Vault**
+- Intégrer toutes les applications (Odoo, GitLab, etc.) avec Hashicorp Vault.
+- API dédiée :
+    1. `POST /vault/secrets` :
+Ajouter une clé aux secrets.
+    2. `GET /vault/secrets/{key}` :
+Récupérer un secret.
+
+##### **3. Odoo : Gestion ERP**
+Endpoints pour automatiser les workflows via **Odoo API** :
+1. `POST /odoo/training` :
+Ajouter une formation (ex: e-commerce).
+2. `POST /odoo/employee` :
+Gérer l'ajout/suppression d’un employé.
+
+##### **4. GitLab : Registre Docker**
+Développer les automations pour pipelines CI/CD :
+1. `POST /ci/build-images` :
+Construire une image OpenStack dans le registre.
+2. `GET /ci/view-pipelines` :
+Récupérer l'état des pipelines.
+
+#### **Plan d’Action : Roadmap prioritaire**
+1. **Phase 1 : Déploiement de ApiBibind** (1-2 mois)
+    - Définir l’interface REST avec les endpoints prioritaires pour gestion des instances et réseaux.
+
+2. **Phase 2 : Intégration Odoo et Vault** (3-4 mois)
+    - Centraliser secrets dans Vault et relier aux workflows d’Odoo.
+
+3. **Phase 3 : Niveau DevOps (GitLab)** (5-6 mois)
+    - Automatiser les builds et l’enregistrement des images Docker `gitlab.bibind.com`.
