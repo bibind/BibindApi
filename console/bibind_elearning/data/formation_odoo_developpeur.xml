@@ -6,7 +6,7 @@
         <record id="odoo_developer_training_channel" model="slide.channel">
             <field name="name">Formation : Odoo pour Développeurs</field>
             <field name="description">Formation complète de 5 jours pour apprendre le développement sous Odoo.</field>
-            <field name="tag_ids" eval="[(6, 0, [ref('base.module_category_tools')])]"/>
+
         </record>
 
         <!-- Jour 1 : Introduction et fondamentaux du développement Odoo -->
