@@ -1,0 +1,108 @@
+<odoo>
+    <data>
+        <!-- Création du canal principal pour la formation -->
+        <record id="poo_training_channel" model="slide.channel">
+            <field name="name">Formation Programmation Orientée Objet (POO)</field>
+            <field name="description">Formation complète sur la Programmation Orientée Objet, destinée aux novices et aux développeurs désirant approfondir leurs connaissances.</field>
+            <field name="channel_type">training</field>
+        </record>
+
+        <!-- Section 1 : Introduction à la POO -->
+        <record id="poo_section_1" model="slide.slide">
+            <field name="name">1. Introduction à la Programmation Orientée Objet</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="poo_training_channel"/>
+        </record>
+        <record id="poo_content_1_1" model="slide.slide">
+            <field name="name">1.1. Qu'est-ce que la POO ?</field>
+            <field name="slide_category">article</field>
+            <field name="description">Découvrez la Programmation Orientée Objet (POO) : ses concepts de base, son utilité, et comment elle diffère des autres paradigmes.</field>
+            <field name="category_id" ref="poo_section_1"/>
+            <field name="channel_id" ref="poo_training_channel"/>
+        </record>
+        <record id="poo_content_1_2" model="slide.slide">
+            <field name="name">1.2. Principes Fondateurs de la POO</field>
+            <field name="slide_category">article</field>
+            <field name="description">Explorez les quatre principes clés de la POO : Encapsulation, Abstraction, Héritage et Polymorphisme.</field>
+            <field name="category_id" ref="poo_section_1"/>
+            <field name="channel_id" ref="poo_training_channel"/>
+        </record>
+
+        <!-- Section 2 : Classes et Objets -->
+        <record id="poo_section_2" model="slide.slide">
+            <field name="name">2. Classes et Objets</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="poo_training_channel"/>
+        </record>
+        <record id="poo_content_2_1" model="slide.slide">
+            <field name="name">2.1. Définir une Classe</field>
+            <field name="slide_category">article</field>
+            <field name="description">Apprendre à créer des classes avec des attributs et des méthodes pour structurer vos données et comportements.</field>
+            <field name="category_id" ref="poo_section_2"/>
+            <field name="channel_id" ref="poo_training_channel"/>
+        </record>
+        <record id="poo_content_2_2" model="slide.slide">
+            <field name="name">2.2. Instanciation des Objets</field>
+            <field name="slide_category">article</field>
+            <field name="description">Découvrez comment créer et utiliser des objets issus de classes définies.</field>
+            <field name="category_id" ref="poo_section_2"/>
+            <field name="channel_id" ref="poo_training_channel"/>
+        </record>
+
+        <!-- Section 3 : Héritage et Polymorphisme -->
+        <record id="poo_section_3" model="slide.slide">
+            <field name="name">3. Héritage et Polymorphisme</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="poo_training_channel"/>
+        </record>
+        <record id="poo_content_3_1" model="slide.slide">
+            <field name="name">3.1. Comprendre l'Héritage</field>
+            <field name="slide_category">article</field>
+            <field name="description">Apprendre à utiliser l'héritage pour réutiliser et structurer le code efficacement en héritant des fonctionnalités.</field>
+            <field name="category_id" ref="poo_section_3"/>
+            <field name="channel_id" ref="poo_training_channel"/>
+        </record>
+        <record id="poo_content_3_2" model="slide.slide">
+            <field name="name">3.2. Maîtriser le Polymorphisme</field>
+            <field name="slide_category">article</field>
+            <field name="description">Implémenter le polymorphisme pour modifier ou redéfinir des fonctionnalités selon différents objets.</field>
+            <field name="category_id" ref="poo_section_3"/>
+            <field name="channel_id" ref="poo_training_channel"/>
+        </record>
+
+        <!-- Section 4 : Concepts Avancés -->
+        <record id="poo_section_4" model="slide.slide">
+            <field name="name">4. Concepts Avancés</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="poo_training_channel"/>
+        </record>
+        <record id="poo_content_4_1" model="slide.slide">
+            <field name="name">4.1. Gestion des Exceptions</field>
+            <field name="slide_category">article</field>
+            <field name="description">Introduction à la gestion des erreurs et exceptions pour rendre vos programmes robustes.</field>
+            <field name="category_id" ref="poo_section_4"/>
+            <field name="channel_id" ref="poo_training_channel"/>
+        </record>
+        <record id="poo_content_4_2" model="slide.slide">
+            <field name="name">4.2. Sérialisation et Sauvegarde des Objets</field>
+            <field name="slide_category">article</field>
+            <field name="description">Apprenez à sauvegarder et charger des objets grâce à la sérialisation.</field>
+            <field name="category_id" ref="poo_section_4"/>
+            <field name="channel_id" ref="poo_training_channel"/>
+        </record>
+
+        <!-- Section 5 : Projet Final -->
+        <record id="poo_section_5" model="slide.slide">
+            <field name="name">5. Projet Final</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="poo_training_channel"/>
+        </record>
+        <record id="poo_content_5_1" model="slide.slide">
+            <field name="name">5.1. Création d’un Système Basé sur la POO</field>
+            <field name="slide_category">article</field>
+            <field name="description">Un projet concret mettant en pratique la POO, comme la conception d’une application de gestion ou d’un jeu simple avec des classes et des objets.</field>
+            <field name="category_id" ref="poo_section_5"/>
+            <field name="channel_id" ref="poo_training_channel"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,304 @@
+<odoo>
+    <data>
+        <!-- Canal principal de la formation -->
+        <record id="ansible_training_channel" model="slide.channel">
+            <field name="name">Formation Ansible</field>
+            <field name="description">Formation complète couvrant les bases et concepts avancés d'Ansible pour l'automatisation des infrastructures.</field>
+            <field name="channel_type">training</field>
+        </record>
+
+        <!-- Section 1 : Introduction à Ansible -->
+        <record id="ansible_section_1" model="slide.slide">
+            <field name="name">1. Introduction à Ansible</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+        <record id="ansible_content_1_1" model="slide.slide">
+            <field name="name">1.1. Présentation d'Ansible</field>
+            <field name="slide_category">article</field>
+            <field name="description">Comprendre ce qu’est Ansible, son architecture et ses cas d’utilisation. Comparaison avec d'autres outils comme Puppet, Chef ou SaltStack.</field>
+            <field name="category_id" ref="ansible_section_1"/>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+        <record id="ansible_content_1_2" model="slide.slide">
+            <field name="name">1.2. Installation et prise en main</field>
+            <field name="slide_category">article</field>
+            <field name="description">Installation d'Ansible sur divers systèmes d'exploitation. Concepts essentiels : modules, inventaires, configurations YAML.</field>
+            <field name="category_id" ref="ansible_section_1"/>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+        <record id="ansible_content_1_3" model="slide.slide">
+            <field name="name">1.3. Terminologie d'Ansible</field>
+            <field name="slide_category">article</field>
+            <field name="description">Explications des concepts clés comme les playbooks, rôles, tâches et inventaires.</field>
+            <field name="category_id" ref="ansible_section_1"/>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+
+        <!-- Section 2 : Configuration de base -->
+        <record id="ansible_section_2" model="slide.slide">
+            <field name="name">2. Configuration de base</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+        <record id="ansible_content_2_1" model="slide.slide">
+            <field name="name">2.1. Structure et utilisation des inventaires</field>
+            <field name="slide_category">article</field>
+            <field name="description">Introduction aux inventaires statiques et dynamiques. Organisation des groupes et des hôtes.</field>
+            <field name="category_id" ref="ansible_section_2"/>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+        <record id="ansible_content_2_2" model="slide.slide">
+            <field name="name">2.2. Modules Ansible</field>
+            <field name="slide_category">article</field>
+            <field name="description">Découverte et utilisation des modules populaires comme yum, apt, copy ou command.</field>
+            <field name="category_id" ref="ansible_section_2"/>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+        <record id="ansible_content_2_3" model="slide.slide">
+            <field name="name">2.3. Création et exécution de playbooks</field>
+            <field name="slide_category">article</field>
+            <field name="description">Syntaxe YAML pour créer des playbooks et écrire des tâches simples comme copy ou setup.</field>
+            <field name="category_id" ref="ansible_section_2"/>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+        <record id="ansible_content_2_4" model="slide.slide">
+            <field name="name">2.4. Variables et fichiers de configuration</field>
+            <field name="slide_category">article</field>
+            <field name="description">Utilisation des variables dans les playbooks et organisation avec ansible.cfg.</field>
+            <field name="category_id" ref="ansible_section_2"/>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+
+        <!-- Section 3 : Gestion avancée des configurations -->
+        <record id="ansible_section_3" model="slide.slide">
+            <field name="name">3. Gestion avancée des configurations</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+        <record id="ansible_content_3_1" model="slide.slide">
+            <field name="name">3.1. Gestion conditionnelle</field>
+            <field name="slide_category">article</field>
+            <field name="description">Utilisation de la condition "when" dans les playbooks.</field>
+            <field name="category_id" ref="ansible_section_3"/>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+        <record id="ansible_content_3_2" model="slide.slide">
+            <field name="name">3.2. Boucles dans les tâches</field>
+            <field name="slide_category">article</field>
+            <field name="description">Utilisation de boucles comme with_items ou loop pour optimiser les tâches.</field>
+            <field name="category_id" ref="ansible_section_3"/>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+        <record id="ansible_content_3_3" model="slide.slide">
+            <field name="name">3.3. Envoi et utilisation des facts</field>
+            <field name="slide_category">article</field>
+            <field name="description">Récupération et exploitation des données des facts dans Ansible.</field>
+            <field name="category_id" ref="ansible_section_3"/>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+        <record id="ansible_content_3_4" model="slide.slide">
+            <field name="name">3.4. Gestion des erreurs</field>
+            <field name="slide_category">article</field>
+            <field name="description">Gestion des échecs de tâches avec ignore_errors.</field>
+            <field name="category_id" ref="ansible_section_3"/>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+
+
+        <!-- Section 4 : Rôles et structuration -->
+        <record id="ansible_section_4" model="slide.slide">
+            <field name="name">4. Rôles et structuration des projets</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+        <record id="ansible_content_4_1" model="slide.slide">
+            <field name="name">4.1. Création et réutilisation des rôles</field>
+            <field name="slide_category">article</field>
+            <field name="description">Créer des rôles Ansible et les partager via Galaxy.</field>
+            <field name="category_id" ref="ansible_section_4"/>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+        <record id="ansible_content_4_2" model="slide.slide">
+            <field name="name">4.2. Dépendances des rôles</field>
+            <field name="slide_category">article</field>
+            <field name="description">Gérer les dépendances entre rôles avec meta/main.yml.</field>
+            <field name="category_id" ref="ansible_section_4"/>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+        <record id="ansible_content_4_3" model="slide.slide">
+            <field name="name">4.3. Réutilisation des playbooks</field>
+            <field name="slide_category">article</field>
+            <field name="description">Organisation et inclusion de multiple playbooks pour une meilleure réutilisabilité.</field>
+            <field name="category_id" ref="ansible_section_4"/>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+        <!-- Continuez dans la même structure pour toutes les autres sections -->
+<!-- Section 5 : Gestion des performances et optimisation -->
+        <record id="ansible_section_5" model="slide.slide">
+            <field name="name">5. Gestion des performances et optimisation</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+        <record id="ansible_content_5_1" model="slide.slide">
+            <field name="name">5.1. Parallélisme dans Ansible</field>
+            <field name="slide_category">article</field>
+            <field name="description">Configuration et utilisation du mode de parallélisme d'Ansible pour exécuter des tâches sur plusieurs hôtes simultanément.</field>
+            <field name="category_id" ref="ansible_section_5"/>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+        <record id="ansible_content_5_2" model="slide.slide">
+            <field name="name">5.2. Optimisation des playbooks</field>
+            <field name="slide_category">article</field>
+            <field name="description">Techniques pour réduire la durée d'exécution des playbooks, comme la réduction des modules inutiles et des handlers inutiles.</field>
+            <field name="category_id" ref="ansible_section_5"/>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+        <record id="ansible_content_5_3" model="slide.slide">
+            <field name="name">5.3. Cache des faits</field>
+            <field name="slide_category">article</field>
+            <field name="description">Activation et configuration du cache des facts pour éviter de collecter des données déjà disponibles.</field>
+            <field name="category_id" ref="ansible_section_5"/>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+        <record id="ansible_content_5_4" model="slide.slide">
+            <field name="name">5.4. Gestion efficace des tâches longues</field>
+            <field name="slide_category">article</field>
+            <field name="description">Quelques astuces pour maintenir l'efficacité lors du traitement de tâches longues ou consommatrices de ressources.</field>
+            <field name="category_id" ref="ansible_section_5"/>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+         <!-- Section 6 : Debugging et tests -->
+        <record id="ansible_section_6" model="slide.slide">
+            <field name="name">6. Debugging et tests</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+        <record id="ansible_content_6_1" model="slide.slide">
+            <field name="name">6.1. Débogage avec Ansible</field>
+            <field name="slide_category">article</field>
+            <field name="description">Utilisation des outils intégrés pour déboguer des playbooks : modules debug, pause et workflow de test des tâches.</field>
+            <field name="category_id" ref="ansible_section_6"/>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+        <record id="ansible_content_6_2" model="slide.slide">
+            <field name="name">6.2. Simulation de l'exécution</field>
+            <field name="slide_category">article</field>
+            <field name="description">Utilisation de l’option --check pour simuler des changements et prévisualiser les modifications.</field>
+            <field name="category_id" ref="ansible_section_6"/>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+        <record id="ansible_content_6_3" model="slide.slide">
+            <field name="name">6.3. Tests unitaires d'infrastructure</field>
+            <field name="slide_category">article</field>
+            <field name="description">Implémentation de Molecule pour valider des playbooks et rôles avec des conteneurs ou des environnements virtuels.</field>
+            <field name="category_id" ref="ansible_section_6"/>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+
+        <!-- Section 7 : Sécurité et bonnes pratiques -->
+        <record id="ansible_section_7" model="slide.slide">
+            <field name="name">7. Sécurité et bonnes pratiques</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+        <record id="ansible_content_7_1" model="slide.slide">
+            <field name="name">7.1. Gestion des informations sensibles</field>
+            <field name="slide_category">article</field>
+            <field name="description">Introduction à Ansible Vault pour chiffrer des données sensibles comme des mots de passe ou des clés privées.</field>
+            <field name="category_id" ref="ansible_section_7"/>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+        <record id="ansible_content_7_2" model="slide.slide">
+            <field name="name">7.2. Limitation des accès (Principle of Least Privilege)</field>
+            <field name="slide_category">article</field>
+            <field name="description">Rôles utilisateur et définition d'un accès minimal pour chaque tâche dans des inventaires restrictifs.</field>
+            <field name="category_id" ref="ansible_section_7"/>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+        <record id="ansible_content_7_3" model="slide.slide">
+            <field name="name">7.3. Structure des projets Ansible</field>
+            <field name="slide_category">article</field>
+            <field name="description">Organisation des dossiers, rôles, playbooks et fichiers d'inventaires selon les standards recommandés.</field>
+            <field name="category_id" ref="ansible_section_7"/>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+        <record id="ansible_content_7_4" model="slide.slide">
+            <field name="name">7.4. Documentation et automatisation</field>
+            <field name="slide_category">article</field>
+            <field name="description">Bonnes pratiques concernant la documentation des tâches et l’automatisation des tests et déploiements.</field>
+            <field name="category_id" ref="ansible_section_7"/>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+
+        <!-- Section 8 : Intégration avec d'autres outils -->
+        <record id="ansible_section_8" model="slide.slide">
+            <field name="name">8. Intégration avec d'autres outils</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+        <record id="ansible_content_8_1" model="slide.slide">
+            <field name="name">8.1. Ansible et Docker</field>
+            <field name="slide_category">article</field>
+            <field name="description">Gestion avancée des conteneurs Docker avec les modules Ansible Docker et intégration des déploiements.</field>
+            <field name="category_id" ref="ansible_section_8"/>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+        <record id="ansible_content_8_2" model="slide.slide">
+            <field name="name">8.2. Ansible avec Kubernetes</field>
+            <field name="slide_category">article</field>
+            <field name="description">Déploiements et gestion des clusters Kubernetes à l'aide des modules spécialisés Ansible.</field>
+            <field name="category_id" ref="ansible_section_8"/>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+        <record id="ansible_content_8_3" model="slide.slide">
+            <field name="name">8.3. CI/CD avec Jenkins</field>
+            <field name="slide_category">article</field>
+            <field name="description">Utilisation d'Ansible pour intégrer des pipelines CI/CD dans Jenkins ou GitLab avec l'automatisation.</field>
+            <field name="category_id" ref="ansible_section_8"/>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+        <record id="ansible_content_8_4" model="slide.slide">
+            <field name="name">8.4. Surveillance et audit</field>
+            <field name="slide_category">article</field>
+            <field name="description">Intégration avec les outils comme Zabbix ou Prometheus pour surveiller les configurations déployées.</field>
+            <field name="category_id" ref="ansible_section_8"/>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+
+        <!-- Section 9 : Cas pratiques -->
+        <record id="ansible_section_9" model="slide.slide">
+            <field name="name">9. Cas pratiques</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+        <record id="ansible_content_9_1" model="slide.slide">
+            <field name="name">9.1. Déploiement de serveurs web</field>
+            <field name="slide_category">article</field>
+            <field name="description">Mise en place d'un cluster de serveurs web Apache ou Nginx avec gestion automatique de la configuration.</field>
+            <field name="category_id" ref="ansible_section_9"/>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+        <record id="ansible_content_9_2" model="slide.slide">
+            <field name="name">9.2. Configuration des bases de données</field>
+            <field name="slide_category">article</field>
+            <field name="description">Automatisation de la configuration de bases de données MySQL/PostgreSQL avec des utilisateurs, rôles et schémas définis.</field>
+            <field name="category_id" ref="ansible_section_9"/>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+        <record id="ansible_content_9_3" model="slide.slide">
+            <field name="name">9.3. Gestion des certificats TLS/SSL</field>
+            <field name="slide_category">article</field>
+            <field name="description">Automatisation du renouvellement et déploiement de certificats SSL avec Let's Encrypt et autres outils.</field>
+            <field name="category_id" ref="ansible_section_9"/>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+        <record id="ansible_content_9_4" model="slide.slide">
+            <field name="name">9.4. Cas réel : Infrastructure cloud hybride</field>
+            <field name="slide_category">article</field>
+            <field name="description">Un projet d'exemple configurant une infrastructure hybride sur AWS, Google Cloud ou Azure avec Ansible.</field>
+            <field name="category_id" ref="ansible_section_9"/>
+            <field name="channel_id" ref="ansible_training_channel"/>
+        </record>
+    </data>
+</odoo>

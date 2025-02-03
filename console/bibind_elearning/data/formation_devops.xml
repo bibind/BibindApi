@@ -1,0 +1,164 @@
+<odoo>
+    <data>
+        <!-- Création du canal principal pour la formation -->
+        <record id="devops_training_channel" model="slide.channel">
+            <field name="name">Formation DevOps</field>
+            <field name="description">Formation complète sur DevOps destinée aux développeurs, architectes et administrateurs système.</field>
+            <field name="channel_type">training</field>
+        </record>
+
+        <!-- Section 1 : Introduction à DevOps -->
+        <record id="devops_section_1" model="slide.slide">
+            <field name="name">1. Introduction à DevOps</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="devops_training_channel"/>
+        </record>
+        <record id="devops_content_1_1" model="slide.slide">
+            <field name="name">1.1. Définition et objectifs de DevOps</field>
+            <field name="slide_category">article</field>
+            <field name="description">Présentation de DevOps : définition, objectifs et importance pour les équipes Dev et Ops.</field>
+            <field name="category_id" ref="devops_section_1"/>
+            <field name="channel_id" ref="devops_training_channel"/>
+        </record>
+        <record id="devops_content_1_2" model="slide.slide">
+            <field name="name">1.2. Principes fondamentaux de DevOps</field>
+            <field name="slide_category">article</field>
+            <field name="description">Culture DevOps, CI/CD, monitoring continu, feedback rapide, et collaboration.</field>
+            <field name="category_id" ref="devops_section_1"/>
+            <field name="channel_id" ref="devops_training_channel"/>
+        </record>
+        <record id="devops_content_1_3" model="slide.slide">
+            <field name="name">1.3. DevOps vs Méthodes traditionnelles</field>
+            <field name="slide_category">article</field>
+            <field name="description">Différences entre DevOps et les approches en cascade ou Agile.</field>
+            <field name="category_id" ref="devops_section_1"/>
+            <field name="channel_id" ref="devops_training_channel"/>
+        </record>
+
+        <!-- Section 2 : Culture et méthodologie DevOps -->
+        <record id="devops_section_2" model="slide.slide">
+            <field name="name">2. Culture et méthodologie DevOps</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="devops_training_channel"/>
+        </record>
+        <record id="devops_content_2_1" model="slide.slide">
+            <field name="name">2.1. Pratiques DevOps populaires</field>
+            <field name="slide_category">article</field>
+            <field name="description">Introduction aux pratiques de CI/CD, Docker, et Infrastructure as Code.</field>
+            <field name="category_id" ref="devops_section_2"/>
+            <field name="channel_id" ref="devops_training_channel"/>
+        </record>
+        <record id="devops_content_2_2" model="slide.slide">
+            <field name="name">2.2. Transformation organisationnelle</field>
+            <field name="slide_category">article</field>
+            <field name="description">Comment instaurer une culture de DevOps et dépasser les approches en silo.</field>
+            <field name="category_id" ref="devops_section_2"/>
+            <field name="channel_id" ref="devops_training_channel"/>
+        </record>
+
+        <!-- Section 3 : Architecture DevOps : Développement et Déploiement -->
+        <record id="devops_section_3" model="slide.slide">
+            <field name="name">3. Architecture DevOps : Développement et Déploiement</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="devops_training_channel"/>
+        </record>
+        <record id="devops_content_3_1" model="slide.slide">
+            <field name="name">3.1. Design de l’architecture DevOps</field>
+            <field name="slide_category">article</field>
+            <field name="description">Approches monolithiques vs microservices, découplage et scalabilité.</field>
+            <field name="category_id" ref="devops_section_3"/>
+            <field name="channel_id" ref="devops_training_channel"/>
+        </record>
+        <record id="devops_content_3_2" model="slide.slide">
+            <field name="name">3.2. Pipeline d’intégration continue (CI)</field>
+            <field name="slide_category">article</field>
+            <field name="description">Automatisation des tests et compilation des artefacts.</field>
+            <field name="category_id" ref="devops_section_3"/>
+            <field name="channel_id" ref="devops_training_channel"/>
+        </record>
+        <record id="devops_content_3_3" model="slide.slide">
+            <field name="name">3.3. Pipeline de déploiement continu (CD)</field>
+            <field name="slide_category">article</field>
+            <field name="description">Déploiements automatisés (blue-green, canary) et stratégies de rollback.</field>
+            <field name="category_id" ref="devops_section_3"/>
+            <field name="channel_id" ref="devops_training_channel"/>
+        </record>
+
+        <!-- Section 4 : Conteneurisation et orchestration -->
+        <record id="devops_section_4" model="slide.slide">
+            <field name="name">4. Conteneurisation et orchestration</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="devops_training_channel"/>
+        </record>
+        <record id="devops_content_4_1" model="slide.slide">
+            <field name="name">4.1. Docker : Conteneurisation simplifiée</field>
+            <field name="slide_category">article</field>
+            <field name="description">Introduction à Docker, gestion des images et création de conteneurs.</field>
+            <field name="category_id" ref="devops_section_4"/>
+            <field name="channel_id" ref="devops_training_channel"/>
+        </record>
+        <record id="devops_content_4_2" model="slide.slide">
+            <field name="name">4.2. Kubernetes : Orchestration de conteneurs</field>
+            <field name="slide_category">article</field>
+            <field name="description">Concepts de base de Kubernetes : Pods, Services, Ingress, et gestion des clusters.</field>
+            <field name="category_id" ref="devops_section_4"/>
+            <field name="channel_id" ref="devops_training_channel"/>
+        </record>
+        <record id="devops_content_4_3" model="slide.slide">
+            <field name="name">4.3. Docker Compose et Swarm</field>
+            <field name="slide_category">article</field>
+            <field name="description">Gestion multi-conteneurs avec Docker Compose et orchestration Swarm.</field>
+            <field name="category_id" ref="devops_section_4"/>
+            <field name="channel_id" ref="devops_training_channel"/>
+        </record>
+
+        <!-- Section 5 : Infrastructure as Code (IAC) -->
+        <record id="devops_section_5" model="slide.slide">
+            <field name="name">5. Infrastructure as Code (IAC)</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="devops_training_channel"/>
+        </record>
+        <record id="devops_content_5_1" model="slide.slide">
+            <field name="name">5.1. Outils IAC : Terraform et Ansible</field>
+            <field name="slide_category">article</field>
+            <field name="description">Présentation des concepts et exemples pratiques avec Terraform et Ansible.</field>
+            <field name="category_id" ref="devops_section_5"/>
+            <field name="channel_id" ref="devops_training_channel"/>
+        </record>
+
+        <!-- Section 6 : Sécurité et monitoring -->
+        <record id="devops_section_6" model="slide.slide">
+            <field name="name">6. Sécurité et monitoring</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="devops_training_channel"/>
+        </record>
+        <record id="devops_content_6_1" model="slide.slide">
+            <field name="name">6.1. Principes de sécurité DevSecOps</field>
+            <field name="slide_category">article</field>
+            <field name="description">Intégration de la sécurité dès le début du pipeline (Shift Left Security).</field>
+            <field name="category_id" ref="devops_section_6"/>
+            <field name="channel_id" ref="devops_training_channel"/>
+        </record>
+        <record id="devops_content_6_2" model="slide.slide">
+            <field name="name">6.2. Monitoring avec Prometheus et Grafana</field>
+            <field name="slide_category">article</field>
+            <field name="description">Collecte des métriques, alertes, et tableau de bord graphique.</field>
+            <field name="category_id" ref="devops_section_6"/>
+            <field name="channel_id" ref="devops_training_channel"/>
+        </record>
+
+        <!-- Section 7 : Études de cas pratiques -->
+        <record id="devops_section_7" model="slide.slide">
+            <field name="name">7. Études de cas pratiques</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="devops_training_channel"/>
+        </record>
+        <record id="devops_content_7_1" model="slide.slide">
+            <field name="name">7.1. Pipeline CI/CD pour un projet Node.js ou Python</field>
+            <field name="slide_category">article</field>
+            <field name="description">Exemple pratique : mise en place d’un pipeline CI/CD avec déploiement automatisé.</field>
+            <field name="category_id" ref="devops_section_7"/>
+            <field name="channel_id" ref="devops_training_channel"/>
+        </record>
+    </data>
+</odoo>

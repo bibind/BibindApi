@@ -1,0 +1,606 @@
+<odoo>
+    <data>
+        <!-- Formation Drupal 10 -->
+<!-- Canal (Formation Drupal 10 : developpeur) -->
+        <record id="channel_drupal10_developpeur" model="slide.channel">
+            <field name="name">Formation Drupal 10 : développeur </field>
+            <field name="description">Apprenez tout ce qu’il faut pour gérer un projet Drupal 10 avec succès !</field>
+            <field name="is_published">False</field>
+            <field name="visibility">public</field>
+        </record>
+        <!-- Section 1 : Introduction à Drupal -->
+        <record id="section_1" model="slide.slide">
+            <field name="name">1. Introduction à Drupal</field>
+            <field name="channel_id" ref="channel_drupal10_developpeur"/>
+            <field name="is_category">true</field>
+        </record>
+        <record id="content_1_1" model="slide.slide">
+            <field name="name">1.1. Présentation rapide de Drupal</field>
+            <field name="slide_category">article</field>
+            <field name="channel_id" ref="channel_drupal10_developpeur"/>
+            <field name="category_id" ref="section_1"/>
+        </record>
+        <record id="content_1_2" model="slide.slide">
+            <field name="name">1.2. Les outils du développeur</field>
+            <field name="slide_category">article</field>
+            <field name="channel_id" ref="channel_drupal10_developpeur"/>
+            <field name="category_id" ref="section_1"/>
+        </record>
+        <record id="content_1_3" model="slide.slide">
+            <field name="name">1.3. Installation et configuration de Drupal</field>
+            <field name="slide_category">article</field>
+            <field name="channel_id" ref="channel_drupal10_developpeur"/>
+            <field name="category_id" ref="section_1"/>
+        </record>
+        <record id="content_1_4" model="slide.slide">
+            <field name="name">1.4. Compréhension de l’environnement de développement</field>
+            <field name="slide_category">article</field>
+            <field name="channel_id" ref="channel_drupal10_developpeur"/>
+            <field name="category_id" ref="section_1"/>
+        </record>
+        <record id="content_1_5" model="slide.slide">
+            <field name="name">1.5. PSR-0, PSR-4, et POO en PHP</field>
+            <field name="slide_category">article</field>
+            <field name="channel_id" ref="channel_drupal10_developpeur"/>
+            <field name="category_id" ref="section_1"/>
+        </record>
+
+        <!-- Section 2 : Développement d’un premier module -->
+        <record id="section_2" model="slide.slide">
+            <field name="name">2. Développement d’un premier module</field>
+            <field name="channel_id" ref="channel_drupal10_developpeur"/>
+            <field name="is_category">true</field>
+        </record>
+        <record id="content_2_1" model="slide.slide">
+            <field name="name">2.1. Structure des fichiers d’un module</field>
+            <field name="slide_category">article</field>
+            <field name="channel_id" ref="channel_drupal10_developpeur"/>
+            <field name="category_id" ref="section_2"/>
+        </record>
+        <record id="content_2_2" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_developpeur"/>
+            <field name="name">2.2. Les routes</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_2"/>
+        </record>
+        <record id="content_2_3" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_developpeur"/>
+            <field name="name">2.3. Création de fonctionnalités avec les Hooks</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_2"/>
+        </record>
+        <record id="content_2_4" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_developpeur"/>
+            <field name="name">2.4. Services et DI (Injection de dépendances)</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_2"/>
+        </record>
+        <record id="content_2_5" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_developpeur"/>
+            <field name="name">2.5. Drupal Form API</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_2"/>
+        </record>
+        <record id="content_2_6" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_developpeur"/>
+            <field name="name">2.6. Plugins de blocs</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_2"/>
+        </record>
+        <record id="content_2_7" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_developpeur"/>
+            <field name="name">2.7. Gestion des URLs et redirections</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_2"/>
+        </record>
+        <record id="content_2_8" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_developpeur"/>
+            <field name="name">2.8. Journalisation et email</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_2"/>
+        </record>
+
+        <!-- Section 3 : Theming et rendu (Frontend) -->
+        <record id="section_3" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_developpeur"/>
+            <field name="name">3. Theming et rendu (Frontend)</field>
+            <field name="is_category">true</field>
+        </record>
+        <record id="content_3_1" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_developpeur"/>
+            <field name="name">3.1. Introduction à Twig</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_3"/>
+        </record>
+        <record id="content_3_2" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_developpeur"/>
+            <field name="name">3.2. Utilisation des Render Arrays</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_3"/>
+        </record>
+        <record id="content_3_3" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_developpeur"/>
+            <field name="name">3.3. Gestion des bibliothèques et assets</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_3"/>
+        </record>
+        <record id="content_3_4" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_developpeur"/>
+            <field name="name">3.4. Autres thèmes</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_3"/>
+        </record>
+
+                <!-- Section 4 : Modèle de données et Entités -->
+                <record id="section_4" model="slide.slide">
+                    <field name="channel_id" ref="channel_drupal10_developpeur"/>
+                    <field name="name">4. Modèle de données et Entités</field>
+                    <field name="is_category">true</field>
+                </record>
+                <record id="content_4_1" model="slide.slide">
+                    <field name="channel_id" ref="channel_drupal10_developpeur"/>
+                    <field name="name">4.1. TempStore</field>
+                    <field name="slide_category">article</field>
+                    <field name="category_id" ref="section_4"/>
+                </record>
+                <record id="content_4_2" model="slide.slide">
+                    <field name="channel_id" ref="channel_drupal10_developpeur"/>
+                    <field name="name">4.2. Manipuler les entités</field>
+                    <field name="slide_category">article</field>
+                    <field name="category_id" ref="section_4"/>
+                </record>
+                <record id="content_4_3" model="slide.slide">
+                    <field name="channel_id" ref="channel_drupal10_developpeur"/>
+                    <field name="name">4.3. Création de nouveaux types d’entités et plugins</field>
+                    <field name="slide_category">article</field>
+                    <field name="category_id" ref="section_4"/>
+                </record>
+
+                <!-- Section 5 : Personnalisation des champs -->
+                <record id="section_5" model="slide.slide">
+                    <field name="channel_id" ref="channel_drupal10_developpeur"/>
+                    <field name="name">5. Personnalisation des champs</field>
+                    <field name="is_category">true</field>
+                </record>
+                <record id="content_5_1" model="slide.slide">
+                    <field name="channel_id" ref="channel_drupal10_developpeur"/>
+                    <field name="name">5.1. Field type, widget, formatter</field>
+                    <field name="slide_category">article</field>
+                    <field name="category_id" ref="section_5"/>
+                </record>
+                <record id="content_5_2" model="slide.slide">
+                    <field name="channel_id" ref="channel_drupal10_developpeur"/>
+                    <field name="name">5.2. Validation des entités et des champs</field>
+                    <field name="slide_category">article</field>
+                    <field name="category_id" ref="section_5"/>
+                </record>
+
+                <!-- Section 6 : Sécurité et accès -->
+                <record id="section_6" model="slide.slide">
+                    <field name="channel_id" ref="channel_drupal10_developpeur"/>
+                    <field name="name">6. Sécurité et accès</field>
+                    <field name="is_category">true</field>
+                </record>
+                <record id="content_6_1" model="slide.slide">
+                    <field name="channel_id" ref="channel_drupal10_developpeur"/>
+                    <field name="name">6.1. Contrôle des rôles et permissions</field>
+                    <field name="slide_category">article</field>
+                    <field name="category_id" ref="section_6"/>
+                </record>
+                <record id="content_6_2" model="slide.slide">
+                    <field name="channel_id" ref="channel_drupal10_developpeur"/>
+                    <field name="name">6.2. Contrôler l’accès aux routes</field>
+                    <field name="slide_category">article</field>
+                    <field name="category_id" ref="section_6"/>
+                </record>
+                <record id="content_6_3" model="slide.slide">
+                    <field name="channel_id" ref="channel_drupal10_developpeur"/>
+                    <field name="name">6.3. Protection CSRF et contrôle d’accès des entités</field>
+                    <field name="slide_category">article</field>
+                    <field name="category_id" ref="section_6"/>
+                </record>
+
+                <!-- Section 7 : Le cache -->
+                <record id="section_7" model="slide.slide">
+                    <field name="channel_id" ref="channel_drupal10_developpeur"/>
+                    <field name="name">7. Le cache</field>
+                    <field name="is_category">true</field>
+                </record>
+                <record id="content_7_1" model="slide.slide">
+                    <field name="channel_id" ref="channel_drupal10_developpeur"/>
+                    <field name="name">7.1. Cache tags et cache context</field>
+                    <field name="slide_category">article</field>
+                    <field name="category_id" ref="section_7"/>
+                </record>
+                <record id="content_7_2" model="slide.slide">
+                    <field name="channel_id" ref="channel_drupal10_developpeur"/>
+                    <field name="name">7.2. Lazy Building et Placeholder</field>
+                    <field name="slide_category">article</field>
+                    <field name="category_id" ref="section_7"/>
+                </record>
+
+                <!-- Section 8 : Aspect JavaScript et Ajax -->
+                <record id="section_8" model="slide.slide">
+                    <field name="channel_id" ref="channel_drupal10_developpeur"/>
+                    <field name="name">8. Aspect JavaScript et Ajax</field>
+                    <field name="is_category">true</field>
+                </record>
+                <record id="content_8_1" model="slide.slide">
+                    <field name="channel_id" ref="channel_drupal10_developpeur"/>
+                    <field name="name">8.1. Utilisation de Drupal.behaviors</field>
+                    <field name="slide_category">article</field>
+                    <field name="category_id" ref="section_8"/>
+                </record>
+                <record id="content_8_2" model="slide.slide">
+                    <field name="channel_id" ref="channel_drupal10_developpeur"/>
+                    <field name="name">8.2. Ajout de librairies et interaction avec le DOM</field>
+                    <field name="slide_category">article</field>
+                    <field name="category_id" ref="section_8"/>
+                </record>
+
+                <!-- Section 9 : Multilingue et internationalisation -->
+                <record id="section_9" model="slide.slide">
+                    <field name="channel_id" ref="channel_drupal10_developpeur"/>
+                    <field name="name">9. Multilingue et internationalisation</field>
+                    <field name="is_category">true</field>
+                </record>
+                <record id="content_9_1" model="slide.slide">
+                    <field name="channel_id" ref="channel_drupal10_developpeur"/>
+                    <field name="name">9.1. Système multilingue de Drupal</field>
+                    <field name="slide_category">article</field>
+                    <field name="category_id" ref="section_9"/>
+                </record>
+                <record id="content_9_2" model="slide.slide">
+                    <field name="channel_id" ref="channel_drupal10_developpeur"/>
+                    <field name="name">9.2. Traduction des contenus</field>
+                    <field name="slide_category">article</field>
+                    <field name="category_id" ref="section_9"/>
+                </record>
+
+                <!-- Section 10 : Background Tasks : Batch, Queue et Cron Jobs -->
+                <record id="section_10" model="slide.slide">
+                    <field name="channel_id" ref="channel_drupal10_developpeur"/>
+                    <field name="name">10. Background Tasks : Batch, Queue et Cron Jobs</field>
+                    <field name="is_category">true</field>
+                </record>
+                <record id="content_10_1" model="slide.slide">
+                    <field name="channel_id" ref="channel_drupal10_developpeur"/>
+                    <field name="name">10.1. Création de batches</field>
+                    <field name="slide_category">article</field>
+                    <field name="category_id" ref="section_10"/>
+                </record>
+                <record id="content_10_2" model="slide.slide">
+                    <field name="channel_id" ref="channel_drupal10_developpeur"/>
+                    <field name="name">10.2. Queues pour des tâches asynchrones</field>
+                    <field name="slide_category">article</field>
+                    <field name="category_id" ref="section_10"/>
+                </record>
+                <record id="content_10_3" model="slide.slide">
+                    <field name="channel_id" ref="channel_drupal10_developpeur"/>
+                    <field name="name">10.3. Cron pour des tâches récurrentes</field>
+                    <field name="slide_category">article</field>
+                    <field name="category_id" ref="section_10"/>
+                </record>
+
+                <!-- Section 11 : Affichage dynamique avec Views -->
+                <record id="section_11" model="slide.slide">
+                    <field name="channel_id" ref="channel_drupal10_developpeur"/>
+                    <field name="name">11. Affichage dynamique avec Views</field>
+                    <field name="is_category">true</field>
+                </record>
+                <record id="content_11_1" model="slide.slide">
+                    <field name="channel_id" ref="channel_drupal10_developpeur"/>
+                    <field name="name">11.1. Filtre, tri, relations</field>
+                    <field name="slide_category">article</field>
+                    <field name="category_id" ref="section_11"/>
+                </record>
+                <record id="content_11_2" model="slide.slide">
+                    <field name="channel_id" ref="channel_drupal10_developpeur"/>
+                    <field name="name">11.2. Exposer des champs et personnalisation avec du code</field>
+                    <field name="slide_category">article</field>
+                    <field name="category_id" ref="section_11"/>
+                </record>
+
+                <!-- Section 12 : Gestion des fichiers et images -->
+                <record id="section_12" model="slide.slide">
+                    <field name="channel_id" ref="channel_drupal10_developpeur"/>
+                    <field name="name">12. Gestion des fichiers et images</field>
+                    <field name="is_category">true</field>
+                </record>
+                <record id="content_12_1" model="slide.slide">
+                    <field name="channel_id" ref="channel_drupal10_developpeur"/>
+                    <field name="name">12.1. Upload, CRUD</field>
+                    <field name="slide_category">article</field>
+                    <field name="category_id" ref="section_12"/>
+                </record>
+                <record id="content_12_2" model="slide.slide">
+                    <field name="channel_id" ref="channel_drupal10_developpeur"/>
+                    <field name="name">12.2. Configuration des champs File et Image</field>
+                    <field name="slide_category">article</field>
+                    <field name="category_id" ref="section_12"/>
+                </record>
+
+                <!-- Section 13 : Drupal Headless -->
+                <record id="section_13" model="slide.slide">
+                    <field name="channel_id" ref="channel_drupal10_developpeur"/>
+                    <field name="name">13. Drupal Headless</field>
+                    <field name="slide_category">article</field>
+                </record>
+
+                <!-- Section 14 : Tests automatisés -->
+                <record id="section_14" model="slide.slide">
+                    <field name="channel_id" ref="channel_drupal10_developpeur"/>
+                    <field name="name">14. Tests automatisés</field>
+                    <field name="is_category">true</field>
+                </record>
+                <record id="content_14_1" model="slide.slide">
+                    <field name="channel_id" ref="channel_drupal10_developpeur"/>
+                    <field name="name">14.1. Tests unitaires</field>
+                    <field name="slide_category">article</field>
+                    <field name="category_id" ref="section_14"/>
+                </record>
+                <record id="content_14_2" model="slide.slide">
+                    <field name="channel_id" ref="channel_drupal10_developpeur"/>
+                    <field name="name">14.2. Tests fonctionnels</field>
+                    <field name="slide_category">article</field>
+                    <field name="category_id" ref="section_14"/>
+                </record>
+
+                <!-- Section 15 : Sécurité -->
+                <record id="section_15" model="slide.slide">
+                     <field name="channel_id" ref="channel_drupal10_developpeur"/>
+                    <field name="name">15. Sécurité</field>
+                    <field name="slide_category">article</field>
+                </record>
+
+
+
+
+         <record id="channel_drupal10_dev_iasynthese" model="slide.channel">
+            <field name="name">Formation Drupal 10  Develeppeur , aprendre avec L'IA </field>
+            <field name="description">  Synthese par l'IA</field>
+            <field name="is_published">False</field>
+            <field name="visibility">public</field>
+        </record>
+        <!-- Section 1 : Introduction à Drupal 10 -->
+        <record id="section_1_ia" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_dev_iasynthese"/>
+            <field name="name">1. Introduction à Drupal 10</field>
+            <field name="is_category">true</field>
+        </record>
+        <record id="content_1_1_ia" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_dev_iasynthese"/>
+            <field name="name">1.1. Présentation rapide de Drupal 10</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_1_ia"/>
+        </record>
+        <record id="content_1_2_ia" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_dev_iasynthese"/>
+            <field name="name">1.2. Les outils du développeur pour Drupal 10</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_1_ia"/>
+        </record>
+        <record id="content_1_3_ia" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_dev_iasynthese"/>
+            <field name="name">1.3. Installation et configuration</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_1_ia"/>
+        </record>
+        <record id="content_1_4_ia" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_dev_iasynthese"/>
+            <field name="name">1.4. Comprendre l’environnement de développement</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_1_ia"/>
+        </record>
+        <record id="content_1_5_ia" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_dev_iasynthese"/>
+            <field name="name">1.5. PSR-4 et principes modernes en PHP</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_1_ia"/>
+        </record>
+
+        <!-- Section 2 : Développement de modules - Bases -->
+        <record id="section_2_ia" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_dev_iasynthese"/>
+            <field name="name">2. Développement de modules - Bases</field>
+            <field name="is_category">true</field>
+        </record>
+        <record id="content_2_1_ia" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_dev_iasynthese"/>
+            <field name="name">2.1. Créer et structurer un module</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_2_ia"/>
+        </record>
+        <record id="content_2_2_ia" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_dev_iasynthese"/>
+            <field name="name">2.2. Routing dans Drupal 10</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_2_ia"/>
+        </record>
+        <record id="content_2_3_ia" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_dev_iasynthese"/>
+            <field name="name">2.3. Hooks et services</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_2_ia"/>
+        </record>
+        <record id="content_2_4_ia" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_dev_iasynthese"/>
+            <field name="name">2.4. Controllers et redirections</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_2_ia"/>
+        </record>
+        <record id="content_2_5_ia" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_dev_iasynthese"/>
+            <field name="name">2.5. Créer et gérer les blocs</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_2_ia"/>
+        </record>
+        <record id="content_2_6_ia" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_dev_iasynthese"/>
+            <field name="name">2.6. Utilisation de Form API et gestion des formulaires</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_2_ia"/>
+        </record>
+        <record id="content_2_7_ia" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_dev_iasynthese"/>
+            <field name="name">2.7. Journalisation et emails</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_2_ia"/>
+        </record>
+
+        <!-- Section 3 : Theming et Interfaces utilisateurs -->
+        <record id="section_3_ia" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_dev_iasynthese"/>
+            <field name="name">3. Theming et Interfaces utilisateurs</field>
+            <field name="is_category">true</field>
+        </record>
+        <record id="content_3_1_ia" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_dev_iasynthese"/>
+            <field name="name">3.1. Twig et templates personnalisés</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_3_ia"/>
+        </record>
+        <record id="content_3_2_ia" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_dev_iasynthese"/>
+            <field name="name">3.2. Utilisation des Render Arrays</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_3_ia"/>
+        </record>
+        <record id="content_3_3_ia" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_dev_iasynthese"/>
+            <field name="name">3.3. Gestion des bibliothèques (CSS/JS)</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_3_ia"/>
+        </record>
+        <record id="content_3_4_ia" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_dev_iasynthese"/>
+            <field name="name">3.4. Hooks spécifiques au thème</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_3_ia"/>
+        </record>
+        <record id="content_3_5_ia" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_dev_iasynthese"/>
+            <field name="name">3.5. Layout Builder</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_3_ia"/>
+        </record>
+
+        <!-- Section 4 : Modèles de données et API d'entités -->
+        <record id="section_4_ia" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_dev_iasynthese"/>
+            <field name="name">4. Modèles de données et API d'entités</field>
+            <field name="is_category">true</field>
+        </record>
+        <record id="content_4_1_ia" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_dev_iasynthese"/>
+            <field name="name">4.1. Comprendre l’Entity API</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_4_ia"/>
+        </record>
+        <record id="content_4_2_ia" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_dev_iasynthese"/>
+            <field name="name">4.2. Champs personnalisés</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_4_ia"/>
+        </record>
+        <record id="content_4_3_ia" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_dev_iasynthese"/>
+            <field name="name">4.3. API de configuration</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_4_ia"/>
+        </record>
+        <record id="content_4_4_ia" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_dev_iasynthese"/>
+            <field name="name">4.4. Création de nouvelles entités</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_4_ia"/>
+        </record>
+
+        <!-- Section 5 : Cache et performances -->
+        <record id="section_5_ia" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_dev_iasynthese"/>
+            <field name="name">5. Cache et performances</field>
+            <field name="is_category">true</field>
+        </record>
+        <record id="content_5_1_ia" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_dev_iasynthese"/>
+            <field name="name">5.1. Cache tags et contextes</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_5_ia"/>
+        </record>
+        <record id="content_5_2_ia" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_dev_iasynthese"/>
+            <field name="name">5.2. Lazy Builders</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_5_ia"/>
+        </record>
+
+        <!-- Section 6 : Sécurité -->
+        <record id="section_6_ia" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_dev_iasynthese"/>
+            <field name="name">6. Sécurité</field>
+            <field name="is_category">true</field>
+        </record>
+        <record id="content_6_1_ia" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_dev_iasynthese"/>
+            <field name="name">6.1. Gestion des permissions</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_6_ia"/>
+        </record>
+        <record id="content_6_2_ia" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_dev_iasynthese"/>
+            <field name="name">6.2. CSRF et XSS</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_6_ia"/>
+        </record>
+        <record id="content_6_3_ia" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_dev_iasynthese"/>
+            <field name="name">6.3. SQL et sécurité des requêtes</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_6_ia"/>
+        </record>
+         <!-- Section 7 : Headless Drupal -->
+        <record id="section_7_ia" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_dev_iasynthese"/>
+            <field name="name">7. Headless Drupal</field>
+            <field name="is_category">true</field>
+        </record>
+        <record id="content_7_1_ia" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_dev_iasynthese"/>
+            <field name="name">7.1. JSON:API et RESTful Webservices</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_7_ia"/>
+        </record>
+        <record id="content_7_2_ia" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_dev_iasynthese"/>
+            <field name="name">7.2. Introduction à GraphQL</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_7_ia"/>
+        </record>
+
+        <!-- Section 8 : Tests et automatisation -->
+        <record id="section_8_ia" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_dev_iasynthese"/>
+            <field name="name">8. Tests et automatisation</field>
+            <field name="is_category">true</field>
+        </record>
+        <record id="content_8_1_ia" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_dev_iasynthese"/>
+            <field name="name">8.1. Tests unitaires en PHP</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_8_ia"/>
+        </record>
+        <record id="content_8_2_ia" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_dev_iasynthese"/>
+            <field name="name">8.2. Tests fonctionnels</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_8_ia"/>
+        </record>
+        <record id="content_8_3_ia" model="slide.slide">
+            <field name="channel_id" ref="channel_drupal10_dev_iasynthese"/>
+            <field name="name">8.3. Tests JavaScript et comportement Ajax</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_8_ia"/>
+        </record>
+    </data>
+</odoo>

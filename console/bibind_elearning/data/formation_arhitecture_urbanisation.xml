@@ -1,0 +1,147 @@
+<odoo>
+    <data>
+        <!-- Canal principal pour la formation -->
+        <record id="cloud_architecture_si_training_channel" model="slide.channel">
+            <field name="name">Formation : Urbanisation du SI et Architecture Cloud</field>
+            <field name="description">Formation de 5 jours pour comprendre et mettre en œuvre l'urbanisation du SI dans un environnement cloud.</field>
+            <field name="tag_ids" eval="[(6, 0, [ref('base.module_category_tools')])]"/>
+        </record>
+
+        <!-- Jours de la formation comme catégories dans le canal -->
+
+        <!-- Jour 1 -->
+        <record id="day_1_si_cloud_introduction" model="slide.slide">
+            <field name="name">Jour 1 : Introduction à l’urbanisation du SI et leadership cloud</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="cloud_architecture_si_training_channel"/>
+        </record>
+        <!-- Jour 1 - Matinée -->
+        <record id="day_1_morning_principles" model="slide.slide">
+            <field name="name">Matinée : Principes de base de l'urbanisation SI (4h)</field>
+            <field name="slide_category">article</field>
+            <field name="description">
+                Définitions et concepts-clés, rôle de l'urbanisation dans une stratégie cloud-native, introduction à TOGAF, COBIT et ITIL.
+            </field>
+            <field name="category_id" ref="day_1_si_cloud_introduction"/>
+            <field name="channel_id" ref="cloud_architecture_si_training_channel"/>
+        </record>
+        <!-- Jour 1 - Après-midi -->
+        <record id="day_1_afternoon_cloud_alignment" model="slide.slide">
+            <field name="name">Après-midi : Bases de l’architecture Cloud et alignement stratégique (3h)</field>
+            <field name="slide_category">article</field>
+            <field name="description">
+                Responsabilités des architectes cloud, meilleures pratiques d'alignement business-cloud, cas pratique multi-cloud (AWS, Azure, GCP).
+            </field>
+            <field name="category_id" ref="day_1_si_cloud_introduction"/>
+            <field name="channel_id" ref="cloud_architecture_si_training_channel"/>
+        </record>
+
+        <!-- Jour 2 -->
+        <record id="day_2_cartography_modelling" model="slide.slide">
+            <field name="name">Jour 2 : Cartographie et modélisation du SI</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="cloud_architecture_si_training_channel"/>
+        </record>
+        <!-- Jour 2 - Matinée -->
+        <record id="day_2_morning_mapping_tools" model="slide.slide">
+            <field name="name">Matinée : La cartographie comme outil stratégique (4h)</field>
+            <field name="slide_category">article</field>
+            <field name="description">
+                Rôles de la cartographie SI, techniques de cartographie (domaines fonctionnels, flux métiers, relations applicatives), outils comme ArchiMate, BPMN, UML.
+            </field>
+            <field name="category_id" ref="day_2_cartography_modelling"/>
+            <field name="channel_id" ref="cloud_architecture_si_training_channel"/>
+        </record>
+        <!-- Jour 2 - Après-midi -->
+        <record id="day_2_afternoon_use_case" model="slide.slide">
+            <field name="name">Après-midi : Étude de cas pratique (3h)</field>
+            <field name="slide_category">article</field>
+            <field name="description">
+                Analyse et cartographie d’un SI existant, définition de plans cibles, restitution en groupe pour discussion.
+            </field>
+            <field name="category_id" ref="day_2_cartography_modelling"/>
+            <field name="channel_id" ref="cloud_architecture_si_training_channel"/>
+        </record>
+
+        <!-- Jour 3 -->
+        <record id="day_3_governance_urbanization" model="slide.slide">
+            <field name="name">Jour 3 : Gouvernance et cadre d’urbanisation du SI</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="cloud_architecture_si_training_channel"/>
+        </record>
+        <!-- Jour 3 - Matinée -->
+        <record id="day_3_morning_governance" model="slide.slide">
+            <field name="name">Matinée : Gouvernance et alignement organisationnel (4h)</field>
+            <field name="slide_category">article</field>
+            <field name="description">
+                Notions de gouvernance liée à la transformation digitale, gestion des dettes techniques, introduction aux flux fonctionnels majeurs et SOA.
+            </field>
+            <field name="category_id" ref="day_3_governance_urbanization"/>
+            <field name="channel_id" ref="cloud_architecture_si_training_channel"/>
+        </record>
+        <!-- Jour 3 - Après-midi -->
+        <record id="day_3_afternoon_process_optimization" model="slide.slide">
+            <field name="name">Après-midi : Processus d'optimisation (3h)</field>
+            <field name="slide_category">article</field>
+            <field name="description">
+                Optimisation à l’aide de plateformes **low-code/no-code** et cas pratique pour intégrer de nouveaux services dans des systèmes multi-cloud.
+            </field>
+            <field name="category_id" ref="day_3_governance_urbanization"/>
+            <field name="channel_id" ref="cloud_architecture_si_training_channel"/>
+        </record>
+
+        <!-- Jour 4 -->
+        <record id="day_4_cloud_transitions" model="slide.slide">
+            <field name="name">Jour 4 : Préparation des transitions et transformation digitale</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="cloud_architecture_si_training_channel"/>
+        </record>
+        <!-- Jour 4 - Matinée -->
+        <record id="day_4_morning_integration_methods" model="slide.slide">
+            <field name="name">Matinée : Méthodologies d’intégration Cloud (4h)</field>
+            <field name="slide_category">article</field>
+            <field name="description">
+                Transition des applications au cloud à l’aide des stratégies (replatforming, rehosting), introduction aux solutions hybrides et middlewares (ESB, API Gateway).
+            </field>
+            <field name="category_id" ref="day_4_cloud_transitions"/>
+            <field name="channel_id" ref="cloud_architecture_si_training_channel"/>
+        </record>
+        <!-- Jour 4 - Après-midi -->
+        <record id="day_4_afternoon_resilience" model="slide.slide">
+            <field name="name">Après-midi : Conception d’architectures résilientes (3h)</field>
+            <field name="slide_category">article</field>
+            <field name="description">
+                Cas pratique : Concevoir un système SI composé de microservices, d’une architecture multi-tier, et des conteneurs managés.
+            </field>
+            <field name="category_id" ref="day_4_cloud_transitions"/>
+            <field name="channel_id" ref="cloud_architecture_si_training_channel"/>
+        </record>
+
+        <!-- Jour 5 -->
+        <record id="day_5_security_analysis" model="slide.slide">
+            <field name="name">Jour 5 : Sécurité Cloud, déploiement et synthèse</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="cloud_architecture_si_training_channel"/>
+        </record>
+        <!-- Jour 5 - Matinée -->
+        <record id="day_5_morning_security" model="slide.slide">
+            <field name="name">Matinée : Sécurisation et performance dans le Cloud (4h)</field>
+            <field name="slide_category">article</field>
+            <field name="description">
+                Cybersécurité pour le SI hybride/multi-cloud, outils de sécurité avancés (IAM, VPN), et stratégies de réduction des coûts pour les performances optimales.
+            </field>
+            <field name="category_id" ref="day_5_security_analysis"/>
+            <field name="channel_id" ref="cloud_architecture_si_training_channel"/>
+        </record>
+        <!-- Jour 5 - Après-midi -->
+        <record id="day_5_afternoon_case_study" model="slide.slide">
+            <field name="name">Après-midi : Synthèse et étude de cas global (3h)</field>
+            <field name="slide_category">article</field>
+            <field name="description">
+                Étude de cas globale : migration et rationalisation d'un SI existant vers le cloud-native, restitution en groupe avec discussions finales.
+            </field>
+            <field name="category_id" ref="day_5_security_analysis"/>
+            <field name="channel_id" ref="cloud_architecture_si_training_channel"/>
+        </record>
+    </data>
+</odoo>

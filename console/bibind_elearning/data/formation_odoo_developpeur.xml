@@ -1,0 +1,158 @@
+<odoo>
+    <data>
+        <!-- Formation : Odoo pour développeurs (5 jours) -->
+
+        <!-- Canal principal pour la formation -->
+        <record id="odoo_developer_training_channel" model="slide.channel">
+            <field name="name">Formation : Odoo pour Développeurs</field>
+            <field name="description">Formation complète de 5 jours pour apprendre le développement sous Odoo.</field>
+            <field name="tag_ids" eval="[(6, 0, [ref('base.module_category_tools')])]"/>
+        </record>
+
+        <!-- Jour 1 : Introduction et fondamentaux du développement Odoo -->
+        <record id="dev_day_1_introduction_fundamentals" model="slide.slide">
+            <field name="name">Jour 1 : Introduction et fondamentaux du développement Odoo</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="odoo_developer_training_channel"/>
+        </record>
+
+        <!-- Matinée : Vue d'ensemble et configuration -->
+        <record id="day_1_morning_overview_configuration" model="slide.slide">
+            <field name="name">Matinée : Vue d'ensemble et configuration (4h)</field>
+            <field name="slide_type">article</field>
+            <field name="description">
+                Overview d'Odoo pour développeurs, installation de l'environnement local, aperçu de l'architecture Odoo et du structure des répertoires principaux.
+            </field>
+            <field name="category_id" ref="dev_day_1_introduction_fundamentals"/>
+            <field name="channel_id" ref="odoo_developer_training_channel"/>
+        </record>
+
+        <!-- Après-midi : Manipulation de base et premier projet -->
+        <record id="day_1_afternoon_first_project" model="slide.slide">
+            <field name="name">Après-midi : Manipulation de base et premier projet (3h)</field>
+            <field name="slide_type">article</field>
+            <field name="description">
+                Exploration des modules existants comme les modules CRM. Création d'un premier module avec des champs simples et introduction aux customisations basiques.
+            </field>
+            <field name="category_id" ref="dev_day_1_introduction_fundamentals"/>
+            <field name="channel_id" ref="odoo_developer_training_channel"/>
+        </record>
+
+        <!-- Jour 2 : Approfondissement Backend (Modèles, ORM et sécurité) -->
+        <record id="day_2_backend_models_orm" model="slide.slide">
+            <field name="name">Jour 2 : Approfondissement Backend (Modèles, ORM et sécurité)</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="odoo_developer_training_channel"/>
+        </record>
+
+        <!-- Matinée : Modèles et ORM avancés -->
+        <record id="day_2_morning_models_orm" model="slide.slide">
+            <field name="name">Matinée : Modèles et ORM avancés (4h)</field>
+            <field name="slide_type">article</field>
+            <field name="description">
+                Approfondissement des modèles, ORM et relations dans Odoo. Définition avancée de champs et sécurité via les permissions d'accès.
+            </field>
+            <field name="category_id" ref="day_2_backend_models_orm"/>
+            <field name="channel_id" ref="odoo_developer_training_channel"/>
+        </record>
+
+        <!-- Après-midi : Étude de cas -->
+        <record id="day_2_afternoon_case_study" model="slide.slide">
+            <field name="name">Après-midi : Étude de cas (3h)</field>
+            <field name="slide_type">article</field>
+            <field name="description">
+                Étude de cas pratique : conception d'un module de gestion salarié avec héritage et relations avancées.
+            </field>
+            <field name="category_id" ref="day_2_backend_models_orm"/>
+            <field name="channel_id" ref="odoo_developer_training_channel"/>
+        </record>
+
+        <!-- Jour 3 : Développement Frontend (vues, actions, rapports) -->
+        <record id="day_3_frontend_views_reports" model="slide.slide">
+            <field name="name">Jour 3 : Développement Frontend (vues, actions, rapports)</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="odoo_developer_training_channel"/>
+        </record>
+
+        <!-- Matinée : Vues et actions -->
+        <record id="day_3_morning_views_actions" model="slide.slide">
+            <field name="name">Matinée : Vues et actions (4h)</field>
+            <field name="slide_type">article</field>
+            <field name="description">
+                Personnalisation et création de vues XML, actions serveur, traductions, et introduction aux workflows frontend dans Odoo.
+            </field>
+            <field name="category_id" ref="day_3_frontend_views_reports"/>
+            <field name="channel_id" ref="odoo_developer_training_channel"/>
+        </record>
+
+        <!-- Après-midi : Rapports et PDF -->
+        <record id="day_3_afternoon_reports_pdf" model="slide.slide">
+            <field name="name">Après-midi : Rapports et génération PDF (3h)</field>
+            <field name="slide_type">article</field>
+            <field name="description">
+                Création et personnalisation de rapports PDF avec Qweb. Ajout de champs calculés dynamiques et tests de génération pour les factures.
+            </field>
+            <field name="category_id" ref="day_3_frontend_views_reports"/>
+            <field name="channel_id" ref="odoo_developer_training_channel"/>
+        </record>
+
+        <!-- Jour 4 : API Odoo et automatisation -->
+        <record id="day_4_apis_automation" model="slide.slide">
+            <field name="name">Jour 4 : API Odoo et automatisation</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="odoo_developer_training_channel"/>
+        </record>
+
+        <!-- Matinée : Intégration des APIs -->
+        <record id="day_4_morning_apis" model="slide.slide">
+            <field name="name">Matinée : Intégration des APIs (4h)</field>
+            <field name="slide_type">article</field>
+            <field name="description">
+                Découverte des capacités d'API XML-RPC et JSON-RPC d'Odoo. Création de scripts Python et d'une API REST custom.
+            </field>
+            <field name="category_id" ref="day_4_apis_automation"/>
+            <field name="channel_id" ref="odoo_developer_training_channel"/>
+        </record>
+
+        <!-- Après-midi : Automatisations et workflows -->
+        <record id="day_4_afternoon_automation" model="slide.slide">
+            <field name="name">Après-midi : Automatisations et workflows (3h)</field>
+            <field name="slide_type">article</field>
+            <field name="description">
+                Mise en place d'actions automatisées et gestion des tâches planifiées avec des notifications. Configuration de worklfows e-mail.
+            </field>
+            <field name="category_id" ref="day_4_apis_automation"/>
+            <field name="channel_id" ref="odoo_developer_training_channel"/>
+        </record>
+
+        <!-- Jour 5 : Tests, déploiement et étude de cas -->
+        <record id="day_5_testing_deployment" model="slide.slide">
+            <field name="name">Jour 5 : Tests, déploiement et étude de cas</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="odoo_developer_training_channel"/>
+        </record>
+
+        <!-- Matinée : Tests unitaires et qualité -->
+        <record id="day_5_morning_testing" model="slide.slide">
+            <field name="name">Matinée : Tests unitaires et qualité du code (4h)</field>
+            <field name="slide_type">article</field>
+            <field name="description">
+                Apprentissage des bases des tests unitaires avec `unittest`, écriture de tests sur les APIs et bonnes pratiques pour des modules maintenables.
+            </field>
+            <field name="category_id" ref="day_5_testing_deployment"/>
+            <field name="channel_id" ref="odoo_developer_training_channel"/>
+        </record>
+
+        <!-- Après-midi : Déploiement et étude de cas -->
+        <record id="day_5_afternoon_deployment" model="slide.slide">
+            <field name="name">Après-midi : Déploiement et étude de cas global (3h)</field>
+            <field name="slide_type">article</field>
+            <field name="description">
+                Apprentissage de la configuration d’Odoo pour la production et étude de cas pratique : création d'une solution complète personnalisée et mise en production.
+            </field>
+            <field name="category_id" ref="day_5_testing_deployment"/>
+            <field name="channel_id" ref="odoo_developer_training_channel"/>
+        </record>
+
+    </data>
+</odoo>

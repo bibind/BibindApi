@@ -1,0 +1,331 @@
+<odoo>
+    <data>
+        <!-- Canal (Formation Drupal 10 : Chef de Projet) -->
+        <record id="channel_drupal10_chefprojet" model="slide.channel">
+            <field name="name">Formation Drupal 10 : Chef de Projet</field>
+            <field name="description">Apprenez tout ce qu’il faut pour gérer un projet Drupal 10 avec succès !</field>
+            <field name="is_published">False</field>
+            <field name="visibility">public</field>
+        </record>
+
+        <!-- 1. Introduction -->
+        <record id="category_drupal10_intro" model="slide.slide">
+            <field name="name">1. Introduction</field>
+            <field name="channel_id" ref="channel_drupal10_chefprojet"/>
+            <field name="is_category">True</field>
+            <field name="sequence">1</field>
+        </record>
+        <record id="slide_drupal10_history" model="slide.slide">
+            <field name="name">Un peu d'histoire</field>
+            <field name="channel_id" ref="channel_drupal10_chefprojet"/>
+            <field name="category_id" ref="category_drupal10_intro"/>
+            <field name="slide_category">article</field>
+            <field name="description">Découvrez les origines de Drupal, son historique et le rôle de la communauté.</field>
+            <field name="is_published">True</field>
+        </record>
+        <record id="slide_drupal10_vocabulary" model="slide.slide">
+            <field name="name">Le vocabulaire Drupal</field>
+            <field name="channel_id" ref="channel_drupal10_chefprojet"/>
+            <field name="category_id" ref="category_drupal10_intro"/>
+            <field name="slide_category">article</field>
+            <field name="description">Apprenez les concepts clés comme les nœuds, blocs, hooks, taxonomies, etc.</field>
+            <field name="is_published">True</field>
+        </record>
+        <record id="slide_drupal10_tools" model="slide.slide">
+            <field name="name">Les outils de développement</field>
+            <field name="channel_id" ref="channel_drupal10_chefprojet"/>
+            <field name="category_id" ref="category_drupal10_intro"/>
+            <field name="slide_category">article</field>
+            <field name="description">Présentation des outils nécessaires pour développer avec Drupal (Composer, Drush...).</field>
+            <field name="is_published">True</field>
+        </record>
+        <record id="slide_drupal10_installation" model="slide.slide">
+            <field name="name">Installer et configurer Drupal</field>
+            <field name="channel_id" ref="channel_drupal10_chefprojet"/>
+            <field name="category_id" ref="category_drupal10_intro"/>
+            <field name="slide_category">article</field>
+            <field name="description">Installation et configuration : environnement local, étapes de mise en place.</field>
+            <field name="is_published">True</field>
+        </record>
+
+        <!-- 2. La création et la publication de contenu -->
+        <record id="category_drupal10_content_creation" model="slide.slide">
+            <field name="name">2. La création et la publication de contenu</field>
+            <field name="channel_id" ref="channel_drupal10_chefprojet"/>
+            <field name="is_category">True</field>
+            <field name="sequence">2</field>
+        </record>
+        <record id="slide_drupal10_blocks" model="slide.slide">
+            <field name="name">Créer des blocs</field>
+            <field name="channel_id" ref="channel_drupal10_chefprojet"/>
+            <field name="category_id" ref="category_drupal10_content_creation"/>
+            <field name="slide_category">article</field>
+            <field name="description">Introduction aux blocs personnalisés et à leur gestion dans les régions.</field>
+            <field name="is_published">True</field>
+        </record>
+        <record id="slide_drupal10_create_content" model="slide.slide">
+            <field name="name">La création de contenu</field>
+            <field name="channel_id" ref="channel_drupal10_chefprojet"/>
+            <field name="category_id" ref="category_drupal10_content_creation"/>
+            <field name="slide_category">article</field>
+            <field name="description">Gestion des contenus avec les types de contenu par défaut et personnalisés.</field>
+            <field name="is_published">True</field>
+        </record>
+        <record id="slide_drupal10_wysiwyg" model="slide.slide">
+            <field name="name">Configurer et utiliser l'éditeur WYSIWYG</field>
+            <field name="channel_id" ref="channel_drupal10_chefprojet"/>
+            <field name="category_id" ref="category_drupal10_content_creation"/>
+            <field name="slide_category">article</field>
+            <field name="description">Configurer CKEditor pour une édition riche du contenu.</field>
+            <field name="is_published">True</field>
+        </record>
+        <record id="slide_drupal10_content_permissions" model="slide.slide">
+            <field name="name">Les droits d’accès du contenu</field>
+            <field name="channel_id" ref="channel_drupal10_chefprojet"/>
+            <field name="category_id" ref="category_drupal10_content_creation"/>
+            <field name="slide_category">article</field>
+            <field name="description">Configurer les permissions pour différents rôles.</field>
+            <field name="is_published">True</field>
+        </record>
+
+        <!-- 3. L’affichage des contenus -->
+        <record id="category_drupal10_content_display" model="slide.slide">
+            <field name="name">3. L’affichage des contenus</field>
+            <field name="channel_id" ref="channel_drupal10_chefprojet"/>
+            <field name="is_category">True</field>
+            <field name="sequence">3</field>
+        </record>
+        <record id="slide_drupal10_view_modes" model="slide.slide">
+            <field name="name">Personnaliser l’affichage d’un contenu</field>
+            <field name="channel_id" ref="channel_drupal10_chefprojet"/>
+            <field name="category_id" ref="category_drupal10_content_display"/>
+            <field name="slide_category">article</field>
+            <field name="description">Configurer les modes d’affichage public et d’édition des entités.</field>
+            <field name="is_published">True</field>
+        </record>
+        <record id="slide_drupal10_views_intro" model="slide.slide">
+            <field name="name">Créer une vue avec le module Views</field>
+            <field name="channel_id" ref="channel_drupal10_chefprojet"/>
+            <field name="category_id" ref="category_drupal10_content_display"/>
+            <field name="slide_category">article</field>
+            <field name="description">Introduction aux vues : créer des pages ou blocs avec le module Views.</field>
+            <field name="is_published">True</field>
+        </record>
+        <record id="slide_drupal10_views_advanced" model="slide.slide">
+            <field name="name">Utilisation avancée des vues</field>
+            <field name="channel_id" ref="channel_drupal10_chefprojet"/>
+            <field name="category_id" ref="category_drupal10_content_display"/>
+            <field name="slide_category">article</field>
+            <field name="description">Ajout de relations et de filtres contextuels pour des vues dynamiques.</field>
+            <field name="is_published">True</field>
+        </record>
+
+        <!-- 4. Organisation du contenu -->
+        <record id="category_drupal10_content_organization" model="slide.slide">
+            <field name="name">4. L'organisation du contenu</field>
+            <field name="channel_id" ref="channel_drupal10_chefprojet"/>
+            <field name="is_category">True</field>
+            <field name="sequence">4</field>
+        </record>
+        <record id="slide_drupal10_taxonomy" model="slide.slide">
+            <field name="name">La taxonomie</field>
+            <field name="channel_id" ref="channel_drupal10_chefprojet"/>
+            <field name="category_id" ref="category_drupal10_content_organization"/>
+            <field name="slide_category">article</field>
+            <field name="description">Créer et gérer des vocabulaires et termes pour classer vos contenus.</field>
+            <field name="is_published">True</field>
+        </record>
+        <record id="slide_drupal10_workflow" model="slide.slide">
+            <field name="name">Concevoir un workflow de publication</field>
+            <field name="channel_id" ref="channel_drupal10_chefprojet"/>
+            <field name="category_id" ref="category_drupal10_content_organization"/>
+            <field name="slide_category">article</field>
+            <field name="description">Utiliser "Workflows" pour la gestion des états de publication.</field>
+            <field name="is_published">True</field>
+        </record>
+<!-- 4. L’organisation du contenu -->
+        <record id="category_drupal10_content_organization" model="slide.slide">
+            <field name="name">4. L’organisation du contenu</field>
+            <field name="channel_id" ref="channel_drupal10_chefprojet"/>
+            <field name="is_category">True</field>
+            <field name="sequence">4</field>
+        </record>
+        <record id="slide_drupal10_user_roles" model="slide.slide">
+            <field name="name">Les utilisateurs  Les rôles</field>
+            <field name="channel_id" ref="channel_drupal10_chefprojet"/>
+            <field name="category_id" ref="category_drupal10_content_organization"/>
+            <field name="slide_category">article</field>
+            <field name="description">Ajouter des utilisateurs et configurer leurs rôles dans le système Drupal.</field>
+            <field name="is_published">True</field>
+        </record>
+        <record id="slide_drupal10_taxonomy" model="slide.slide">
+            <field name="name">La taxonomie : classer et hiérarchiser les contenus</field>
+            <field name="channel_id" ref="channel_drupal10_chefprojet"/>
+            <field name="category_id" ref="category_drupal10_content_organization"/>
+            <field name="slide_category">article</field>
+            <field name="description">Créer des catégories, tags et vocabulaires pour mieux organiser vos contenus.</field>
+            <field name="is_published">True</field>
+        </record>
+        <record id="slide_drupal10_navigation_menus" model="slide.slide">
+            <field name="name">Concevoir un menu utilisant la taxonomie</field>
+            <field name="channel_id" ref="channel_drupal10_chefprojet"/>
+            <field name="category_id" ref="category_drupal10_content_organization"/>
+            <field name="slide_category">article</field>
+            <field name="description">Créer des menus dynamiques basés sur vos catégories et vocabulaires.</field>
+            <field name="is_published">True</field>
+        </record>
+        <record id="slide_drupal10_homepage" model="slide.slide">
+            <field name="name">Créer une page d’accueil</field>
+            <field name="channel_id" ref="channel_drupal10_chefprojet"/>
+            <field name="category_id" ref="category_drupal10_content_organization"/>
+            <field name="slide_category">article</field>
+            <field name="description">Définir une page principale pour votre site à l’aide d’un contenu statique ou d’une vue.</field>
+            <field name="is_published">True</field>
+        </record>
+
+        <!-- 5. Les modules communautaires -->
+        <record id="category_drupal10_modules" model="slide.slide">
+            <field name="name">5. Les modules communautaires</field>
+            <field name="channel_id" ref="channel_drupal10_chefprojet"/>
+            <field name="is_category">True</field>
+            <field name="sequence">5</field>
+        </record>
+        <record id="slide_drupal10_media_management" model="slide.slide">
+            <field name="name">Gérer ses médias avec le module Media</field>
+            <field name="channel_id" ref="channel_drupal10_chefprojet"/>
+            <field name="category_id" ref="category_drupal10_modules"/>
+            <field name="slide_category">article</field>
+            <field name="description">Apprenez à organiser les images, vidéos et documents sur votre site.</field>
+            <field name="is_published">True</field>
+        </record>
+        <record id="slide_drupal10_webform_creation" model="slide.slide">
+            <field name="name">Créer et exploiter des formulaires (via Webform)</field>
+            <field name="channel_id" ref="channel_drupal10_chefprojet"/>
+            <field name="category_id" ref="category_drupal10_modules"/>
+            <field name="slide_category">article</field>
+            <field name="description">Créer des formulaires avancés pour collecter des données de vos utilisateurs.</field>
+            <field name="is_published">True</field>
+        </record>
+        <record id="slide_drupal10_social_sharing" model="slide.slide">
+            <field name="name">Partager les contenus sur les réseaux sociaux</field>
+            <field name="channel_id" ref="channel_drupal10_chefprojet"/>
+            <field name="category_id" ref="category_drupal10_modules"/>
+            <field name="slide_category">article</field>
+            <field name="description">Intégration des modules pour le partage des contenus directement depuis votre site.</field>
+            <field name="is_published">True</field>
+        </record>
+
+        <!-- 6. Le référencement SEO -->
+        <record id="category_drupal10_seo" model="slide.slide">
+            <field name="name">6. Le référencement SEO</field>
+            <field name="channel_id" ref="channel_drupal10_chefprojet"/>
+            <field name="is_category">True</field>
+            <field name="sequence">6</field>
+        </record>
+        <record id="slide_drupal10_pathauto" model="slide.slide">
+            <field name="name">Module Pathauto : Génération d’URL automatiques</field>
+            <field name="channel_id" ref="channel_drupal10_chefprojet"/>
+            <field name="category_id" ref="category_drupal10_seo"/>
+            <field name="slide_category">article</field>
+            <field name="description">Automatisez la création d'URL conviviales pour le SEO.</field>
+            <field name="is_published">True</field>
+        </record>
+        <record id="slide_drupal10_metatags" model="slide.slide">
+            <field name="name">Module Metatag : Gestion des balises META</field>
+            <field name="channel_id" ref="channel_drupal10_chefprojet"/>
+            <field name="category_id" ref="category_drupal10_seo"/>
+            <field name="slide_category">article</field>
+            <field name="description">Ajoutez des balises META pour améliorer la visibilité de vos pages.</field>
+            <field name="is_published">True</field>
+        </record>
+        <record id="slide_drupal10_google_analytics" model="slide.slide">
+            <field name="name">Module Google Analytics</field>
+            <field name="channel_id" ref="channel_drupal10_chefprojet"/>
+            <field name="category_id" ref="category_drupal10_seo"/>
+            <field name="slide_category">article</field>
+            <field name="description">Suivez les statistiques visiteurs et les performances du site.</field>
+            <field name="is_published">True</field>
+        </record>
+
+        <!-- 7. Le multilinguisme -->
+        <record id="category_drupal10_multilinguisme" model="slide.slide">
+            <field name="name">7. Le multilinguisme</field>
+            <field name="channel_id" ref="channel_drupal10_chefprojet"/>
+            <field name="is_category">True</field>
+            <field name="sequence">7</field>
+        </record>
+        <record id="slide_drupal10_translation_modules" model="slide.slide">
+            <field name="name">Traduire le contenu, les blocs, l’interface</field>
+            <field name="channel_id" ref="channel_drupal10_chefprojet"/>
+            <field name="category_id" ref="category_drupal10_multilinguisme"/>
+            <field name="slide_category">article</field>
+            <field name="description">Configurer le site pour prendre en charge plusieurs langues et traductions.</field>
+            <field name="is_published">True</field>
+        </record>
+
+        <!-- 8. Le multisite -->
+        <record id="category_drupal10_multisite" model="slide.slide">
+            <field name="name">8. Le multisite</field>
+            <field name="channel_id" ref="channel_drupal10_chefprojet"/>
+            <field name="is_category">True</field>
+            <field name="sequence">8</field>
+        </record>
+        <record id="slide_drupal10_multisite_setup" model="slide.slide">
+            <field name="name">Installer plusieurs sites distincts</field>
+            <field name="channel_id" ref="channel_drupal10_chefprojet"/>
+            <field name="category_id" ref="category_drupal10_multisite"/>
+            <field name="slide_category">article</field>
+            <field name="description">Configurer une instance Drupal partagée pour héberger plusieurs sites.</field>
+            <field name="is_published">True</field>
+        </record>
+
+        <!-- 9. Optimisations et performances -->
+        <record id="category_drupal10_optimizations" model="slide.slide">
+            <field name="name">9. Optimisations et performances</field>
+            <field name="channel_id" ref="channel_drupal10_chefprojet"/>
+            <field name="is_category">True</field>
+            <field name="sequence">9</field>
+        </record>
+        <record id="slide_drupal10_cache" model="slide.slide">
+            <field name="name">Optimiser le cache Drupal</field>
+            <field name="channel_id" ref="channel_drupal10_chefprojet"/>
+            <field name="category_id" ref="category_drupal10_optimizations"/>
+            <field name="slide_category">article</field>
+            <field name="description">Configurer le cache et utiliser Memcached ou Redis.</field>
+            <field name="is_published">True</field>
+        </record>
+        <record id="slide_drupal10_database_optimization" model="slide.slide">
+            <field name="name">Optimisation de la base de données</field>
+            <field name="channel_id" ref="channel_drupal10_chefprojet"/>
+            <field name="category_id" ref="category_drupal10_optimizations"/>
+            <field name="slide_category">article</field>
+            <field name="description">Réduire les requêtes redondantes pour améliorer les performances.</field>
+            <field name="is_published">True</field>
+        </record>
+
+        <!-- 10. Sécurité de votre site -->
+        <record id="category_drupal10_security" model="slide.slide">
+            <field name="name">10. Sécurité de votre site</field>
+            <field name="channel_id" ref="channel_drupal10_chefprojet"/>
+            <field name="is_category">True</field>
+            <field name="sequence">10</field>
+        </record>
+        <record id="slide_drupal10_security_practices" model="slide.slide">
+            <field name="name">Bonnes pratiques de sécurité</field>
+            <field name="channel_id" ref="channel_drupal10_chefprojet"/>
+            <field name="category_id" ref="category_drupal10_security"/>
+            <field name="slide_category">article</field>
+            <field name="description">Suivez les guidelines de base pour sécuriser votre installation Drupal.</field>
+            <field name="is_published">True</field>
+        </record>
+        <record id="slide_drupal10_seckit_module" model="slide.slide">
+            <field name="name">Module SecKit</field>
+            <field name="channel_id" ref="channel_drupal10_chefprojet"/>
+            <field name="category_id" ref="category_drupal10_security"/>
+            <field name="slide_category">article</field>
+            <field name="description">Ajoutez des protections XSS/CSRF et des règles de sécurité enrichies.</field>
+            <field name="is_published">True</field>
+        </record>
+
+    </data>
+</odoo>

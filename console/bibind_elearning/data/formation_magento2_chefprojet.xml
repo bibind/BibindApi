@@ -1,0 +1,216 @@
+<odoo>
+    <data>
+         <record id="channel_magento2_chefprojet" model="slide.channel">
+            <field name="name">Formation magento 2 : Chef de Projet</field>
+            <field name="description">Apprenez tout ce qu’il faut pour gérer un projet Drupal 10 avec succès !</field>
+            <field name="is_published">False</field>
+            <field name="visibility">public</field>
+        </record>
+
+        <!-- Section 1 : Introduction à Magento -->
+        <record id="section_1_mag_cp" model="slide.slide">
+            <field name="channel_id" ref="channel_magento2_chefprojet"/>
+            <field name="name">1. Introduction à Magento</field>
+            <field name="is_category">true</field>
+        </record>
+        <record id="magcontent_1_1" model="slide.slide">
+            <field name="channel_id" ref="channel_magento2_chefprojet"/>
+            <field name="name">1.1. Qu’est-ce que Magento ?</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_1_mag_cp"/>
+        </record>
+        <record id="magcontent_1_2" model="slide.slide">
+            <field name="channel_id" ref="channel_magento2_chefprojet"/>
+            <field name="name">1.2. Architecture de Magento : Vue d’ensemble</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_1_mag_cp"/>
+        </record>
+        <record id="magcontent_1_3" model="slide.slide">
+            <field name="channel_id" ref="channel_magento2_chefprojet"/>
+            <field name="name">1.3. Comprendre les nouveautés de Magento 2</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_1_mag_cp"/>
+        </record>
+        <record id="magcontent_1_4" model="slide.slide">
+            <field name="channel_id" ref="channel_magento2_chefprojet"/>
+            <field name="name">1.4. Présentation des acteurs et ecosystem Magento</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_1_mag_cp"/>
+        </record>
+
+        <!-- Section 2 : Préparer et planifier un projet Magento -->
+        <record id="section_2_mage_cp" model="slide.slide">
+            <field name="channel_id" ref="channel_magento2_chefprojet"/>
+            <field name="name">2. Préparer et planifier un projet Magento</field>
+            <field name="is_category">true</field>
+        </record>
+        <record id="magcontent_2_1" model="slide.slide">
+            <field name="channel_id" ref="channel_magento2_chefprojet"/>
+            <field name="name">2.1. Identifier les besoins et périmètres fonctionnels</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_2_mage_cp"/>
+        </record>
+        <record id="magcontent_2_2" model="slide.slide">
+            <field name="channel_id" ref="channel_magento2_chefprojet"/>
+            <field name="name">2.2. Identifier et scoper les ressources</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_2_mage_cp"/>
+        </record>
+        <record id="magcontent_2_3" model="slide.slide">
+            <field name="channel_id" ref="channel_magento2_chefprojet"/>
+            <field name="name">2.3. Planification des projets Magento</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_2_mage_cp"/>
+        </record>
+        <record id="magcontent_2_4" model="slide.slide">
+            <field name="channel_id" ref="channel_magento2_chefprojet"/>
+            <field name="name">2.4. Budget et risques liés au projet Magento</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_2_mage_cp"/>
+        </record>
+
+        <!-- Section 3 : Vue pratique : Fonctionnalités essentielles de Magento -->
+        <record id="section_3_mag_cp" model="slide.slide">
+            <field name="channel_id" ref="channel_magento2_chefprojet"/>
+            <field name="name">3. Vue pratique : Fonctionnalités essentielles de Magento (Backend)</field>
+            <field name="is_category">true</field>
+        </record>
+        <record id="magcontent_3_1" model="slide.slide">
+            <field name="channel_id" ref="channel_magento2_chefprojet"/>
+            <field name="name">3.1. Gestion des catalogues et produits</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_3_mag_cp"/>
+        </record>
+        <record id="magcontent_3_2" model="slide.slide">
+            <field name="channel_id" ref="channel_magento2_chefprojet"/>
+            <field name="name">3.2. Gestion des commandes et clients</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_3_mag_cp"/>
+        </record>
+        <record id="magcontent_3_3" model="slide.slide">
+            <field name="channel_id" ref="channel_magento2_chefprojet"/>
+            <field name="name">3.3. Marketing et SEO dans Magento</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_3_mag_cp"/>
+        </record>
+
+        <!-- Section 4 : Concevoir une boutique performante et attractive -->
+        <record id="section_4_mag_cp" model="slide.slide">
+            <field name="channel_id" ref="channel_magento2_chefprojet"/>
+            <field name="name">4. Concevoir une boutique performante et attractive</field>
+            <field name="is_category">true</field>
+        </record>
+        <record id="magcontent_4_1" model="slide.slide">
+             <field name="channel_id" ref="channel_magento2_chefprojet"/>
+            <field name="name">4.1. Le design dans Magento : Customisation des thèmes</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_4_mag_cp"/>
+        </record>
+        <record id="magcontent_4_2" model="slide.slide">
+            <field name="channel_id" ref="channel_magento2_chefprojet"/>
+            <field name="name">4.2. Optimisation des performances</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_4_mag_cp"/>
+        </record>
+        <record id="magcontent_4_3" model="slide.slide">
+            <field name="channel_id" ref="channel_magento2_chefprojet"/>
+            <field name="name">4.3. Responsive design et accessibilité</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_4_mag_cp"/>
+        </record>
+
+        <!-- Section 5 : Hébergement, sécurité et intégrations -->
+        <record id="section_5_mag_cp" model="slide.slide">
+            <field name="channel_id" ref="channel_magento2_chefprojet"/>
+            <field name="name">5. Hébergement, sécurité et intégrations</field>
+            <field name="is_category">true</field>
+        </record>
+        <record id="magcontent_5_1" model="slide.slide">
+            <field name="channel_id" ref="channel_magento2_chefprojet"/>
+            <field name="name">5.1. Choix de l’hébergement Magento</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_5_mag_cp"/>
+        </record>
+        <record id="magcontent_5_2" model="slide.slide">
+            <field name="channel_id" ref="channel_magento2_chefprojet"/>
+            <field name="name">5.2. Sécuriser une boutique Magento</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_5_mag_cp"/>
+        </record>
+        <record id="magcontent_5_3" model="slide.slide">
+            <field name="channel_id" ref="channel_magento2_chefprojet"/>
+            <field name="name">5.3. Intégration avec les systèmes tiers</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_5_mag_cp"/>
+        </record>
+
+        <!-- Section 6 : Gestion post-lancement et suivi -->
+        <record id="section_6_mag_cp" model="slide.slide">
+            <field name="channel_id" ref="channel_magento2_chefprojet"/>
+            <field name="name">6. Gestion post-lancement et suivi</field>
+            <field name="is_category">true</field>
+        </record>
+        <record id="magcontent_6_1" model="slide.slide">
+            <field name="channel_id" ref="channel_magento2_chefprojet"/>
+            <field name="name">6.1. Tests pour garantir la qualité du site</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_6_mag_cp"/>
+        </record>
+        <record id="magcontent_6_2" model="slide.slide">
+            <field name="channel_id" ref="channel_magento2_chefprojet"/>
+            <field name="name">6.2. Suivi des performances après le lancement</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_6_mag_cp"/>
+        </record>
+        <record id="magcontent_6_3" model="slide.slide">
+            <field name="channel_id" ref="channel_magento2_chefprojet"/>
+            <field name="name">6.3. Maintenance évolutive</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_6_mag_cp"/>
+        </record>
+
+        <!-- Section 7 : Magento et la vision Headless -->
+        <record id="section_7_mag_cp" model="slide.slide">
+            <field name="channel_id" ref="channel_magento2_chefprojet"/>
+            <field name="name">7. Magento et la vision Headless</field>
+            <field name="is_category">true</field>
+        </record>
+        <record id="magcontent_7_1" model="slide.slide">
+            <field name="channel_id" ref="channel_magento2_chefprojet"/>
+            <field name="name">7.1. Introduction au concept de Headless Commerce</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_7_mag_cp"/>
+        </record>
+        <record id="magcontent_7_2" model="slide.slide">
+            <field name="channel_id" ref="channel_magento2_chefprojet"/>
+            <field name="name">7.2. Adobe PWA Studio</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_7_mag_cp"/>
+        </record>
+
+        <!-- Section 8 : Cas pratiques pour chefs de projet -->
+        <record id="section_8_mag_cp" model="slide.slide">
+            <field name="channel_id" ref="channel_magento2_chefprojet"/>
+            <field name="name">8. Cas pratiques pour chefs de projet</field>
+            <field name="is_category">true</field>
+        </record>
+        <record id="magcontent_8_1" model="slide.slide">
+            <field name="channel_id" ref="channel_magento2_chefprojet"/>
+            <field name="name">8.1. Exercice de définition des besoins avec un client fictif</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_8_mag_cp"/>
+        </record>
+        <record id="magcontent_8_2" model="slide.slide">
+            <field name="channel_id" ref="channel_magento2_chefprojet"/>
+            <field name="name">8.2. Création d’une roadmap fonctionnelle</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_8_mag_cp"/>
+        </record>
+        <record id="magcontent_8_3" model="slide.slide">
+            <field name="channel_id" ref="channel_magento2_chefprojet"/>
+            <field name="name">8.3. Analyse de KPIs d’une boutique en ligne</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="section_8_mag_cp"/>
+        </record>
+    </data>
+</odoo>

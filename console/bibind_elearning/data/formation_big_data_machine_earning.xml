@@ -1,0 +1,151 @@
+<odoo>
+    <data>
+        <!-- Création du canal principal pour la formation -->
+        <record id="bigdata_ml_training_channel" model="slide.channel">
+            <field name="name">Formation Big Data et Machine Learning</field>
+            <field name="description">Formation complète sur le Big Data et le Machine Learning, incluant les outils, méthodologies et cas d’utilisation pratiques.</field>
+            <field name="channel_type">training</field>
+        </record>
+
+        <!-- Section 1 : Introduction à Big Data et Machine Learning -->
+        <record id="bigdata_ml_section_1" model="slide.slide">
+            <field name="name">1. Introduction à Big Data et Machine Learning</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="bigdata_ml_training_channel"/>
+        </record>
+        <record id="bigdata_ml_content_1_1" model="slide.slide">
+            <field name="name">1.1. Définition et concepts clés du Big Data</field>
+            <field name="slide_category">article</field>
+            <field name="description">Qu’est-ce que le Big Data et son importance dans le contexte actuel.</field>
+            <field name="category_id" ref="bigdata_ml_section_1"/>
+            <field name="channel_id" ref="bigdata_ml_training_channel"/>
+        </record>
+        <record id="bigdata_ml_content_1_2" model="slide.slide">
+            <field name="name">1.2. Introduction au Machine Learning</field>
+            <field name="slide_category">article</field>
+            <field name="description">Vue d’ensemble du Machine Learning : définition et applications clés.</field>
+            <field name="category_id" ref="bigdata_ml_section_1"/>
+            <field name="channel_id" ref="bigdata_ml_training_channel"/>
+        </record>
+        <record id="bigdata_ml_content_1_3" model="slide.slide">
+            <field name="name">1.3. Relation entre Big Data et Machine Learning</field>
+            <field name="slide_category">article</field>
+            <field name="description">Interaction entre Big Data et ML : exemples réels d’architectures collaboratives.</field>
+            <field name="category_id" ref="bigdata_ml_section_1"/>
+            <field name="channel_id" ref="bigdata_ml_training_channel"/>
+        </record>
+
+        <!-- Section 2 : L’écosystème du Big Data -->
+        <record id="bigdata_ml_section_2" model="slide.slide">
+            <field name="name">2. L’écosystème du Big Data</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="bigdata_ml_training_channel"/>
+        </record>
+        <record id="bigdata_ml_content_2_1" model="slide.slide">
+            <field name="name">2.1. Principes fondamentaux</field>
+            <field name="slide_category">article</field>
+            <field name="description">Concepts essentiels des systèmes Big Data, traitements distribués, et scalabilité.</field>
+            <field name="category_id" ref="bigdata_ml_section_2"/>
+            <field name="channel_id" ref="bigdata_ml_training_channel"/>
+        </record>
+        <record id="bigdata_ml_content_2_2" model="slide.slide">
+            <field name="name">2.2. Frameworks Big Data</field>
+            <field name="slide_category">article</field>
+            <field name="description">Hadoop, Spark, Kafka et les autres frameworks clés essentiels à Big Data.</field>
+            <field name="category_id" ref="bigdata_ml_section_2"/>
+            <field name="channel_id" ref="bigdata_ml_training_channel"/>
+        </record>
+        <record id="bigdata_ml_content_2_3" model="slide.slide">
+            <field name="name">2.3. Bases de données Big Data</field>
+            <field name="slide_category">article</field>
+            <field name="description">Introduction aux bases NoSQL et orientées colonnes spécifiques à Big Data.</field>
+            <field name="category_id" ref="bigdata_ml_section_2"/>
+            <field name="channel_id" ref="bigdata_ml_training_channel"/>
+        </record>
+
+        <!-- Section 3 : Outils essentiels pour le Big Data -->
+        <record id="bigdata_ml_section_3" model="slide.slide">
+            <field name="name">3. Outils essentiels pour le Big Data</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="bigdata_ml_training_channel"/>
+        </record>
+        <record id="bigdata_ml_content_3_1" model="slide.slide">
+            <field name="name">3.1. Exploration et préparation des données</field>
+            <field name="slide_category">article</field>
+            <field name="description">Nettoyage, extraction et transformation des grandes données pour les analyser.</field>
+            <field name="category_id" ref="bigdata_ml_section_3"/>
+            <field name="channel_id" ref="bigdata_ml_training_channel"/>
+        </record>
+        <record id="bigdata_ml_content_3_2" model="slide.slide">
+            <field name="name">3.2. Stockage dans un Data Lake</field>
+            <field name="slide_category">article</field>
+            <field name="description">Data Lakes, Data Warehouses et gestion de données dans le cloud.</field>
+            <field name="category_id" ref="bigdata_ml_section_3"/>
+            <field name="channel_id" ref="bigdata_ml_training_channel"/>
+        </record>
+
+        <!-- Section 4 : Fondamentaux du Machine Learning -->
+        <record id="bigdata_ml_section_4" model="slide.slide">
+            <field name="name">4. Fondamentaux du Machine Learning</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="bigdata_ml_training_channel"/>
+        </record>
+        <record id="bigdata_ml_content_4_1" model="slide.slide">
+            <field name="name">4.1. Types d’apprentissage</field>
+            <field name="slide_category">article</field>
+            <field name="description">Apprentissage supervisé, non supervisé et par renforcement.</field>
+            <field name="category_id" ref="bigdata_ml_section_4"/>
+            <field name="channel_id" ref="bigdata_ml_training_channel"/>
+        </record>
+        <record id="bigdata_ml_content_4_2" model="slide.slide">
+            <field name="name">4.2. Algorithmes classiques de ML</field>
+            <field name="slide_category">article</field>
+            <field name="description">Régression, SVMs, arbres de décision, K-Means et PCA.</field>
+            <field name="category_id" ref="bigdata_ml_section_4"/>
+            <field name="channel_id" ref="bigdata_ml_training_channel"/>
+        </record>
+
+        <!-- Section 5 : Frameworks et outils ML -->
+        <record id="bigdata_ml_section_5" model="slide.slide">
+            <field name="name">5. Frameworks et outils pour le ML</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="bigdata_ml_training_channel"/>
+        </record>
+        <record id="bigdata_ml_content_5_1" model="slide.slide">
+            <field name="name">5.1. Langages et bibliothèques</field>
+            <field name="slide_category">article</field>
+            <field name="description">Utilisation de Python : Pandas, NumPy et Scikit-Learn pour ML.</field>
+            <field name="category_id" ref="bigdata_ml_section_5"/>
+            <field name="channel_id" ref="bigdata_ml_training_channel"/>
+        </record>
+        <record id="bigdata_ml_content_5_2" model="slide.slide">
+            <field name="name">5.2. TensorFlow et PyTorch</field>
+            <field name="slide_category">article</field>
+            <field name="description">Introduction aux frameworks de Deep Learning pour projets avancés.</field>
+            <field name="category_id" ref="bigdata_ml_section_5"/>
+            <field name="channel_id" ref="bigdata_ml_training_channel"/>
+        </record>
+
+        <!-- Section 6 : Études de cas pratiques -->
+        <record id="bigdata_ml_section_6" model="slide.slide">
+            <field name="name">6. Études de cas pratiques</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="bigdata_ml_training_channel"/>
+        </record>
+        <record id="bigdata_ml_content_6_1" model="slide.slide">
+            <field name="name">6.1. Analyse prédictive</field>
+            <field name="slide_category">article</field>
+            <field name="description">Mise en œuvre d’un moteur de recommandations basé sur les données.</field>
+            <field name="category_id" ref="bigdata_ml_section_6"/>
+            <field name="channel_id" ref="bigdata_ml_training_channel"/>
+        </record>
+        <record id="bigdata_ml_content_6_2" model="slide.slide">
+            <field name="name">6.2. Classification d’image</field>
+            <field name="slide_category">article</field>
+            <field name="description">Utilisation des réseaux neuronaux convolutifs (CNN) pour classer des images.</field>
+            <field name="category_id" ref="bigdata_ml_section_6"/>
+            <field name="channel_id" ref="bigdata_ml_training_channel"/>
+        </record>
+
+    </data>
+</odoo>

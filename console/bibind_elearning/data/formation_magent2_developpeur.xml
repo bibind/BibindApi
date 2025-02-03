@@ -1,0 +1,211 @@
+<odoo>
+    <data>
+        <!-- Création du canal principal pour la formation -->
+        <record id="magedev_channel" model="slide.channel">
+            <field name="name">Formation Magento pour Développeurs</field>
+            <field name="description">Une formation complète pour maîtriser le développement sur la plateforme Magento.</field>
+            <field name="channel_type">training</field>
+        </record>
+
+        <!-- Section 1 : Introduction à Magento pour développeurs -->
+        <record id="magedev_section_1" model="slide.slide">
+            <field name="name">1. Introduction à Magento pour développeurs</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="magedev_channel"/>
+        </record>
+        <record id="magedev_content_1_1" model="slide.slide">
+            <field name="name">1.1. Présentation de Magento : Vue technique</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="magedev_section_1"/>
+            <field name="channel_id" ref="magedev_channel"/>
+        </record>
+        <record id="magedev_content_1_2" model="slide.slide">
+            <field name="name">1.2. Configuration de l’environnement de développement</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="magedev_section_1"/>
+            <field name="channel_id" ref="magedev_channel"/>
+        </record>
+        <record id="magedev_content_1_3" model="slide.slide">
+            <field name="name">1.3. Vue d’ensemble de la structure de Magento</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="magedev_section_1"/>
+            <field name="channel_id" ref="magedev_channel"/>
+        </record>
+
+        <!-- Section 2 : Compréhension de l'architecture de Magento 2 -->
+        <record id="magedev_section_2" model="slide.slide">
+            <field name="name">2. Compréhension de l'architecture de Magento 2</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="magedev_channel"/>
+        </record>
+        <record id="magedev_content_2_1" model="slide.slide">
+            <field name="name">2.1. Architecture MVC et modulaire</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="magedev_section_2"/>
+            <field name="channel_id" ref="magedev_channel"/>
+        </record>
+        <record id="magedev_content_2_2" model="slide.slide">
+            <field name="name">2.2. Flux de requêtes / réponses dans Magento</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="magedev_section_2"/>
+            <field name="channel_id" ref="magedev_channel"/>
+        </record>
+        <record id="magedev_content_2_3" model="slide.slide">
+            <field name="name">2.3. Les concepts de base</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="magedev_section_2"/>
+            <field name="channel_id" ref="magedev_channel"/>
+        </record>
+
+        <!-- Section 3 : Développement de modules personnalisés -->
+        <record id="magedev_section_3" model="slide.slide">
+            <field name="name">3. Développement de modules personnalisés</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="magedev_channel"/>
+        </record>
+        <record id="magedev_content_3_1" model="slide.slide">
+            <field name="name">3.1. Créer un module de base</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="magedev_section_3"/>
+            <field name="channel_id" ref="magedev_channel"/>
+        </record>
+        <record id="magedev_content_3_2" model="slide.slide">
+            <field name="name">3.2. Création de routes et contrôleurs</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="magedev_section_3"/>
+            <field name="channel_id" ref="magedev_channel"/>
+        </record>
+        <record id="magedev_content_3_3" model="slide.slide">
+            <field name="name">3.3. Manipulation des modèles et des bases de données</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="magedev_section_3"/>
+            <field name="channel_id" ref="magedev_channel"/>
+        </record>
+        <record id="magedev_content_3_4" model="slide.slide">
+            <field name="name">3.4. Ajout de logique métier (Business Logic)</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="magedev_section_3"/>
+            <field name="channel_id" ref="magedev_channel"/>
+        </record>
+
+        <!-- Section 4 : Frontend et Theming dans Magento -->
+        <record id="magedev_section_4" model="slide.slide">
+            <field name="name">4. Frontend et Theming dans Magento</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="magedev_channel"/>
+        </record>
+        <record id="magedev_content_4_1" model="slide.slide">
+            <field name="name">4.1. Structure d’un thème Magento</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="magedev_section_4"/>
+            <field name="channel_id" ref="magedev_channel"/>
+        </record>
+        <record id="magedev_content_4_2" model="slide.slide">
+            <field name="name">4.2. Layout et fichiers XML</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="magedev_section_4"/>
+            <field name="channel_id" ref="magedev_channel"/>
+        </record>
+        <record id="magedev_content_4_3" model="slide.slide">
+            <field name="name">4.3. Templates utilisant PHP et HTML</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="magedev_section_4"/>
+            <field name="channel_id" ref="magedev_channel"/>
+        </record>
+        <record id="magedev_content_4_4" model="slide.slide">
+            <field name="name">4.4. Bibliothèques CSS et JS</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="magedev_section_4"/>
+            <field name="channel_id" ref="magedev_channel"/>
+        </record>
+
+        <!-- Section 5 : Gestion des données et manipulation avancée -->
+        <record id="magedev_section_5" model="slide.slide">
+            <field name="name">5. Gestion des données et manipulation avancée</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="magedev_channel"/>
+        </record>
+        <record id="magedev_content_5_1" model="slide.slide">
+            <field name="name">5.1. Gestion des entités Magento</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="magedev_section_5"/>
+            <field name="channel_id" ref="magedev_channel"/>
+        </record>
+        <record id="magedev_content_5_2" model="slide.slide">
+            <field name="name">5.2. API REST et GraphQL</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="magedev_section_5"/>
+            <field name="channel_id" ref="magedev_channel"/>
+        </record>
+        <record id="magedev_content_5_3" model="slide.slide">
+            <field name="name">5.3. Import et Export de données</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="magedev_section_5"/>
+            <field name="channel_id" ref="magedev_channel"/>
+        </record>
+
+       <!-- Section 6 : Optimisation, sécurité et performance -->
+        <record id="magedev_section_6" model="slide.slide">
+            <field name="name">6. Optimisation, sécurité et performance</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="magedev_channel"/>
+        </record>
+        <record id="magedev_content_6_1" model="slide.slide">
+            <field name="name">6.1. Gestion du cache dans Magento</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="magedev_section_6"/>
+            <field name="channel_id" ref="magedev_channel"/>
+        </record>
+        <record id="magedev_content_6_2" model="slide.slide">
+            <field name="name">6.2. Optimisation des performances</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="magedev_section_6"/>
+            <field name="channel_id" ref="magedev_channel"/>
+        </record>
+        <record id="magedev_content_6_3" model="slide.slide">
+            <field name="name">6.3. Sécurité dans Magento</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="magedev_section_6"/>
+            <field name="channel_id" ref="magedev_channel"/>
+        </record>
+
+        <!-- Section 7 : Gestion des extensions et intégrations -->
+        <record id="magedev_section_7" model="slide.slide">
+            <field name="name">7. Gestion des extensions et intégrations</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="magedev_channel"/>
+        </record>
+        <record id="magedev_content_7_1" model="slide.slide">
+            <field name="name">7.1. Modules et extensions prêts à l'emploi</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="magedev_section_7"/>
+            <field name="channel_id" ref="magedev_channel"/>
+        </record>
+        <record id="magedev_content_7_2" model="slide.slide">
+            <field name="name">7.2. Intégration avec des solutions tierces</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="magedev_section_7"/>
+            <field name="channel_id" ref="magedev_channel"/>
+        </record>
+
+        <!-- Section 8 : Tests et maintenance -->
+        <record id="magedev_section_8" model="slide.slide">
+            <field name="name">8. Tests et maintenance</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="magedev_channel"/>
+        </record>
+        <record id="magedev_content_8_1" model="slide.slide">
+            <field name="name">8.1. Introduction aux tests automatisés</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="magedev_section_8"/>
+            <field name="channel_id" ref="magedev_channel"/>
+        </record>
+        <record id="magedev_content_8_2" model="slide.slide">
+            <field name="name">8.2. Maintenance d’un projet Magento</field>
+            <field name="slide_category">article</field>
+            <field name="category_id" ref="magedev_section_8"/>
+            <field name="channel_id" ref="magedev_channel"/>
+        </record>
+
+    </data>
+</odoo>

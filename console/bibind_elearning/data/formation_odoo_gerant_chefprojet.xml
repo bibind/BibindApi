@@ -1,0 +1,171 @@
+<odoo>
+    <data>
+        <!-- Formation Odoo pour chefs de projet / gérants -->
+<record id="odoo_project_training_channel" model="slide.channel">
+            <field name="name">Formation odoo pour gérant et Chef de Projet</field>
+            <field name="description">
+                1. Comprendre l'écosystème Odoo, ses modules et ses usages.
+                2. Apprendre à planifier et superviser le déploiement d'Odoo dans une entreprise.
+                3. Maîtriser les modules essentiels pour la gestion d'une entreprise (CRM, Ventes, Facturation, etc.).
+                4. Savoir configurer les processus métier et personnaliser les workflows.
+                5. Savoir interpréter et exploiter les rapports pour améliorer la prise de décision.
+                6. Acquérir les bases pour collaborer avec les développeurs et les consultants techniques.
+                            </field>
+            <field name="is_published">False</field>
+            <field name="visibility">public</field>
+        </record>
+        <!-- Journée 1 : Introduction et Modules fondamentaux -->
+        <record id="cp_day_1_introduction_fundamentals" model="slide.slide">
+            <field name="name">Journée 1 : Introduction et Modules fondamentaux</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="odoo_project_training_channel"/>
+        </record>
+
+        <!-- 1. Introduction à Odoo et son écosystème -->
+        <record id="day_1_intro_odoo_ecosystem" model="slide.slide">
+            <field name="name">1. Introduction à Odoo et son écosystème (2h)</field>
+            <field name="slide_category">article</field>
+            <field name="description">
+                Présentation d'Odoo : historique, différences entre versions Community et Enterprise, architecture modulaire (CRM, Ventes, Facturation, Comptabilité, etc.). Installation et cycle de vie d'un projet Odoo.
+            </field>
+            <field name="category_id" ref="cp_day_1_introduction_fundamentals"/>
+            <field name="channel_id" ref="odoo_project_training_channel"/>
+        </record>
+
+        <!-- 2. Configuration des bases d’Odoo -->
+        <record id="day_1_config_bases_odoo" model="slide.slide">
+            <field name="name">2. Configuration des bases d’Odoo (1h)</field>
+            <field name="slide_category">article</field>
+            <field name="description">
+                Création et configuration d'une base Odoo. Gestion des utilisateurs, des droits d'accès (rôles, permissions, multi-entreprises). Gestion multilingue et multidevise.
+            </field>
+            <field name="category_id" ref="cp_day_1_introduction_fundamentals"/>
+            <field name="channel_id" ref="odoo_project_training_channel"/>
+        </record>
+
+        <!-- 3. Utilisation des modules de base pour la gestion -->
+        <record id="day_1_core_modules_management" model="slide.slide">
+            <field name="name">3. Utilisation des modules de base pour la gestion (2h)</field>
+            <field name="slide_category">article</field>
+            <field name="description">
+                Tableau de bord et navigation. Cas pratiques : CRM (création de clients, leads, opportunités) et module Vente (création de devis, transformation en commandes). Automatisation et communication intégrée.
+            </field>
+            <field name="category_id" ref="cp_day_1_introduction_fundamentals"/>
+            <field name="channel_id" ref="odoo_project_training_channel"/>
+        </record>
+
+        <!-- 4. Planification et supervision des projets dans Odoo -->
+        <record id="day_1_project_supervision" model="slide.slide">
+            <field name="name">4. Planification et supervision des projets dans Odoo (1h)</field>
+            <field name="slide_category">article</field>
+            <field name="description">
+                Module Projet : suivi des tâches, gestion par phases, personnalisation des workflows. Cas pratique : configuration et suivi d’un projet spécifique.
+            </field>
+            <field name="category_id" ref="cp_day_1_introduction_fundamentals"/>
+            <field name="channel_id" ref="odoo_project_training_channel"/>
+        </record>
+
+        <!-- Journée 2 : Gestion avancée et prise de décision -->
+        <record id="day_2_advanced_management_decision" model="slide.slide">
+            <field name="name">Journée 2 : Gestion avancée et prise de décision</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="odoo_project_training_channel"/>
+        </record>
+
+        <!-- 1. Gestion commerciale avec Odoo -->
+        <record id="day_2_commercial_management" model="slide.slide">
+            <field name="name">1. Gestion commerciale avec Odoo (2h)</field>
+            <field name="slide_category">article</field>
+            <field name="description">
+                Modules Facturation (création et gestion des factures, abonnements) et Comptabilité (rapprochements de paiements, taxes, rapports financiers). Cas pratique : business case complet en facturation et comptabilité.
+            </field>
+            <field name="category_id" ref="day_2_advanced_management_decision"/>
+            <field name="channel_id" ref="odoo_project_training_channel"/>
+        </record>
+
+        <!-- 2. Gestion des stocks et approvisionnement -->
+        <record id="day_2_inventory_procurement" model="slide.slide">
+            <field name="name">2. Gestion des stocks et approvisionnement (1h 30)</field>
+            <field name="slide_category">article</field>
+            <field name="description">
+                Modules Inventaire (stocks, entrepôts) et Achat (cycle réapprovisionnement, commande fournisseur). Cas pratique : processus complet d’un produit (commande, stock, livraison).
+            </field>
+            <field name="category_id" ref="day_2_advanced_management_decision"/>
+            <field name="channel_id" ref="odoo_project_training_channel"/>
+        </record>
+
+        <!-- 3. Reporting et analyse pour la prise de décision -->
+        <record id="day_2_reporting_decisions" model="slide.slide">
+            <field name="name">3. Reporting et analyse pour la prise de décision (1h 30)</field>
+            <field name="slide_category">article</field>
+            <field name="description">
+                Création et lecture des tableaux analytiques, KPIs, rapports personnalisés pour CRM, Projets et Comptabilité. Optimisation pour les tableaux de bord globaux. Cas pratique inclus.
+            </field>
+            <field name="category_id" ref="day_2_advanced_management_decision"/>
+            <field name="channel_id" ref="odoo_project_training_channel"/>
+        </record>
+
+        <!-- 4. Piloter le déploiement d’Odoo dans une entreprise -->
+        <record id="day_2_odoo_deployment" model="slide.slide">
+            <field name="name">4. Piloter le déploiement d’Odoo dans une entreprise (1h)</field>
+            <field name="slide_category">article</field>
+            <field name="description">
+                Étapes du déploiement d’Odoo : recueil des besoins, configuration fonctionnelle, priorisation des modules et gestion du changement. Collaborer efficacement avec les équipes techniques.
+            </field>
+            <field name="category_id" ref="day_2_advanced_management_decision"/>
+            <field name="channel_id" ref="odoo_project_training_channel"/>
+        </record>
+
+        <!-- Journée 3 : Personnalisation, Gouvernance et Stratégies avancées -->
+        <record id="day_3_customization_governance" model="slide.slide">
+            <field name="name">Journée 3 : Personnalisation, Gouvernance et Stratégies avancées</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="odoo_project_training_channel"/>
+        </record>
+
+        <!-- 1. Personnalisation des workflows Odoo -->
+        <record id="day_3_workflow_customizations" model="slide.slide">
+            <field name="name">1. Personnalisation des workflows Odoo (2h)</field>
+            <field name="slide_category">article</field>
+            <field name="description">
+                Modifier les processus métiers, créer des champs personnalisés, automatiser avec Odoo Studio et intégrer des modules externes. Exemples pratiques inclus.
+            </field>
+            <field name="category_id" ref="day_3_customization_governance"/>
+            <field name="channel_id" ref="odoo_project_training_channel"/>
+        </record>
+
+        <!-- 2. Sécurité et gouvernance dans Odoo -->
+        <record id="day_3_security_governance" model="slide.slide">
+            <field name="name">2. Sécurité et gouvernance dans Odoo (1h)</field>
+            <field name="slide_category">article</field>
+            <field name="description">
+                Stratégies des droits d'accès, suivi des activités (audit, journalisation). Sauvegardes/restaurations pour une base Odoo sécurisée.
+            </field>
+            <field name="category_id" ref="day_3_customization_governance"/>
+            <field name="channel_id" ref="odoo_project_training_channel"/>
+        </record>
+
+        <!-- 3. Gestion des intégrations tierces -->
+        <record id="day_3_integrations" model="slide.slide">
+            <field name="name">3. Gestion des intégrations tierces (1h 30)</field>
+            <field name="slide_category">article</field>
+            <field name="description">
+                Intégrations E-commerce (Shopify, Woocommerce), paiement en ligne (Stripe, PayPal) ou connecteurs tiers (Zapier, Google Sheets). Cas pratique inclus.
+            </field>
+            <field name="category_id" ref="day_3_customization_governance"/>
+            <field name="channel_id" ref="odoo_project_training_channel"/>
+        </record>
+
+        <!-- 4. Cas pratiques avancés et clôture -->
+        <record id="day_3_advanced_cases" model="slide.slide">
+            <field name="name">4. Cas pratiques avancés et clôture (1h 30)</field>
+            <field name="slide_category">article</field>
+            <field name="description">
+                Étude de cas complet : gestion des ventes, des projets et des facturations. Résumé, Q/R et conseils pour une implémentation réussie d’Odoo.
+            </field>
+            <field name="category_id" ref="day_3_customization_governance"/>
+            <field name="channel_id" ref="odoo_project_training_channel"/>
+        </record>
+
+    </data>
+</odoo>

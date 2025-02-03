@@ -1,0 +1,176 @@
+<odoo>
+    <data>
+        <!-- Programme de formation avancée Terraform - 3 jours -->
+<!-- Création du canal principal pour la formation -->
+        <record id="terraform_training_channel" model="slide.channel">
+            <field name="name">Formation Terraform</field>
+            <field name="description">Formation Terraform</field>
+            <field name="channel_type">training</field>
+        </record>
+
+        <!-- Jour 1 : Concepts avancés -->
+        <record id="terraform_day_1" model="slide.slide">
+            <field name="name">Jour 1 : Concepts avancés</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="terraform_training_channel"/>
+        </record>
+
+        <!-- 1. Approfondissement de Terraform State -->
+        <record id="terraform_day_1_state" model="slide.slide">
+            <field name="name">1. Approfondissement de Terraform State</field>
+            <field name="slide_category">article</field>
+            <field name="description">
+                Sauvegarder l’état distant (S3, GCS, Azure Storage), blocage concurrentiel et sécurité avec state locking. Gestion des états corrompus.
+            </field>
+            <field name="category_id" ref="terraform_day_1"/>
+            <field name="channel_id" ref="terraform_training_channel"/>
+        </record>
+
+        <!-- 2. Gestion des workspaces -->
+        <record id="terraform_day_1_workspaces" model="slide.slide">
+            <field name="name">2. Gestion des workspaces</field>
+            <field name="slide_category">article</field>
+            <field name="description">
+                Création de différents environnements (`Dev`, `Test`, `Prod`) via les workspaces et stratégies d'organisation.
+            </field>
+            <field name="category_id" ref="terraform_day_1"/>
+            <field name="channel_id" ref="terraform_training_channel"/>
+        </record>
+
+        <!-- 3. Introduction aux modules avancés -->
+        <record id="terraform_day_1_modules" model="slide.slide">
+            <field name="name">3. Introduction aux modules avancés</field>
+            <field name="slide_category">article</field>
+            <field name="description">
+                Structuration propre et avancée des modules, utilisation de Terraform Registry, gestion des variables, outputs et dépendances.
+            </field>
+            <field name="category_id" ref="terraform_day_1"/>
+            <field name="channel_id" ref="terraform_training_channel"/>
+        </record>
+
+        <!-- 4. Logs et diagnostic -->
+        <record id="terraform_day_1_logs" model="slide.slide">
+            <field name="name">4. Logs et diagnostic</field>
+            <field name="slide_category">article</field>
+            <field name="description">
+                Utilisation des journaux pour le debugging, exploitation de `terraform.log` pour analyser et identifier des erreurs.
+            </field>
+            <field name="category_id" ref="terraform_day_1"/>
+            <field name="channel_id" ref="terraform_training_channel"/>
+        </record>
+
+        <!-- Jour 2 : Techniques avancées en production -->
+        <record id="terraform_day_2" model="slide.slide">
+            <field name="name">Jour 2 : Techniques avancées en production</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="terraform_training_channel"/>
+        </record>
+
+        <!-- 1. Automatisation et CI/CD -->
+        <record id="terraform_day_2_ci_cd" model="slide.slide">
+            <field name="name">1. Automatisation et CI/CD</field>
+            <field name="slide_category">article</field>
+            <field name="description">
+                Terraform dans un workflow CI/CD via GitLab CI ou Jenkins, validation automatique des configurations, tests automatisés avec Terratest.
+            </field>
+            <field name="category_id" ref="terraform_day_2"/>
+            <field name="channel_id" ref="terraform_training_channel"/>
+        </record>
+
+        <!-- 2. Intégration multiclouds -->
+        <record id="terraform_day_2_multicloud" model="slide.slide">
+            <field name="name">2. Intégration multiclouds</field>
+            <field name="slide_category">article</field>
+            <field name="description">
+                Déploiement d’infrastructures sur AWS, Azure, et GCP. Gestion de réseaux hybrides avec configurations complexes (exemple : VPC et Gateway).
+            </field>
+            <field name="category_id" ref="terraform_day_2"/>
+            <field name="channel_id" ref="terraform_training_channel"/>
+        </record>
+
+        <!-- 3. HCL avancé -->
+        <record id="terraform_day_2_hcl" model="slide.slide">
+            <field name="name">3. HCL avancé</field>
+            <field name="slide_category">article</field>
+            <field name="description">
+                Maîtrise des boucles complexes (`for_each`), gestion dynamique des données (listes, maps). Création de modules dynamiques basés sur des variables.
+            </field>
+            <field name="category_id" ref="terraform_day_2"/>
+            <field name="channel_id" ref="terraform_training_channel"/>
+        </record>
+
+        <!-- 4. Gestion des secrets -->
+        <record id="terraform_day_2_secrets" model="slide.slide">
+            <field name="name">4. Gestion des secrets</field>
+            <field name="slide_category">article</field>
+            <field name="description">
+                Sécurité des clés et données sensibles. Intégration avec Vault, AWS Secrets Manager, Azure Key Vault, etc.
+            </field>
+            <field name="category_id" ref="terraform_day_2"/>
+            <field name="channel_id" ref="terraform_training_channel"/>
+        </record>
+
+        <!-- Jour 3 : Sécurité, gouvernance et cas pratiques -->
+        <record id="terraform_day_3" model="slide.slide">
+            <field name="name">Jour 3 : Sécurité, gouvernance et cas pratiques</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="terraform_training_channel"/>
+        </record>
+
+        <!-- 1. Sécurité et conformité -->
+        <record id="terraform_day_3_security" model="slide.slide">
+            <field name="name">1. Sécurité et conformité</field>
+            <field name="slide_category">article</field>
+            <field name="description">
+                Utilisation de Sentinel et Open Policy Agent pour appliquer des règles organisationnelles. Implémentation de RBAC avec Terraform.
+            </field>
+            <field name="category_id" ref="terraform_day_3"/>
+            <field name="channel_id" ref="terraform_training_channel"/>
+        </record>
+
+        <!-- 2. Optimisation de Terraform -->
+        <record id="terraform_day_3_optimization" model="slide.slide">
+            <field name="name">2. Optimisation de Terraform</field>
+            <field name="slide_category">article</field>
+            <field name="description">
+                Réduction du temps de déploiement via l’optimisation des dépendances et tâches parallèles. Amélioration de la maintenance des modules.
+            </field>
+            <field name="category_id" ref="terraform_day_3"/>
+            <field name="channel_id" ref="terraform_training_channel"/>
+        </record>
+
+        <!-- 3. Cas pratique : Infrastructure complète -->
+        <record id="terraform_day_3_case1" model="slide.slide">
+            <field name="name">3. Cas pratique : Infrastructure complète</field>
+            <field name="slide_category">article</field>
+            <field name="description">
+                Déploiement d’une architecture complète : réseau multi-région, RDS, Kubernetes, et Load Balancer.
+            </field>
+            <field name="category_id" ref="terraform_day_3"/>
+            <field name="channel_id" ref="terraform_training_channel"/>
+        </record>
+
+        <!-- 4. Cas pratique : Module Terraform réutilisable -->
+        <record id="terraform_day_3_case2" model="slide.slide">
+            <field name="name">4. Cas pratique : Module Terraform réutilisable</field>
+            <field name="slide_category">article</field>
+            <field name="description">
+                Création et publication d’un module Terraform sur Terraform Registry avec des variables dynamiques.
+            </field>
+            <field name="category_id" ref="terraform_day_3"/>
+            <field name="channel_id" ref="terraform_training_channel"/>
+        </record>
+
+        <!-- 5. Monitoring et audit -->
+        <record id="terraform_day_3_monitoring" model="slide.slide">
+            <field name="name">5. Monitoring et audit</field>
+            <field name="slide_category">article</field>
+            <field name="description">
+                Intégration avec Prometheus, Grafana pour surveiller une infrastructure déployée et auditer ses configurations.
+            </field>
+            <field name="category_id" ref="terraform_day_3"/>
+            <field name="channel_id" ref="terraform_training_channel"/>
+        </record>
+
+    </data>
+</odoo>

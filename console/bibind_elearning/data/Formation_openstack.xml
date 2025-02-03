@@ -1,0 +1,241 @@
+<odoo>
+    <data>
+        <!-- Création du canal principal pour la formation -->
+        <record id="openstack_training_channel" model="slide.channel">
+            <field name="name">Formation OpenStack : Déploiement et Administration de Cloud</field>
+            <field name="description">Une formation complète pour apprendre à utiliser, déployer et administrer OpenStack, la plateforme de cloud computing open-source.</field>
+            <field name="channel_type">training</field>
+        </record>
+
+        <!-- Section I : Comprendre les bases du Cloud et d’OpenStack -->
+        <record id="openstack_section_1" model="slide.slide">
+            <field name="name">I. Comprendre les bases du Cloud et d’OpenStack</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="openstack_training_channel"/>
+        </record>
+        <record id="openstack_content_1_1" model="slide.slide">
+            <field name="name">1. Introduction au Cloud Computing</field>
+            <field name="slide_category">article</field>
+            <field name="description">Concepts fondamentaux du Cloud avec des exemples pour comprendre les modèles IaaS, PaaS et SaaS.</field>
+            <field name="category_id" ref="openstack_section_1"/>
+            <field name="channel_id" ref="openstack_training_channel"/>
+        </record>
+        <record id="openstack_content_1_2" model="slide.slide">
+            <field name="name">2. Présentation d'OpenStack</field>
+            <field name="slide_category">article</field>
+            <field name="description">Découvrez OpenStack, son histoire, ses objectifs, ainsi que ses composants principaux.</field>
+            <field name="category_id" ref="openstack_section_1"/>
+            <field name="channel_id" ref="openstack_training_channel"/>
+        </record>
+        <record id="openstack_content_1_3" model="slide.slide">
+            <field name="name">3. Architecture d’OpenStack</field>
+            <field name="slide_category">article</field>
+            <field name="description">Apprenez à connaître les API et services fondamentaux d’OpenStack et comment ils interagissent entre eux.</field>
+            <field name="category_id" ref="openstack_section_1"/>
+            <field name="channel_id" ref="openstack_training_channel"/>
+        </record>
+
+        <!-- Section II : Installation et Configuration d’OpenStack -->
+        <record id="openstack_section_2" model="slide.slide">
+            <field name="name">II. Installation et Configuration d’OpenStack</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="openstack_training_channel"/>
+        </record>
+        <record id="openstack_content_2_1" model="slide.slide">
+            <field name="name">1. Pré-requis techniques</field>
+            <field name="slide_category">article</field>
+            <field name="description">Les exigences matérielles et réseau nécessaires au déploiement d’OpenStack.</field>
+            <field name="category_id" ref="openstack_section_2"/>
+            <field name="channel_id" ref="openstack_training_channel"/>
+        </record>
+        <record id="openstack_content_2_2" model="slide.slide">
+            <field name="name">2. Méthodes d'installation</field>
+            <field name="slide_category">article</field>
+            <field name="description">Explorez plusieurs options d'installation d'OpenStack : DevStack, installation manuelle et automatisée.</field>
+            <field name="category_id" ref="openstack_section_2"/>
+            <field name="channel_id" ref="openstack_training_channel"/>
+        </record>
+        <record id="openstack_content_2_3" model="slide.slide">
+            <field name="name">3. Configuration des Services principaux</field>
+            <field name="slide_category">article</field>
+            <field name="description">Configurer Keystone, Glance, et Nova pour démarrer avec OpenStack.</field>
+            <field name="category_id" ref="openstack_section_2"/>
+            <field name="channel_id" ref="openstack_training_channel"/>
+        </record>
+        <record id="openstack_content_2_4" model="slide.slide">
+            <field name="name">4. Atelier pratique : Déploiement d'un cluster OpenStack</field>
+            <field name="slide_category">document</field>
+            <field name="description">Un guide étape par étape pour installer votre propre cluster OpenStack en utilisant VirtualBox ou des serveurs physiques.</field>
+            <field name="category_id" ref="openstack_section_2"/>
+            <field name="channel_id" ref="openstack_training_channel"/>
+        </record>
+
+        <!-- Section III : Les composants essentiels d’OpenStack -->
+        <record id="openstack_section_3" model="slide.slide">
+            <field name="name">III. Les composants essentiels d’OpenStack</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="openstack_training_channel"/>
+        </record>
+        <record id="openstack_content_3_1" model="slide.slide">
+            <field name="name">1. Keystone : Service d’identité</field>
+            <field name="slide_category">article</field>
+            <field name="description">Comprendre le rôle du service Keystone dans la gestion des utilisateurs, rôles et authentification.</field>
+            <field name="category_id" ref="openstack_section_3"/>
+            <field name="channel_id" ref="openstack_training_channel"/>
+        </record>
+        <record id="openstack_content_3_2" model="slide.slide">
+            <field name="name">2. Glance : Gestion des images</field>
+            <field name="slide_category">article</field>
+            <field name="description">Apprenez à gérer les images systèmes pour les environnements cloud avec Glance.</field>
+            <field name="category_id" ref="openstack_section_3"/>
+            <field name="channel_id" ref="openstack_training_channel"/>
+        </record>
+        <record id="openstack_content_3_3" model="slide.slide">
+            <field name="name">3. Nova : Gestion des instances</field>
+            <field name="slide_category">article</field>
+            <field name="description">Lancer, configurer et gérer des instances virtuelles avec Nova.</field>
+            <field name="category_id" ref="openstack_section_3"/>
+            <field name="channel_id" ref="openstack_training_channel"/>
+        </record>
+        <record id="openstack_content_3_4" model="slide.slide">
+            <field name="name">4. Neutron : Gestion des réseaux</field>
+            <field name="slide_category">article</field>
+            <field name="description">Créer et gérer des réseaux virtuels avec Neutron.</field>
+            <field name="category_id" ref="openstack_section_3"/>
+            <field name="channel_id" ref="openstack_training_channel"/>
+        </record>
+        <record id="openstack_content_3_5" model="slide.slide">
+            <field name="name">5. Cinder : Stockage en mode bloc</field>
+            <field name="slide_category">article</field>
+            <field name="description">Gestion des disques de stockage en mode bloc avec Cinder.</field>
+            <field name="category_id" ref="openstack_section_3"/>
+            <field name="channel_id" ref="openstack_training_channel"/>
+        </record>
+        <record id="openstack_content_3_6" model="slide.slide">
+            <field name="name">6. Horizon : Interface Web</field>
+            <field name="slide_category">article</field>
+            <field name="description">Utilisation du tableau de bord OpenStack pour gérer le cluster de manière graphique.</field>
+            <field name="category_id" ref="openstack_section_3"/>
+            <field name="channel_id" ref="openstack_training_channel"/>
+        </record>
+
+        <!-- Section IV : Sécurité d’OpenStack -->
+        <record id="openstack_section_4" model="slide.slide">
+            <field name="name">IV. Sécurité d’OpenStack</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="openstack_training_channel"/>
+        </record>
+        <record id="openstack_content_4_1" model="slide.slide">
+            <field name="name">1. Sécurité des API et des services</field>
+            <field name="slide_category">article</field>
+            <field name="description">Comprendre comment protéger les API et les services OpenStack avec TLS/SSL et des outils de monitoring.</field>
+            <field name="category_id" ref="openstack_section_4"/>
+            <field name="channel_id" ref="openstack_training_channel"/>
+        </record>
+        <record id="openstack_content_4_2" model="slide.slide">
+            <field name="name">2. Gestion des utilisateurs et des rôles</field>
+            <field name="slide_category">article</field>
+            <field name="description">Configurer les utilisateurs, rôles, et politiques RBAC pour une sécurité optimale.</field>
+            <field name="category_id" ref="openstack_section_4"/>
+            <field name="channel_id" ref="openstack_training_channel"/>
+        </record>
+        <record id="openstack_content_4_3" model="slide.slide">
+            <field name="name">3. Sécurité réseau avec Neutron</field>
+            <field name="slide_category">article</field>
+            <field name="description">Configurer des pare-feu virtuels, des groupes de sécurité, et des VPN avec Neutron.</field>
+            <field name="category_id" ref="openstack_section_4"/>
+            <field name="channel_id" ref="openstack_training_channel"/>
+        </record>
+
+        <!-- Section V : Surveillance et Dépannage d’OpenStack -->
+        <record id="openstack_section_5" model="slide.slide">
+            <field name="name">V. Surveillance et Dépannage d’OpenStack</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="openstack_training_channel"/>
+        </record>
+        <record id="openstack_content_5_1" model="slide.slide">
+            <field name="name">1. Introduction aux outils de monitoring</field>
+            <field name="slide_category">article</field>
+            <field name="description">Présentation des outils tels que Nagios, Zabbix, et Grafana pour surveiller et analyser OpenStack.</field>
+            <field name="category_id" ref="openstack_section_5"/>
+            <field name="channel_id" ref="openstack_training_channel"/>
+        </record>
+        <record id="openstack_content_5_2" model="slide.slide">
+            <field name="name">2. Résolution des problèmes courants</field>
+            <field name="slide_category">article</field>
+            <field name="description">Guide pour diagnostiquer et résoudre les erreurs fréquentes des services OpenStack.</field>
+            <field name="category_id" ref="openstack_section_5"/>
+            <field name="channel_id" ref="openstack_training_channel"/>
+        </record>
+
+        <!-- Section VI : Ateliers de pratique avancée -->
+        <record id="openstack_section_6" model="slide.slide">
+            <field name="name">VI. Ateliers de pratique avancée</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="openstack_training_channel"/>
+        </record>
+        <record id="openstack_content_6_1" model="slide.slide">
+            <field name="name">1. Déploiement d’un réseau privé</field>
+            <field name="slide_category">document</field>
+            <field name="description">Atelier pratique pour créer et configurer un réseau privé complexe avec Neutron.</field>
+            <field name="category_id" ref="openstack_section_6"/>
+            <field name="channel_id" ref="openstack_training_channel"/>
+        </record>
+        <record id="openstack_content_6_2" model="slide.slide">
+            <field name="name">2. Automatisation avec Heat</field>
+            <field name="slide_category">document</field>
+            <field name="description">Introduction à Heat pour automatiser le déploiement et la gestion des ressources.</field>
+            <field name="category_id" ref="openstack_section_6"/>
+            <field name="channel_id" ref="openstack_training_channel"/>
+        </record>
+
+        <!-- Section VII : Exploration d’autres services -->
+        <record id="openstack_section_7" model="slide.slide">
+            <field name="name">VII. Exploration d’autres services</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="openstack_training_channel"/>
+        </record>
+        <record id="openstack_content_7_1" model="slide.slide">
+            <field name="name">1. Swift : Stockage objet</field>
+            <field name="slide_category">article</field>
+            <field name="description">Présentation et utilisation de Swift pour gérer des solutions de stockage objet.</field>
+            <field name="category_id" ref="openstack_section_7"/>
+            <field name="channel_id" ref="openstack_training_channel"/>
+        </record>
+        <record id="openstack_content_7_2" model="slide.slide">
+            <field name="name">2. Ceilometer : Collecte des données</field>
+            <field name="slide_category">article</field>
+            <field name="description">Introduction à Ceilometer pour la collecte d’informations et la facturation des services OpenStack.</field>
+            <field name="category_id" ref="openstack_section_7"/>
+            <field name="channel_id" ref="openstack_training_channel"/>
+        </record>
+
+        <!-- Section VIII : Avancées et tendances futures -->
+        <record id="openstack_section_8" model="slide.slide">
+            <field name="name">VIII. Avancées et tendances futures</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="openstack_training_channel"/>
+        </record>
+        <record id="openstack_content_8_1" model="slide.slide">
+            <field name="name">1. Conteneurisation et Kubernetes</field>
+            <field name="slide_category">article</field>
+            <field name="description">Exploration de l'intégration d'OpenStack avec Kubernetes et les solutions de conteneurisation.</field>
+            <field name="category_id" ref="openstack_section_8"/>
+            <field name="channel_id" ref="openstack_training_channel"/>
+        </record>
+        <record id="openstack_content_8_2" model="slide.slide">
+            <field name="name">2. Cloud hybride et multi-cloud</field>
+            <field name="slide_category">article</field>
+            <field name="description">Analyser les cas d'utilisation d'OpenStack dans des scénarios hybrides et multi-cloud.</field>
+            <field name="category_id" ref="openstack_section_8"/>
+            <field name="channel_id" ref="openstack_training_channel"/>
+        </record>
+        <record id="openstack_content_8_3" model="slide.slide">
+            <field name="name">3. IA et workloads intensifs</field>
+            <field name="slide_category">article</field>
+            <field name="description">Découvrir comment OpenStack peut répondre aux besoins des applications d'IA et workloads intensifs.</field>
+            <field name="category_id" ref="openstack_section_8"/>
+            <field name="channel_id" ref="openstack_training_channel"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,273 @@
+<odoo>
+    <data>
+        <!-- Création du canal principal pour la formation -->
+        <record id="scrum_training_channel" model="slide.channel">
+            <field name="name">Formation Agile Scrum</field>
+            <field name="description">Formation complète sur les méthodes Agile Scrum pour les chefs de projet et les développeurs.</field>
+            <field name="channel_type">training</field>
+        </record>
+
+        <!-- Section 1 : Introduction à Scrum -->
+        <record id="scrum_section_1" model="slide.slide">
+            <field name="name">1. Introduction à Scrum</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="scrum_training_channel"/>
+        </record>
+        <record id="scrum_content_1_1" model="slide.slide">
+            <field name="name">1.1. Définition et objectifs de Scrum</field>
+            <field name="slide_category">article</field>
+            <field name="description">Comprendre les objectifs et l'importance de Scrum dans un cadre Agile.</field>
+            <field name="category_id" ref="scrum_section_1"/>
+            <field name="channel_id" ref="scrum_training_channel"/>
+        </record>
+        <record id="scrum_content_1_2" model="slide.slide">
+            <field name="name">1.2. Les principes fondamentaux de Scrum</field>
+            <field name="slide_category">article</field>
+            <field name="description">Découverte des principes fondamentaux : valeur, collaboration, amélioration continue.</field>
+            <field name="category_id" ref="scrum_section_1"/>
+            <field name="channel_id" ref="scrum_training_channel"/>
+        </record>
+
+        <!-- Section 2 : Les rôles clés dans Scrum -->
+        <record id="scrum_section_2" model="slide.slide">
+            <field name="name">2. Les rôles clés dans Scrum</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="scrum_training_channel"/>
+        </record>
+        <record id="scrum_content_2_1" model="slide.slide">
+            <field name="name">2.1. Product Owner</field>
+            <field name="slide_category">article</field>
+            <field name="description">Rôle et responsabilités du Product Owner : gestion du backlog et priorisation.</field>
+            <field name="category_id" ref="scrum_section_2"/>
+            <field name="channel_id" ref="scrum_training_channel"/>
+        </record>
+        <record id="scrum_content_2_2" model="slide.slide">
+            <field name="name">2.2. Scrum Master</field>
+            <field name="slide_category">article</field>
+            <field name="description">Rôle du Scrum Master : mentorat, facilitation et respect du cadre Scrum.</field>
+            <field name="category_id" ref="scrum_section_2"/>
+            <field name="channel_id" ref="scrum_training_channel"/>
+        </record>
+        <record id="scrum_content_2_3" model="slide.slide">
+            <field name="name">2.3. Équipe de développement</field>
+            <field name="slide_category">article</field>
+            <field name="description">Rôles et responsabilités d’une équipe cross-fonctionnelle auto-organisée.</field>
+            <field name="category_id" ref="scrum_section_2"/>
+            <field name="channel_id" ref="scrum_training_channel"/>
+        </record>
+
+        <!-- Section 3 : Les principales cérémonies Scrum -->
+        <record id="scrum_section_3" model="slide.slide">
+            <field name="name">3. Les principales cérémonies Scrum</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="scrum_training_channel"/>
+        </record>
+        <record id="scrum_content_3_1" model="slide.slide">
+            <field name="name">3.1. Sprint Planning</field>
+            <field name="slide_category">article</field>
+            <field name="description">Planification des objectifs et des tâches d’un sprint en collaboration avec le Product Owner.</field>
+            <field name="category_id" ref="scrum_section_3"/>
+            <field name="channel_id" ref="scrum_training_channel"/>
+        </record>
+        <record id="scrum_content_3_2" model="slide.slide">
+            <field name="name">3.2. Daily Scrum</field>
+            <field name="slide_category">article</field>
+            <field name="description">Réunions de synchronisation quotidiennes pour identifier les obstacles et ajuster les priorités.</field>
+            <field name="category_id" ref="scrum_section_3"/>
+            <field name="channel_id" ref="scrum_training_channel"/>
+        </record>
+        <record id="scrum_content_3_3" model="slide.slide">
+            <field name="name">3.3. Sprint Review</field>
+            <field name="slide_category">article</field>
+            <field name="description">Présentation des résultats d’un sprint et collecte des retours des parties prenantes.</field>
+            <field name="category_id" ref="scrum_section_3"/>
+            <field name="channel_id" ref="scrum_training_channel"/>
+        </record>
+        <record id="scrum_content_3_4" model="slide.slide">
+            <field name="name">3.4. Sprint Retrospective</field>
+            <field name="slide_category">article</field>
+            <field name="description">Analyse continue des forces et axes d'amélioration pour optimiser Scrum.</field>
+            <field name="category_id" ref="scrum_section_3"/>
+            <field name="channel_id" ref="scrum_training_channel"/>
+        </record>
+
+        <!-- Section 4 : Les artefacts Scrum -->
+        <record id="scrum_section_4" model="slide.slide">
+            <field name="name">4. Les artefacts Scrum</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="scrum_training_channel"/>
+        </record>
+        <record id="scrum_content_4_1" model="slide.slide">
+            <field name="name">4.1. Product Backlog</field>
+            <field name="slide_category">article</field>
+            <field name="description">Description et gestion des besoins prioritaires dans le backlog produit.</field>
+            <field name="category_id" ref="scrum_section_4"/>
+            <field name="channel_id" ref="scrum_training_channel"/>
+        </record>
+        <record id="scrum_content_4_2" model="slide.slide">
+            <field name="name">4.2. Sprint Backlog</field>
+            <field name="slide_category">article</field>
+            <field name="description">Liste des tâches sélectionnées pour un sprint et suivi de leur progression.</field>
+            <field name="category_id" ref="scrum_section_4"/>
+            <field name="channel_id" ref="scrum_training_channel"/>
+        </record>
+        <record id="scrum_content_4_3" model="slide.slide">
+            <field name="name">4.3. Incrément</field>
+            <field name="slide_category">article</field>
+            <field name="description">Comprendre l'incrément comme livrable du produit répondant à la définition de fait.</field>
+            <field name="category_id" ref="scrum_section_4"/>
+            <field name="channel_id" ref="scrum_training_channel"/>
+        </record>
+        <record id="scrum_content_4_4" model="slide.slide">
+            <field name="name">4.4. Burndown Chart</field>
+            <field name="slide_category">article</field>
+            <field name="description">Visualisation du progrès via des graphiques Burn-down ou Burn-up.</field>
+            <field name="category_id" ref="scrum_section_4"/>
+            <field name="channel_id" ref="scrum_training_channel"/>
+        </record>
+
+          <!-- Section 5 : Cadre de travail d’un projet Scrum pour développeurs -->
+        <record id="scrum_section_5" model="slide.slide">
+            <field name="name">5. Cadre de travail d’un projet Scrum pour développeurs</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="scrum_training_channel"/>
+        </record>
+        <record id="scrum_content_5_1" model="slide.slide">
+            <field name="name">5.1. Organisation des sprints</field>
+            <field name="slide_category">article</field>
+            <field name="description">Présentation de l'organisation des sprints : durée, définition des priorités et outils (exemple : Kanban).</field>
+            <field name="category_id" ref="scrum_section_5"/>
+            <field name="channel_id" ref="scrum_training_channel"/>
+        </record>
+        <record id="scrum_content_5_2" model="slide.slide">
+            <field name="name">5.2. Gestion des User Stories</field>
+            <field name="slide_category">article</field>
+            <field name="description">Apprendre à écrire et organiser les User Stories : exemple du format "En tant que...".</field>
+            <field name="category_id" ref="scrum_section_5"/>
+            <field name="channel_id" ref="scrum_training_channel"/>
+        </record>
+        <record id="scrum_content_5_3" model="slide.slide">
+            <field name="name">5.3. Estimation des tâches (Planning Poker)</field>
+            <field name="slide_category">article</field>
+            <field name="description">Méthode d’estimation des efforts d’une équipe Scrum via Planning Poker ou points de complexité.</field>
+            <field name="category_id" ref="scrum_section_5"/>
+            <field name="channel_id" ref="scrum_training_channel"/>
+        </record>
+        <record id="scrum_content_5_4" model="slide.slide">
+            <field name="name">5.4. Livraison incrémentale</field>
+            <field name="slide_category">article</field>
+            <field name="description">Maintenir un flux continu de livraison incrémentale avec des fonctionnalités prêtes à être utilisées.</field>
+            <field name="category_id" ref="scrum_section_5"/>
+            <field name="channel_id" ref="scrum_training_channel"/>
+        </record>
+
+        <!-- Section 6 : Outils associés à Scrum -->
+        <record id="scrum_section_6" model="slide.slide">
+            <field name="name">6. Outils associés à Scrum</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="scrum_training_channel"/>
+        </record>
+        <record id="scrum_content_6_1" model="slide.slide">
+            <field name="name">6.1. Outils de gestion de projet Scrum</field>
+            <field name="slide_category">article</field>
+            <field name="description">Présentation des outils comme Jira, Trello ou Asana pour la gestion des projets Scrum.</field>
+            <field name="category_id" ref="scrum_section_6"/>
+            <field name="channel_id" ref="scrum_training_channel"/>
+        </record>
+        <record id="scrum_content_6_2" model="slide.slide">
+            <field name="name">6.2. Outils pour le suivi des versions</field>
+            <field name="slide_category">article</field>
+            <field name="description">Présentation des outils comme GitHub, GitLab ou Bitbucket pour le suivi des versions.</field>
+            <field name="category_id" ref="scrum_section_6"/>
+            <field name="channel_id" ref="scrum_training_channel"/>
+        </record>
+        <record id="scrum_content_6_3" model="slide.slide">
+            <field name="name">6.3. Automatisation des tests</field>
+            <field name="slide_category">article</field>
+            <field name="description">Découverte des outils d'automatisation pour les tests tels que Playwright, Selenium, etc.</field>
+            <field name="category_id" ref="scrum_section_6"/>
+            <field name="channel_id" ref="scrum_training_channel"/>
+        </record>
+        <record id="scrum_content_6_4" model="slide.slide">
+            <field name="name">6.4. Communication dans un projet Scrum</field>
+            <field name="slide_category">article</field>
+            <field name="description">Utilisation des outils comme Slack, Zoom et Microsoft Teams pour les échanges et réunions.</field>
+            <field name="category_id" ref="scrum_section_6"/>
+            <field name="channel_id" ref="scrum_training_channel"/>
+        </record>
+
+        <!-- Section 7 : Bénéfices apportés par Scrum -->
+        <record id="scrum_section_7" model="slide.slide">
+            <field name="name">7. Les bénéfices apportés par Scrum</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="scrum_training_channel"/>
+        </record>
+        <record id="scrum_content_7_1" model="slide.slide">
+            <field name="name">7.1. Bénéfices pour les chefs de projet</field>
+            <field name="slide_category">article</field>
+            <field name="description">Découvrez comment Scrum aide les chefs de projet à gérer leurs équipes et projets efficacement.</field>
+            <field name="category_id" ref="scrum_section_7"/>
+            <field name="channel_id" ref="scrum_training_channel"/>
+        </record>
+        <record id="scrum_content_7_2" model="slide.slide">
+            <field name="name">7.2. Bénéfices pour les développeurs</field>
+            <field name="slide_category">article</field>
+            <field name="description">Comment Scrum favorise l’organisation et la productivité des développeurs.</field>
+            <field name="category_id" ref="scrum_section_7"/>
+            <field name="channel_id" ref="scrum_training_channel"/>
+        </record>
+
+        <!-- Section 8 : Conseils pratiques pour une implémentation réussie -->
+        <record id="scrum_section_8" model="slide.slide">
+            <field name="name">8. Conseils pratiques pour une implémentation réussie de Scrum</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="scrum_training_channel"/>
+        </record>
+        <record id="scrum_content_8_1" model="slide.slide">
+            <field name="name">8.1. Adapter Scrum au contexte d'équipe</field>
+            <field name="slide_category">article</field>
+            <field name="description">Ajuster Scrum pour répondre aux besoins spécifiques de chaque projet ou équipe.</field>
+            <field name="category_id" ref="scrum_section_8"/>
+            <field name="channel_id" ref="scrum_training_channel"/>
+        </record>
+        <record id="scrum_content_8_2" model="slide.slide">
+            <field name="name">8.2. Focalisation sur l'amélioration continue</field>
+            <field name="slide_category">article</field>
+            <field name="description">Encourager une culture de retours pour améliorer les process Scrum.</field>
+            <field name="category_id" ref="scrum_section_8"/>
+            <field name="channel_id" ref="scrum_training_channel"/>
+        </record>
+
+        <!-- Section 9 : Exemples concrets et études de cas -->
+        <record id="scrum_section_9" model="slide.slide">
+            <field name="name">9. Exemples concrets et études de cas</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="scrum_training_channel"/>
+        </record>
+        <record id="scrum_content_9_1" model="slide.slide">
+            <field name="name">9.1. Développement d’un module personnalisé</field>
+            <field name="slide_category">article</field>
+            <field name="description">Simulez un Sprint complet avec création de User Stories, développement et tests.</field>
+            <field name="category_id" ref="scrum_section_9"/>
+            <field name="channel_id" ref="scrum_training_channel"/>
+        </record>
+        <record id="scrum_content_9_2" model="slide.slide">
+            <field name="name">9.2. Suivi avec un Daily Scrum</field>
+            <field name="slide_category">article</field>
+            <field name="description">Étude de cas : gérer un projet avec les cérémonies Scrum pour s'assurer du succès.</field>
+            <field name="category_id" ref="scrum_section_9"/>
+            <field name="channel_id" ref="scrum_training_channel"/>
+        </record>
+        <record id="scrum_content_9_3" model="slide.slide">
+            <field name="name">9.3. Utilisation des retours dans une Sprint Review</field>
+            <field name="slide_category">article</field>
+            <field name="description">Analyse d'exemples réels pour adapter le développement en cours de projet grâce aux retours.</field>
+            <field name="category_id" ref="scrum_section_9"/>
+            <field name="channel_id" ref="scrum_training_channel"/>
+        </record>
+
+
+
+
+    </data>
+</odoo>

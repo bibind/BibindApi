@@ -1,0 +1,125 @@
+<odoo>
+    <data>
+        <!-- Création du canal principal pour la formation -->
+        <record id="kali_linux_training_channel" model="slide.channel">
+            <field name="name">Formation Kali Linux et Sécurité Informatique</field>
+            <field name="description">Formation complète pour apprendre Kali Linux, le PenTesting, et les fondamentaux de la sécurité informatique.</field>
+            <field name="channel_type">training</field>
+        </record>
+
+        <!-- Section 1 : Introduction à Kali Linux et la Sécurité Informatique -->
+        <record id="kali_linux_section_1" model="slide.slide">
+            <field name="name">1. Introduction à Kali Linux et la Sécurité Informatique</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="kali_linux_training_channel"/>
+        </record>
+        <record id="kali_linux_content_1_1" model="slide.slide">
+            <field name="name">1.1. Cybersécurité : Concepts et enjeux</field>
+            <field name="slide_category">article</field>
+            <field name="description">Comprendre les bases de la cybersécurité et son importance dans notre quotidien numérique.</field>
+            <field name="category_id" ref="kali_linux_section_1"/>
+            <field name="channel_id" ref="kali_linux_training_channel"/>
+        </record>
+        <record id="kali_linux_content_1_2" model="slide.slide">
+            <field name="name">1.2. Présentation de Kali Linux</field>
+            <field name="slide_category">article</field>
+            <field name="description">Historique, objectifs et avantages de Kali Linux dans le domaine de la sécurité informatique.</field>
+            <field name="category_id" ref="kali_linux_section_1"/>
+            <field name="channel_id" ref="kali_linux_training_channel"/>
+        </record>
+        <record id="kali_linux_content_1_3" model="slide.slide">
+            <field name="name">1.3. Installation de Kali Linux</field>
+            <field name="slide_category">article</field>
+            <field name="description">Instructions pour l'installation de Kali Linux sur machine virtuelle, physique ou live USB.</field>
+            <field name="category_id" ref="kali_linux_section_1"/>
+            <field name="channel_id" ref="kali_linux_training_channel"/>
+        </record>
+
+        <!-- Section 2 : Prise en main de Kali Linux -->
+        <record id="kali_linux_section_2" model="slide.slide">
+            <field name="name">2. Prise en main de Kali Linux</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="kali_linux_training_channel"/>
+        </record>
+        <record id="kali_linux_content_2_1" model="slide.slide">
+            <field name="name">2.1. L'interface utilisateur</field>
+            <field name="slide_category">article</field>
+            <field name="description">Présentation et navigation dans l’environnement graphique et le terminal de Kali Linux.</field>
+            <field name="category_id" ref="kali_linux_section_2"/>
+            <field name="channel_id" ref="kali_linux_training_channel"/>
+        </record>
+        <record id="kali_linux_content_2_2" model="slide.slide">
+            <field name="name">2.2. Commandes de base Linux</field>
+            <field name="slide_category">article</field>
+            <field name="description">Apprentissage des commandes essentielles pour travailler efficacement avec Kali Linux.</field>
+            <field name="category_id" ref="kali_linux_section_2"/>
+            <field name="channel_id" ref="kali_linux_training_channel"/>
+        </record>
+        <record id="kali_linux_content_2_3" model="slide.slide">
+            <field name="name">2.3. Introduction aux outils Kali</field>
+            <field name="slide_category">article</field>
+            <field name="description">Guide des outils populaires de Kali Linux pour la sécurité et les tests d’intrusion.</field>
+            <field name="category_id" ref="kali_linux_section_2"/>
+            <field name="channel_id" ref="kali_linux_training_channel"/>
+        </record>
+
+        <!-- Section 3 : Analyse des vulnérabilités et cartographie réseau -->
+        <record id="kali_linux_section_3" model="slide.slide">
+            <field name="name">3. Analyse des vulnérabilités et cartographie réseau</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="kali_linux_training_channel"/>
+        </record>
+        <record id="kali_linux_content_3_1" model="slide.slide">
+            <field name="name">3.1. Reconnaissance réseau</field>
+            <field name="slide_category">article</field>
+            <field name="description">Introduction au scan réseau avec des outils comme Nmap pour cartographier la structure réseau.</field>
+            <field name="category_id" ref="kali_linux_section_3"/>
+            <field name="channel_id" ref="kali_linux_training_channel"/>
+        </record>
+        <record id="kali_linux_content_3_2" model="slide.slide">
+            <field name="name">3.2. Analyse des vulnérabilités</field>
+            <field name="slide_category">article</field>
+            <field name="description">Identifier les failles de sécurité grâce à Nikto, Nessus, ou OpenVAS.</field>
+            <field name="category_id" ref="kali_linux_section_3"/>
+            <field name="channel_id" ref="kali_linux_training_channel"/>
+        </record>
+        <record id="kali_linux_content_3_3" model="slide.slide">
+            <field name="name">3.3. Recherche d’informations avec OSINT</field>
+            <field name="slide_category">article</field>
+            <field name="description">Collecte de données publiques avec TheHarvester et Maltego pour des audits de cybersécurité complets.</field>
+            <field name="category_id" ref="kali_linux_section_3"/>
+            <field name="channel_id" ref="kali_linux_training_channel"/>
+        </record>
+
+        <!-- Section 4 : Techniques de test d’intrusion (PenTesting) -->
+        <record id="kali_linux_section_4" model="slide.slide">
+            <field name="name">4. Techniques de test d’intrusion et PenTesting</field>
+            <field name="is_category">true</field>
+            <field name="channel_id" ref="kali_linux_training_channel"/>
+        </record>
+        <record id="kali_linux_content_4_1" model="slide.slide">
+            <field name="name">4.1. Introduction au PenTesting</field>
+            <field name="slide_category">article</field>
+            <field name="description">Définir les étapes d’un PenTest et en comprendre les objectifs stratégiques.</field>
+            <field name="category_id" ref="kali_linux_section_4"/>
+            <field name="channel_id" ref="kali_linux_training_channel"/>
+        </record>
+        <record id="kali_linux_content_4_2" model="slide.slide">
+            <field name="name">4.2. Exploitation avec Metasploit</field>
+            <field name="slide_category">article</field>
+            <field name="description">Utilisation pratique du framework Metasploit pour exploiter une vulnérabilité.</field>
+            <field name="category_id" ref="kali_linux_section_4"/>
+            <field name="channel_id" ref="kali_linux_training_channel"/>
+        </record>
+        <record id="kali_linux_content_4_3" model="slide.slide">
+            <field name="name">4.3. Attaques web et XSS</field>
+            <field name="slide_category">article</field>
+            <field name="description">Attaques ciblées sur des applications web : exploitation XSS et injections SQL en démo.</field>
+            <field name="category_id" ref="kali_linux_section_4"/>
+            <field name="channel_id" ref="kali_linux_training_channel"/>
+        </record>
+
+        <!-- Autres sections à configurer selon le plan défini... -->
+
+    </data>
+</odoo>
