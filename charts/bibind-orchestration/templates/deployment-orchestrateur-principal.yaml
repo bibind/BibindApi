@@ -1,0 +1,18 @@
+# Deployment for main orchestrator
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orchestrateur-principal
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: orchestrateur-principal
+  template:
+    metadata:
+      labels:
+        app: orchestrateur-principal
+    spec:
+      containers:
+        - name: orchestrateur-principal
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}

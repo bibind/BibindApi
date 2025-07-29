@@ -1,0 +1,18 @@
+# Deployment for service plannification
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: so-plannification
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: so-plannification
+  template:
+    metadata:
+      labels:
+        app: so-plannification
+    spec:
+      containers:
+        - name: so-plannification
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}

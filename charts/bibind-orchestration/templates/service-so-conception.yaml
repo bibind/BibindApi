@@ -1,0 +1,11 @@
+# Service for service conception
+apiVersion: v1
+kind: Service
+metadata:
+  name: so-conception
+spec:
+  selector:
+    app: so-conception
+  ports:
+    - port: 80
+      targetPort: 8080

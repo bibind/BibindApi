@@ -1,0 +1,6 @@
+# Default values for bibind-orchestration.
+replicaCount: 1
+image:
+  repository: your-repo/bibind
+  tag: "latest"
+  pullPolicy: IfNotPresent

@@ -1,0 +1,7 @@
+# Environment configuration
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bibind-env
+data:
+  SAMPLE_ENV: "value"

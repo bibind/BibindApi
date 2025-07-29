@@ -1,0 +1,18 @@
+# Deployment for API Bibind
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apibibind
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: apibibind
+  template:
+    metadata:
+      labels:
+        app: apibibind
+    spec:
+      containers:
+        - name: apibibind
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}

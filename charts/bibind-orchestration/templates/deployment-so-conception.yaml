@@ -1,0 +1,18 @@
+# Deployment for service conception
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: so-conception
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: so-conception
+  template:
+    metadata:
+      labels:
+        app: so-conception
+    spec:
+      containers:
+        - name: so-conception
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
