@@ -1,0 +1,11 @@
+# Service for service plannification
+apiVersion: v1
+kind: Service
+metadata:
+  name: so-plannification
+spec:
+  selector:
+    app: so-plannification
+  ports:
+    - port: 80
+      targetPort: 8080
