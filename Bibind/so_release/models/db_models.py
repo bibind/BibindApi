@@ -1,4 +1,6 @@
-"""Optional SQLAlchemy ORM models."""
+
+"""Optional SQLAlchemy ORM models for the release service."""
+
 
 from sqlalchemy.orm import declarative_base
 
