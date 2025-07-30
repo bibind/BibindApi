@@ -1,0 +1,10 @@
+fastapi==0.110.0
+uvicorn==0.27.0
+langchain
+langgraph
+kafka-python
+pydantic
+httpx
+python-dotenv
+flytekit
+ollama
