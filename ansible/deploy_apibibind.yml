@@ -1,0 +1,9 @@
+- name: D\u00e9ploiement Helm Chart apibibind sur MicroK8s
+  hosts: localmicrok8s
+  become: yes
+  vars:
+    chart_name: apibibind
+    chart_namespace: bibind
+    chart_path: /tmp/helm_chart/apibibind
+  roles:
+    - helm_apibibind

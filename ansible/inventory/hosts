@@ -1,0 +1,2 @@
+[localmicrok8s]
+local-microk8s ansible_host=10.0.3.100 ansible_user=ubuntu ansible_python_interpreter=/usr/bin/python3
