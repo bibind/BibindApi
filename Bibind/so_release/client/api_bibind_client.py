@@ -1,4 +1,5 @@
-"""Client used to notify the Bibind API of release progress."""
+
+"""Client used to notify the Bibind API of progress."""
 
 import httpx
 

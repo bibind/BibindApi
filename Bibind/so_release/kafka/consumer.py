@@ -4,7 +4,7 @@ from threading import Thread
 from kafka import KafkaConsumer
 
 
-def _listen():
+def _listen() -> None:
     consumer = KafkaConsumer('release-topic')
     for msg in consumer:
         # TODO: handle incoming messages
