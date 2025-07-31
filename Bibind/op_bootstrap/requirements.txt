@@ -9,3 +9,4 @@ flytekit
 python-keycloak
 python-dotenv
 pydantic
+minio>=7.1.15

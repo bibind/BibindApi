@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from app.routes import auth, users, organisations, groupes
+from app.routes import auth, users, organisations, groupes, files
 from app.routes.catalogues import type_infrastructure, type_offre
 from app.routes.infrastructures import infrastructure, inventory, monitoring
 from app.routes.offres import offre, solution, projet
@@ -21,6 +21,7 @@ app.include_router(monitoring.router)
 app.include_router(offre.router)
 app.include_router(solution.router)
 app.include_router(projet.router)
+app.include_router(files.router)
 app.include_router(principal.router)
 app.include_router(trigger.router)
 app.include_router(events.router)
