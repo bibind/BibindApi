@@ -9,3 +9,4 @@ flytekit
 python-keycloak
 python-dotenv
 pydantic
+hvac
