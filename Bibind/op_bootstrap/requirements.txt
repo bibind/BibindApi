@@ -1,4 +1,11 @@
 fastapi
 uvicorn
 SQLAlchemy
+psycopg2-binary
+aiokafka
+langchain
+langgraph
+flytekit
+python-keycloak
+python-dotenv
 pydantic
