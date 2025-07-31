@@ -1,5 +1,5 @@
 """Application settings loader."""
 
-import os
+from app.settings import Settings, settings
 
-ENV = os.getenv("ENV", "dev")
+__all__ = ["Settings", "settings"]
