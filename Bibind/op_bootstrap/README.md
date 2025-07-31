@@ -63,6 +63,15 @@ op_bootstrap/
 - PostgreSQL
 - Keycloak, GitLab, Vault, MinIO, Flyte (local ou sur cluster K8s)
 
+### Préparation de Vault
+
+Un script `ansible/setup_vault.sh` permet de créer le chemin de secrets et la
+policy nécessaires dans Vault :
+
+```bash
+./ansible/setup_vault.sh
+```
+
 ### Lancer en local (développement)
 
 ```bash

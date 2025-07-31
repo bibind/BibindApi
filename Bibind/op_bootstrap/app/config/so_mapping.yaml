@@ -1,0 +1,7 @@
+topics:
+  so_conception: so_conception.tasks
+  so_organisation: so_organisation.tasks
+  so_planification: so_planification.tasks
+  so_realisation: so_realisation.tasks
+  so_qualite: so_qualite.tasks
+  so_release: so_release.deployment

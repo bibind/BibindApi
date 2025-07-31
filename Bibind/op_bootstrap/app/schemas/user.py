@@ -12,6 +12,7 @@ class UserCreate(UserBase):
 class User(UserBase):
     id: int
     is_active: bool = True
+    role: str | None = None
 
     class Config:
         orm_mode = True
