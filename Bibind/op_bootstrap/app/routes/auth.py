@@ -6,6 +6,7 @@ from fastapi.responses import JSONResponse
 from app.schemas.auth import LoginRequest, Token, RefreshToken, Permissions
 from app.schemas.user import User
 from app.services import auth_service
+from app.security.dependencies import get_current_user
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
@@ -21,7 +22,7 @@ async def login(credentials: LoginRequest) -> JSONResponse:
 
 
 @router.get("/me", response_model=User)
-async def me(user: User = Depends(auth_service.get_current_user)) -> User:
+async def me(user: User = Depends(get_current_user)) -> User:
     return user
 
 
@@ -40,5 +41,6 @@ async def logout() -> JSONResponse:
 
 
 @router.get("/permissions", response_model=Permissions)
-async def permissions() -> Permissions:
-    return await auth_service.get_permissions()
+async def permissions(user: User = Depends(get_current_user)) -> Permissions:
+    role = user.role or "user"
+    return await auth_service.get_permissions(role)
