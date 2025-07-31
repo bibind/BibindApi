@@ -20,6 +20,9 @@ class Settings(BaseSettings):
     keycloak_realm: str | None = None
     keycloak_client_id: str | None = None
     keycloak_client_secret: str | None = None
+    secret_key: str = "changeme"
+    access_token_expire_minutes: int = 30
+    refresh_token_expire_minutes: int = 1440
 
     class Config:
         env_file = Path(__file__).resolve().parent.parent / '.env'
