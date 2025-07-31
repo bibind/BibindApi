@@ -1,8 +1,12 @@
-"""ORM model placeholder."""
+"""Infrastructure ORM model."""
+
+from sqlalchemy import Column, Integer, String
 
 from .base import Base
-from sqlalchemy import Column, Integer
 
-class Model(Base):
-    __tablename__ = "placeholder"
-    id = Column(Integer, primary_key=True)
+
+class Infrastructure(Base):
+    __tablename__ = "infrastructures"
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, nullable=False)

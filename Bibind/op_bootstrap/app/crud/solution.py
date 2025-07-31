@@ -1,4 +1,10 @@
-"""CRUD placeholder."""
+"""CRUD operations for Solution."""
 
-def create(obj):
-    return obj
+from app.models.solution import Solution
+from .base import CRUDBase
+
+crud_solution = CRUDBase(Solution)
+
+get = crud_solution.get
+get_multi = crud_solution.get_multi
+create = crud_solution.create
