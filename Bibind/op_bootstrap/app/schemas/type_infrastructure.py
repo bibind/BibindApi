@@ -1,6 +1,16 @@
-"""Pydantic schema placeholder."""
-
 from pydantic import BaseModel
 
-class Schema(BaseModel):
+
+class TypeInfrastructureBase(BaseModel):
+    name: str
+
+
+class TypeInfrastructureCreate(TypeInfrastructureBase):
+    pass
+
+
+class TypeInfrastructure(TypeInfrastructureBase):
     id: int
+
+    class Config:
+        orm_mode = True

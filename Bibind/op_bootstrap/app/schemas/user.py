@@ -1,6 +1,17 @@
-"""Pydantic schema placeholder."""
+from pydantic import BaseModel, EmailStr
 
-from pydantic import BaseModel
 
-class Schema(BaseModel):
+class UserBase(BaseModel):
+    email: EmailStr
+
+
+class UserCreate(UserBase):
+    password: str
+
+
+class User(UserBase):
     id: int
+    is_active: bool = True
+
+    class Config:
+        orm_mode = True
