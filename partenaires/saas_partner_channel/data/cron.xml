@@ -1,0 +1,21 @@
+<odoo>
+    <record id="ir_cron_payout_monthly" model="ir.cron">
+        <field name="name">Monthly Payout</field>
+        <field name="model_id" ref="model_saas_payout_run"/>
+        <field name="state">code</field>
+        <field name="code">model.cron_prepare_monthly()</field>
+        <field name="interval_type">months</field>
+        <field name="interval_number">1</field>
+        <field name="numbercall">-1</field>
+        <field name="nextcall">2024-01-01 08:00:00</field>
+    </record>
+    <record id="ir_cron_tenant_trial_expiring" model="ir.cron">
+        <field name="name">Tenant Trial Expiring</field>
+        <field name="model_id" ref="model_saas_tenant"/>
+        <field name="state">code</field>
+        <field name="code">model.cron_trial_expiring()</field>
+        <field name="interval_type">days</field>
+        <field name="interval_number">1</field>
+        <field name="numbercall">-1</field>
+    </record>
+</odoo>

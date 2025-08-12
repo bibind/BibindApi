@@ -1,0 +1,21 @@
+<odoo>
+    <record id="view_commission_tree" model="ir.ui.view">
+        <field name="name">saas.commission.tree</field>
+        <field name="model">saas.commission.ledger</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="partner_id"/>
+                <field name="tenant_id"/>
+                <field name="invoice_id"/>
+                <field name="amount"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+    <record id="action_saas_commission" model="ir.actions.act_window">
+        <field name="name">Commissions</field>
+        <field name="res_model">saas.commission.ledger</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_saas_commission" name="Commissions" parent="saas_partner_channel.menu_saas_channel_root" action="action_saas_commission"/>
+</odoo>

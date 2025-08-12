@@ -1,0 +1,23 @@
+<odoo noupdate="1">
+    <record id="partner_demo_registered" model="res.partner">
+        <field name="name">Partner Registered</field>
+        <field name="is_channel_partner">1</field>
+        <field name="commission_rate">10</field>
+    </record>
+    <record id="partner_demo_silver" model="res.partner">
+        <field name="name">Partner Silver</field>
+        <field name="is_channel_partner">1</field>
+        <field name="commission_rate">15</field>
+    </record>
+    <record id="tenant_demo_prov" model="saas.tenant">
+        <field name="name">Demo Provisioning</field>
+        <field name="partner_id" ref="partner_demo_registered"/>
+        <field name="status">provisioning</field>
+    </record>
+    <record id="tenant_demo_ready" model="saas.tenant">
+        <field name="name">Demo Ready</field>
+        <field name="partner_id" ref="partner_demo_silver"/>
+        <field name="status">ready</field>
+        <field name="access_url">https://example.com</field>
+    </record>
+</odoo>
