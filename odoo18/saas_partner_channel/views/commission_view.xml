@@ -1,0 +1,36 @@
+<odoo>
+    <record id="view_saas_commission_tree" model="ir.ui.view">
+        <field name="name">saas.commission.ledger.tree</field>
+        <field name="model">saas.commission.ledger</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="partner_id"/>
+                <field name="tenant_id"/>
+                <field name="invoice_id"/>
+                <field name="amount"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_saas_commission_form" model="ir.ui.view">
+        <field name="name">saas.commission.ledger.form</field>
+        <field name="model">saas.commission.ledger</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="partner_id"/>
+                        <field name="tenant_id"/>
+                        <field name="invoice_id"/>
+                        <field name="base_amount_ht"/>
+                        <field name="rate"/>
+                        <field name="amount"/>
+                        <field name="status"/>
+                        <field name="hold_until"/>
+                        <field name="note"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

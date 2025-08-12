@@ -1,0 +1,11 @@
+<odoo>
+    <record id="saas_mail_tenant_ready" model="mail.template">
+        <field name="name">Tenant Ready</field>
+        <field name="model_id" ref="model_saas_tenant"/>
+        <field name="subject">Your tenant is ready</field>
+        <field name="email_from">${(user.email or '')|safe}</field>
+        <field name="body_html"><![CDATA[
+            <p>Hello, your tenant ${object.name} is ready. Access: ${object.access_url}</p>
+        ]]></field>
+    </record>
+</odoo>

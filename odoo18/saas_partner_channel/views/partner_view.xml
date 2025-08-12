@@ -1,0 +1,22 @@
+<odoo>
+    <record id="view_partner_form_saas" model="ir.ui.view">
+        <field name="name">res.partner.form.saas</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="contacts.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/notebook" position="inside">
+                <page string="SaaS Channel">
+                    <group>
+                        <field name="is_channel_partner"/>
+                        <field name="partner_tier" attrs="{'invisible':[('is_channel_partner','=',False)]}"/>
+                        <field name="commission_rate" attrs="{'invisible':[('is_channel_partner','=',False)]}"/>
+                        <field name="payout_method" attrs="{'invisible':[('is_channel_partner','=',False)]}"/>
+                        <field name="iban" attrs="{'invisible':[('payout_method','!=','sepa')]}"/>
+                        <field name="bic" attrs="{'invisible':[('payout_method','!=','sepa')]}"/>
+                        <field name="vat_id"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

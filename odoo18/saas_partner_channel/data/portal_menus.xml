@@ -1,0 +1,10 @@
+<odoo>
+    <template id="portal_my_home_menu" inherit_id="portal.portal_my_home" name="Portal Home Menu">
+        <xpath expr="//div[@id='portal']/ul" position="inside">
+            <li><a href="/saas/portal/deals">Deals</a></li>
+            <li><a href="/saas/portal/tenants">Tenants</a></li>
+            <li><a href="/saas/portal/commissions">Commissions</a></li>
+            <li><a href="/saas/portal/payouts">Payouts</a></li>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,28 @@
+<odoo>
+    <menuitem id="menu_saas_root" name="Channel" sequence="10"/>
+    <menuitem id="menu_saas_deals" name="Deals" parent="menu_saas_root" action="saas_deal_action"/>
+    <menuitem id="menu_saas_tenants" name="Tenants" parent="menu_saas_root" action="saas_tenant_action"/>
+    <menuitem id="menu_saas_commissions" name="Commissions" parent="menu_saas_root" action="saas_commission_action"/>
+    <menuitem id="menu_saas_payouts" name="Payouts" parent="menu_saas_root" action="saas_payout_action"/>
+
+    <record id="saas_deal_action" model="ir.actions.act_window">
+        <field name="name">Deals</field>
+        <field name="res_model">saas.deal</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="saas_tenant_action" model="ir.actions.act_window">
+        <field name="name">Tenants</field>
+        <field name="res_model">saas.tenant</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="saas_commission_action" model="ir.actions.act_window">
+        <field name="name">Commissions</field>
+        <field name="res_model">saas.commission.ledger</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="saas_payout_action" model="ir.actions.act_window">
+        <field name="name">Payout Runs</field>
+        <field name="res_model">saas.payout.run</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

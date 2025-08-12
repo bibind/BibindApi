@@ -1,0 +1,36 @@
+<odoo>
+    <record id="view_saas_deal_tree" model="ir.ui.view">
+        <field name="name">saas.deal.tree</field>
+        <field name="model">saas.deal</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="stage"/>
+                <field name="amount"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_saas_deal_form" model="ir.ui.view">
+        <field name="name">saas.deal.form</field>
+        <field name="model">saas.deal</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="partner_id"/>
+                        <field name="company_name"/>
+                        <field name="stage"/>
+                        <field name="amount"/>
+                    </group>
+                    <notebook>
+                        <page string="Notes">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

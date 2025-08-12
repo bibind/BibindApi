@@ -1,0 +1,9 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: saas_partner_channel\n"
+"Language: fr\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+
+#: model:ir.module.module,name:saas_partner_channel
+msgid "SaaS Partner Channel"
+msgstr "Programme Partenaire SaaS"
