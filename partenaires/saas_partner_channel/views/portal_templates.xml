@@ -1,0 +1,11 @@
+<odoo>
+    <template id="portal_tenant_status" name="Tenant Status" page="true">
+        <t t-call="portal.portal_layout">
+            <div class="container">
+                <h1><t t-esc="tenant.name"/></h1>
+                <p>Status: <t t-esc="tenant.status"/></p>
+                <p t-if="tenant.access_url">URL: <a t-att-href="tenant.access_url"><t t-esc="tenant.access_url"/></a></p>
+            </div>
+        </t>
+    </template>
+</odoo>
