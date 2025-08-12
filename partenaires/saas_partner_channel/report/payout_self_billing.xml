@@ -1,0 +1,12 @@
+<odoo>
+    <template id="report_payout_self_billing">
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <h2>Payout Self Billing</h2>
+                <p>Partner: <t t-esc="doc.partner_id.name"/></p>
+                <p>Amount: <t t-esc="doc.amount"/></p>
+            </div>
+        </t>
+    </template>
+    <report id="action_report_payout_self_billing" model="saas.payout.item" string="Payout" report_type="qweb-pdf" name="saas_partner_channel.report_payout_self_billing" file="saas_partner_channel.report_payout_self_billing"/>
+</odoo>

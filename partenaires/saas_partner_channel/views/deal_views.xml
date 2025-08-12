@@ -1,0 +1,37 @@
+<odoo>
+    <record id="view_deal_tree" model="ir.ui.view">
+        <field name="name">saas.deal.tree</field>
+        <field name="model">saas.deal</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="stage"/>
+                <field name="amount"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_deal_form" model="ir.ui.view">
+        <field name="name">saas.deal.form</field>
+        <field name="model">saas.deal</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="partner_id"/>
+                        <field name="company_name"/>
+                        <field name="stage"/>
+                        <field name="amount"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_saas_deal" model="ir.actions.act_window">
+        <field name="name">Deals</field>
+        <field name="res_model">saas.deal</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_saas_deal" name="Deals" parent="saas_partner_channel.menu_saas_channel_root" action="action_saas_deal"/>
+</odoo>

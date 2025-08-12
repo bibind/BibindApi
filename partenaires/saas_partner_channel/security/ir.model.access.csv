@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_saas_deal_manager,access.saas.deal.manager,model_saas_deal,saas_partner_channel.group_saas_channel_manager,1,1,1,1
+access_saas_deal_portal,access.saas.deal.portal,model_saas_deal,saas_partner_channel.group_saas_partner_portal,1,0,1,0
+access_saas_tenant_manager,access.saas.tenant.manager,model_saas_tenant,saas_partner_channel.group_saas_channel_manager,1,1,1,1
+access_saas_tenant_portal,access.saas.tenant.portal,model_saas_tenant,saas_partner_channel.group_saas_partner_portal,1,0,1,0
+access_saas_provisioning_job_manager,access.saas.provisioning.job.manager,model_saas_provisioning_job,saas_partner_channel.group_saas_channel_manager,1,1,1,1
+access_saas_commission_manager,access.saas.commission.manager,model_saas_commission_ledger,saas_partner_channel.group_saas_channel_manager,1,1,1,1
+access_saas_commission_portal,access.saas.commission.portal,model_saas_commission_ledger,saas_partner_channel.group_saas_partner_portal,1,0,0,0
+access_saas_payout_run_manager,access.saas.payout.run.manager,model_saas_payout_run,saas_partner_channel.group_saas_channel_manager,1,1,1,1
+access_saas_payout_item_manager,access.saas.payout.item.manager,model_saas_payout_item,saas_partner_channel.group_saas_channel_manager,1,1,1,1
+access_saas_payout_item_portal,access.saas.payout.item.portal,model_saas_payout_item,saas_partner_channel.group_saas_partner_portal,1,0,0,0

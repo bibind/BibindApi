@@ -1,0 +1,3 @@
+<odoo>
+    <menuitem id="menu_saas_channel_root" name="Channel" sequence="10" parent="portal.main_menu" groups="saas_partner_channel.group_saas_partner_portal"/>
+</odoo>
