@@ -1,0 +1,26 @@
+<odoo>
+    <data>
+        <record id="res_config_settings_view_form_groupodoo" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.groupodoo</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@id='settings']" position="inside">
+                    <div class="app_settings_block" data-string="Groupodoo">
+                        <h2>Groupodoo</h2>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12 col-lg-6">
+                                <div class="o_setting_box">
+                                    <field name="groupodoo_api_base_url"/>
+                                </div>
+                                <div class="o_setting_box">
+                                    <field name="groupodoo_webhook_secret" password="True"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

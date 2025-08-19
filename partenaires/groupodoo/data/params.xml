@@ -1,0 +1,8 @@
+<odoo>
+    <data noupdate="1">
+        <record id="param_groupodoo_api_base_url" model="ir.config_parameter">
+            <field name="key">groupodoo_api_base_url</field>
+            <field name="value">https://api.bibind.local/</field>
+        </record>
+    </data>
+</odoo>
