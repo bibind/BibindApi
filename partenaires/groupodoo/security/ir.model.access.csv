@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_session_portal,session portal,model_groupodoo_chat_session,group_groupodoo_portal_agent,1,1,1,0
+access_message_portal,message portal,model_groupodoo_chat_message,group_groupodoo_portal_agent,1,0,1,0
+access_session_internal,session internal,model_groupodoo_chat_session,group_groupodoo_internal_agent,1,1,1,1
+access_message_internal,message internal,model_groupodoo_chat_message,group_groupodoo_internal_agent,1,1,1,1
+access_session_admin,session admin,model_groupodoo_chat_session,group_groupodoo_admin,1,1,1,1
+access_message_admin,message admin,model_groupodoo_chat_message,group_groupodoo_admin,1,1,1,1

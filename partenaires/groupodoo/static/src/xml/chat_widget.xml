@@ -1,0 +1,11 @@
+<templates xml:space="preserve">
+    <t t-name="groupodoo.chat_widget">
+        <div class="o_groupodoo_widget">
+            <t t-foreach="state.messages" t-as="msg">
+                <div t-att-class="'msg-' + msg.role">
+                    <t t-esc="msg.content"/>
+                </div>
+            </t>
+        </div>
+    </t>
+</templates>
