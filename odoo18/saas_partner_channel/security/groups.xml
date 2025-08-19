@@ -1,0 +1,11 @@
+<odoo>
+    <record id="saas_group_partner_portal" model="res.groups">
+        <field name="name">SaaS Partner Portal</field>
+        <field name="category_id" ref="base.module_category_sales_management"/>
+        <field name="implied_ids" eval="[(4, ref('portal.group_portal'))]"/>
+    </record>
+    <record id="saas_group_channel_manager" model="res.groups">
+        <field name="name">Channel Manager</field>
+        <field name="category_id" ref="base.module_category_sales_management"/>
+    </record>
+</odoo>

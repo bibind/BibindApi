@@ -1,0 +1,15 @@
+<odoo>
+    <template id="portal_tenant_status" name="Tenant Status">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs" t-value="[('Home', '/my'), (tenant.name, None)]"/>
+            <div class="o_portal_wrap">
+                <h2><t t-esc="tenant.name"/></h2>
+                <p>Status: <t t-esc="tenant.status"/></p>
+                <p>Stage: <t t-esc="tenant.stage"/></p>
+                <t t-if="tenant.access_url">
+                    <a t-att-href="tenant.access_url" class="btn btn-primary">Open Admin</a>
+                </t>
+            </div>
+        </t>
+    </template>
+</odoo>

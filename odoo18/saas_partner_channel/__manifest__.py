@@ -1,0 +1,33 @@
+{
+    'name': 'SaaS Partner Channel',
+    'version': '18.0.1.0.0',
+    'summary': 'Partner portal and commission program for SaaS platform',
+    'category': 'Sales/CRM',
+    'author': 'ChatGPT',
+    'depends': [
+        'base', 'contacts', 'mail', 'crm', 'sale', 'sale_subscription',
+        'account', 'account_sepa', 'payment', 'website', 'portal',
+        'helpdesk', 'sign', 'documents'
+    ],
+    'data': [
+        'security/groups.xml',
+        'security/ir.model.access.csv',
+        'security/rules.xml',
+        'data/cron.xml',
+        'data/mail_templates.xml',
+        'data/portal_menus.xml',
+        'data/demo.xml',
+        'views/partner_view.xml',
+        'views/deal_view.xml',
+        'views/tenant_view.xml',
+        'views/commission_view.xml',
+        'views/payout_view.xml',
+        'views/wizard_view.xml',
+        'views/menuitems.xml',
+        'views/portal_templates.xml',
+        'report/payout_self_billing.xml',
+    ],
+    'demo': ['data/demo.xml'],
+    'application': True,
+    'license': 'LGPL-3',
+}
