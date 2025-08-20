@@ -1,0 +1,21 @@
+{
+    "name": "Kill Bill Odoo Bridge",
+    "summary": "Integration between Odoo and Kill Bill billing platform",
+    "version": "18.0.1.0.0",
+    "category": "Accounting",
+    "author": "ChatGPT",
+    "license": "LGPL-3",
+    "depends": ["base", "sale_management", "account"],
+    "data": [
+        "security/ir.model.access.csv",
+        "views/menuitems.xml",
+        "views/res_partner_view.xml",
+        "views/sale_order_view.xml",
+        "views/product_template_view.xml",
+        "views/res_config_settings_view.xml",
+        "data/ir_cron.xml",
+    ],
+    "assets": {},
+    "installable": True,
+    "application": False,
+}

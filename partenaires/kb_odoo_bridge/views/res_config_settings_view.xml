@@ -1,0 +1,25 @@
+<odoo>
+    <record id="res_config_settings_view_kb" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.kb</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='settings']" position="inside">
+                <div class="app_settings_block" data-string="Kill Bill" string="Kill Bill">
+                    <h2>Kill Bill</h2>
+                    <div class="row mt16">
+                        <div class="col-12 col-lg-6">
+                            <field name="kb_base_url"/>
+                            <field name="kb_api_key"/>
+                            <field name="kb_api_secret" password="True"/>
+                            <field name="kb_basic_auth_login"/>
+                            <field name="kb_basic_auth_password" password="True"/>
+                            <field name="kb_webhook_secret" password="True"/>
+                            <field name="kb_sync_window_days"/>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
