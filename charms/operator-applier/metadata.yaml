@@ -1,0 +1,5 @@
+name: operator-applier
+type: charm
+bases:
+  - name: ubuntu
+    channel: 22.04/stable

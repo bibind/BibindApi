@@ -1,0 +1,31 @@
+options:
+  chart:
+    type: string
+    default: "oci://registry.example.com/odoo"
+  version:
+    type: string
+    default: "1.2.3"
+  release:
+    type: string
+    default: "odoo"
+  namespace:
+    type: string
+    default: "odoo"
+  values-override:
+    type: string
+    default: ""
+  use-catalog:
+    type: boolean
+    default: true
+  catalog-path:
+    type: string
+    default: "../catalog/charts-example.yaml"
+  create-crds:
+    type: boolean
+    default: true
+  atomic-upgrade:
+    type: boolean
+    default: true
+  wait-timeout:
+    type: int
+    default: 900

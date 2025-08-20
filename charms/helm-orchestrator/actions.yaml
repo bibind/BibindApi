@@ -1,0 +1,26 @@
+upgrade:
+  description: Upgrade Helm chart to --version
+  params:
+    version:
+      type: string
+rollback:
+  description: Rollback to previous Helm revision
+  params:
+    revision:
+      type: integer
+dry-run:
+  description: Render and diff without applying
+diff:
+  description: Show live vs rendered manifest diff
+purge:
+  description: Uninstall Helm release
+scale:
+  description: Set replicas (if chart supports it)
+  params:
+    replicas:
+      type: integer
+set-values:
+  description: Merge YAML overrides into current values
+  params:
+    values:
+      type: string

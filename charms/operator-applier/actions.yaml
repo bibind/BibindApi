@@ -1,0 +1,6 @@
+reapply:
+  description: Force reapplication of resources
+purge:
+  description: Attempt to delete applied resources
+status:
+  description: Report readiness of applied resources

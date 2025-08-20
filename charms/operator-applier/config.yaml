@@ -1,0 +1,13 @@
+options:
+  apply-kustomize:
+    type: boolean
+    default: true
+  path:
+    type: string
+    default: "./src/resources"
+  wait-ready:
+    type: boolean
+    default: true
+  timeout:
+    type: int
+    default: 600
