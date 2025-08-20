@@ -1,0 +1,13 @@
+name: helm-orchestrator
+type: charm
+bases:
+  - name: ubuntu
+    channel: 22.04/stable
+requires:
+  ingress:
+    interface: ingress
+  database:
+    interface: postgresql_client
+provides:
+  metrics-endpoint:
+    interface: prometheus_scrape

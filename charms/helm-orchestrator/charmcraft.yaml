@@ -1,0 +1,8 @@
+type: charm
+bases:
+  - name: ubuntu
+    channel: "22.04/stable"
+parts:
+  charm:
+    plugin: charm
+    source: .

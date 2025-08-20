@@ -1,0 +1,21 @@
+bundle: kubernetes
+applications:
+  operator-applier:
+    charm: ./../../charms/operator-applier
+  helm-orchestrator:
+    charm: ./../../charms/helm-orchestrator
+    options:
+      use-catalog: true
+      catalog-path: ./../../catalog/charts-example.yaml
+  ingress-nginx:
+    charm: ingress-nginx
+  cert-manager:
+    charm: cert-manager
+  pgbouncer-k8s:
+    charm: pgbouncer-k8s
+  postgresql-k8s:
+    charm: postgresql-k8s
+relations:
+  - [helm-orchestrator:ingress, ingress-nginx:ingress]
+  - [helm-orchestrator:database, pgbouncer-k8s:postgresql_client]
+  - [pgbouncer-k8s:db, postgresql-k8s:postgresql]
