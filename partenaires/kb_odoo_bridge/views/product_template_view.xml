@@ -1,0 +1,20 @@
+<odoo>
+    <record id="view_product_form_kb" model="ir.ui.view">
+        <field name="name">product.template.form.kb</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Kill Bill Catalog">
+                    <group>
+                        <field name="kb_is_subscription"/>
+                        <field name="kb_product_name"/>
+                        <field name="kb_plan_name"/>
+                        <field name="kb_price_list"/>
+                        <field name="kb_billing_period"/>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>

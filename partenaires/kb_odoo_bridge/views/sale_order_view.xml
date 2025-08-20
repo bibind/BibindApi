@@ -1,0 +1,17 @@
+<odoo>
+    <record id="view_order_form_kb" model="ir.ui.view">
+        <field name="name">sale.order.form.kb</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <header position="inside">
+                <button name="action_kb_subscribe" type="object" string="Souscrire (Kill Bill)" class="oe_highlight" attrs="{'invisible': [('kb_subscription_id','!=',False)]}"/>
+            </header>
+            <sheet position="inside">
+                <group>
+                    <field name="kb_subscription_id" readonly="1"/>
+                </group>
+            </sheet>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,20 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: kb_odoo_bridge\n"
+"POT-Creation-Date: 2024-04-01 00:00+0000\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. module: kb_odoo_bridge
+msgid "Create Kill Bill Account"
+msgstr "Créer compte Kill Bill"
+
+#. module: kb_odoo_bridge
+msgid "Subscribe (Kill Bill)"
+msgstr "Souscrire (Kill Bill)"
+
+#. module: kb_odoo_bridge
+msgid "Kill Bill"
+msgstr "Kill Bill"

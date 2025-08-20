@@ -1,0 +1,11 @@
+<odoo>
+    <menuitem id="kb_menu_root" name="Kill Bill" parent="base.menu_config" sequence="50"/>
+    <record id="action_kb_config" model="ir.actions.act_window">
+        <field name="name">Kill Bill Settings</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module' : 'kb_odoo_bridge'}</field>
+    </record>
+    <menuitem id="kb_menu_config" name="Paramètres" parent="kb_menu_root" action="action_kb_config"/>
+</odoo>

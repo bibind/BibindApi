@@ -1,0 +1,20 @@
+<odoo>
+    <record id="view_partner_form_kb" model="ir.ui.view">
+        <field name="name">res.partner.form.kb</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <header position="inside">
+                <button name="action_create_kb_account" type="object" string="Créer compte Kill Bill" attrs="{'invisible': [('kb_account_id','!=',False)]}" class="oe_highlight"/>
+            </header>
+            <notebook position="inside">
+                <page string="Kill Bill">
+                    <group>
+                        <field name="kb_account_id" readonly="1"/>
+                        <field name="kb_external_key"/>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>
