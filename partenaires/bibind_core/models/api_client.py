@@ -19,8 +19,25 @@ from odoo import api, models
 _logger = logging.getLogger("bibind")
 
 
+SENSITIVE_KEYS = {"token", "secret", "password"}
+
+
+def mask_secrets(data: Any) -> Any:
+    """Return a copy of *data* with sensitive values masked."""
+    if isinstance(data, dict):
+        return {
+            key: ("***" if key.lower() in SENSITIVE_KEYS else mask_secrets(value))
+            for key, value in data.items()
+        }
+    if isinstance(data, list):
+        return [mask_secrets(value) for value in data]
+    return data
+
+
 class ApiClientError(Exception):
-    def __init__(self, message: str, status: int | None = None, correlation_id: str | None = None):
+    def __init__(
+        self, message: str, status: int | None = None, correlation_id: str | None = None
+    ):
         super().__init__(message)
         self.status = status
         self.correlation_id = correlation_id
@@ -44,19 +61,29 @@ class _CircuitBreaker:
     reset_timeout_s: int
     failures: int = 0
     opened_at: float = 0.0
+    half_open: bool = False
 
     def allow(self) -> bool:
         if self.failures < self.fail_max:
             return True
+        if self.half_open:
+            return False
         if time.time() - self.opened_at >= self.reset_timeout_s:
+            self.half_open = True
             return True
         return False
 
     def on_success(self) -> None:
         self.failures = 0
         self.opened_at = 0.0
+        self.half_open = False
 
     def on_failure(self) -> None:
+        if self.half_open:
+            self.opened_at = time.time()
+            self.failures = self.fail_max
+            self.half_open = False
+            return
         self.failures += 1
         if self.failures >= self.fail_max and not self.opened_at:
             self.opened_at = time.time()
@@ -77,7 +104,9 @@ class ApiClient(models.AbstractModel):
         timeout = self.env["bibind.param.store"].get_int("http_timeout_s", 10)
         retry = Retry(
             total=self.env["bibind.param.store"].get_int("http_retry_total", 3),
-            backoff_factor=self.env["bibind.param.store"].get_float("http_backoff_factor", 0.5),
+            backoff_factor=self.env["bibind.param.store"].get_float(
+                "http_backoff_factor", 0.5
+            ),
             status_forcelist=(429, 500, 502, 503, 504),
             allowed_methods=frozenset(["GET", "POST", "PUT", "PATCH", "DELETE"]),
         )
@@ -171,7 +200,8 @@ class ApiClient(models.AbstractModel):
                         "event": "http.request",
                         "method": method,
                         "url": url,
-                        "params": params,
+                        "params": mask_secrets(params) if params else None,
+                        "json": mask_secrets(json_body) if json_body else None,
                         "correlation_id": headers["X-Correlation-Id"],
                         "request_id": headers.get("X-Request-Id"),
                     }
@@ -187,33 +217,56 @@ class ApiClient(models.AbstractModel):
                         "event": "http.response",
                         "status": resp.status_code,
                         "elapsed_ms": elapsed,
+                        "size": len(resp.content or b""),
                         "correlation_id": headers["X-Correlation-Id"],
                     }
                 )
             )
         except requests.RequestException as exc:
             breaker.on_failure()
-            raise ApiClientServerError(str(exc), correlation_id=headers["X-Correlation-Id"]) from exc
+            raise ApiClientServerError(
+                str(exc), correlation_id=headers["X-Correlation-Id"]
+            ) from exc
         if resp.status_code == 401:
             self._token = {}
             token = self._get_token()
             headers["Authorization"] = f"Bearer {token}"
-            resp = session.request(method, url, json=json_body, params=params, headers=headers)
+            resp = session.request(
+                method, url, json=json_body, params=params, headers=headers
+            )
         if resp.status_code >= 500:
             breaker.on_failure()
             raise ApiClientServerError(
-                f"Server error {resp.status_code}", resp.status_code, headers["X-Correlation-Id"]
+                f"Server error {resp.status_code}",
+                resp.status_code,
+                headers["X-Correlation-Id"],
             )
         if resp.status_code in (429,):
             breaker.on_failure()
-            raise ApiClientServerError("Too many requests", resp.status_code, headers["X-Correlation-Id"])
-        breaker.on_success()
+            raise ApiClientServerError(
+                "Too many requests", resp.status_code, headers["X-Correlation-Id"]
+            )
+        if 400 <= resp.status_code < 500:
+            if resp.status_code in (401, 403):
+                raise ApiClientAuthError(
+                    f"Auth error {resp.status_code}",
+                    resp.status_code,
+                    headers["X-Correlation-Id"],
+                )
+            raise ApiClientError(
+                f"Client error {resp.status_code}",
+                resp.status_code,
+                headers["X-Correlation-Id"],
+            )
         if isinstance(expected, int):
             expected = (expected,)
         if resp.status_code not in expected:
             raise ApiClientError(
-                f"Unexpected status {resp.status_code}", resp.status_code, headers["X-Correlation-Id"]
+                f"Unexpected status {resp.status_code}",
+                resp.status_code,
+                headers["X-Correlation-Id"],
             )
+        breaker.on_success()
         if resp.content:
             return resp.json()
         return {}
@@ -227,35 +280,59 @@ class ApiClient(models.AbstractModel):
     def create_service(self, payload: Dict[str, Any]) -> Dict[str, Any]:
         return self._request("POST", "service", json_body=payload, expected=201)
 
-    def create_environment(self, service_id: str, payload: Dict[str, Any]) -> Dict[str, Any]:
-        return self._request("POST", f"service/{service_id}/environment", json_body=payload, expected=201)
+    def create_environment(
+        self, service_id: str, payload: Dict[str, Any]
+    ) -> Dict[str, Any]:
+        return self._request(
+            "POST", f"service/{service_id}/environment", json_body=payload, expected=201
+        )
 
     def post_deploy(self, env_id: str, payload: Dict[str, Any]) -> Dict[str, Any]:
-        return self._request("POST", f"environment/{env_id}/deploy", json_body=payload, expected=202)
+        return self._request(
+            "POST", f"environment/{env_id}/deploy", json_body=payload, expected=202
+        )
 
     def get_deploy_status(self, deploy_id: str) -> Dict[str, Any]:
         return self._request("GET", f"deploy/{deploy_id}")
 
-    def post_deploy_action(self, deploy_id: str, payload: Dict[str, Any]) -> Dict[str, Any]:
-        return self._request("POST", f"deploy/{deploy_id}/action", json_body=payload, expected=202)
+    def post_deploy_action(
+        self, deploy_id: str, payload: Dict[str, Any]
+    ) -> Dict[str, Any]:
+        return self._request(
+            "POST", f"deploy/{deploy_id}/action", json_body=payload, expected=202
+        )
 
     def create_backup(self, env_id: str, payload: Dict[str, Any]) -> Dict[str, Any]:
-        return self._request("POST", f"environment/{env_id}/backup", json_body=payload, expected=202)
+        return self._request(
+            "POST", f"environment/{env_id}/backup", json_body=payload, expected=202
+        )
 
     def restore(self, env_id: str, payload: Dict[str, Any]) -> Dict[str, Any]:
-        return self._request("POST", f"environment/{env_id}/restore", json_body=payload, expected=202)
+        return self._request(
+            "POST", f"environment/{env_id}/restore", json_body=payload, expected=202
+        )
 
     def get_signed_link(self, env_id: str, link_type: str) -> Dict[str, Any]:
         return self._request("GET", f"environment/{env_id}/link/{link_type}")
 
     def create_issue(self, project_id: int, payload: Dict[str, Any]) -> Dict[str, Any]:
-        return self._request("POST", f"gitlab/{project_id}/issue", json_body=payload, expected=201)
+        return self._request(
+            "POST", f"gitlab/{project_id}/issue", json_body=payload, expected=201
+        )
 
-    def create_merge_request(self, project_id: int, payload: Dict[str, Any]) -> Dict[str, Any]:
-        return self._request("POST", f"gitlab/{project_id}/mr", json_body=payload, expected=201)
+    def create_merge_request(
+        self, project_id: int, payload: Dict[str, Any]
+    ) -> Dict[str, Any]:
+        return self._request(
+            "POST", f"gitlab/{project_id}/mr", json_body=payload, expected=201
+        )
 
-    def trigger_pipeline(self, project_id: int, payload: Dict[str, Any]) -> Dict[str, Any]:
-        return self._request("POST", f"gitlab/{project_id}/pipeline", json_body=payload, expected=202)
+    def trigger_pipeline(
+        self, project_id: int, payload: Dict[str, Any]
+    ) -> Dict[str, Any]:
+        return self._request(
+            "POST", f"gitlab/{project_id}/pipeline", json_body=payload, expected=202
+        )
 
     def ai_task(self, payload: Dict[str, Any]) -> Dict[str, Any]:
         return self._request("POST", "ai/task", json_body=payload, expected=202)
