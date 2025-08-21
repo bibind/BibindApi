@@ -1,7 +1,9 @@
 <odoo>
     <template id="portal_menu" inherit_id="portal.portal_layout" name="Bibind portal menu">
         <xpath expr="//ul[@id='portal_menu']" position="inside">
-            <li><a href="/my/services">Mes services</a></li>
+            <li t-if="request.env.user.has_group('bibind_core.group_bibind_customer_admin')">
+                <a href="/my/services">Mes services</a>
+            </li>
         </xpath>
     </template>
 
