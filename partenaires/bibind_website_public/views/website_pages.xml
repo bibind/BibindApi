@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Layout -->
+    <template id="layout" name="Bibind Website Layout" inherit_id="website.layout">
+        <xpath expr="/t" position="inside">
+            <t t-call="bibind_website_public.seo_meta"/>
+        </xpath>
+        <xpath expr="//div[@id='wrap']" position="before">
+            <a href="#main" class="skip-link">Skip to content</a>
+        </xpath>
+        <xpath expr="//div[@id='wrap']" position="replace">
+            <div id="wrap">
+                <header role="banner">
+                    <nav role="navigation" aria-label="Main navigation">
+                        <ul>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/offers">Offers</a></li>
+                            <li><a href="/docs">Docs</a></li>
+                            <li><a href="/jobs">Jobs</a></li>
+                        </ul>
+                    </nav>
+                </header>
+                <main id="main" role="main">
+                    <t t-raw="0"/>
+                </main>
+                <footer class="footer">
+                    <p>&copy; <t t-esc="datetime.datetime.utcnow().year"/></p>
+                </footer>
+            </div>
+        </xpath>
+    </template>
+
+    <!-- Home page -->
+    <template id="index" name="Bibind Home" page="True" inherit_id="bibind_website_public.layout">
+        <xpath expr="//main" position="inside">
+            <section class="hero">
+                <h1>Bienvenue sur Bibind</h1>
+                <p>Votre plateforme d'orchestration.</p>
+                <p><a class="btn" href="/offers">Découvrir les offres</a></p>
+            </section>
+        </xpath>
+    </template>
+
+    <!-- Offers catalogue -->
+    <template id="offers" name="Bibind Offers" page="True" inherit_id="bibind_website_public.layout">
+        <xpath expr="//main" position="inside">
+            <h1>Catalogue d'offres</h1>
+            <div class="offers-grid">
+                <t t-foreach="[]" t-as="o">
+                    <div class="card"><t t-esc="o"/></div>
+                </t>
+            </div>
+        </xpath>
+    </template>
+
+    <!-- Offer detail -->
+    <template id="offer_detail" name="Bibind Offer Detail" page="True" inherit_id="bibind_website_public.layout">
+        <xpath expr="//main" position="inside">
+            <h1><t t-esc="slug"/></h1>
+            <p>Details coming soon.</p>
+        </xpath>
+    </template>
+
+    <!-- Docs page -->
+    <template id="docs" name="Bibind Docs" page="True" inherit_id="bibind_website_public.layout">
+        <xpath expr="//main" position="inside">
+            <h1>API Documentation</h1>
+            <iframe t-att-src="iframe_url" style="width:100%;height:80vh" sandbox="allow-scripts allow-same-origin" referrerpolicy="no-referrer"></iframe>
+            <p><a t-if="iframe_url" t-att-href="iframe_url">Télécharger l'OpenAPI</a></p>
+        </xpath>
+    </template>
+
+    <!-- Jobs page -->
+    <template id="jobs" name="Bibind Jobs" page="True" inherit_id="bibind_website_public.layout">
+        <xpath expr="//main" position="inside">
+            <h1>Postes ouverts</h1>
+            <ul>
+                <t t-foreach="jobs" t-as="job">
+                    <li><t t-esc="job['title']"/> – <t t-esc="job['location']"/></li>
+                </t>
+            </ul>
+            <form action="/jobs/apply" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <input type="hidden" name="website_hp" value=""/>
+                <label for="full_name">Nom</label>
+                <input id="full_name" name="full_name" required="required"/>
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" required="required"/>
+                <label for="role">Poste</label>
+                <input id="role" name="role" required="required"/>
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required="required"></textarea>
+                <label for="cv">CV</label>
+                <input id="cv" name="cv" type="file"/>
+                <label><input type="checkbox" name="consent" required="required"/> J'accepte</label>
+                <button type="submit" class="btn">Envoyer</button>
+            </form>
+        </xpath>
+    </template>
+</odoo>

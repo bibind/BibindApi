@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_bibind_home" name="Accueil" url="/" sequence="10"/>
+    <menuitem id="menu_bibind_offers" name="Offres" parent="menu_bibind_home" url="/offers" sequence="20"/>
+    <menuitem id="menu_bibind_docs" name="Docs" parent="menu_bibind_home" url="/docs" sequence="30"/>
+    <menuitem id="menu_bibind_jobs" name="Postes" parent="menu_bibind_home" url="/jobs" sequence="40"/>
+</odoo>

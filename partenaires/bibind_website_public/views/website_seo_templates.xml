@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- SEO templates loaded into layout -->
+    <template id="seo_meta" name="Bibind SEO Meta">
+        <t t-set="title">Bibind</t>
+        <t t-set="description">Bibind public website</t>
+        <t t-set="og_title">Bibind</t>
+        <t t-set="og_description">Bibind public website</t>
+    </template>
+</odoo>
