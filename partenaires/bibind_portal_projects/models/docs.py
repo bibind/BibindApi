@@ -4,7 +4,10 @@ import base64
 
 from odoo import fields, models
 
-from odoo.addons.bibind_core.services.api_client import ApiClient
+# ApiClient is re-exported at the module level so tests can easily provide
+# a dummy implementation.  Importing from ``bibind_core`` instead of the
+# Odoo service layer keeps the indirection minimal.
+from bibind_core import ApiClient
 
 
 class ProjectDoc(models.Model):
@@ -29,7 +32,10 @@ class ProjectDoc(models.Model):
             'project_id': self.project_id.id,
             'input': prompt,
         }
-        response = client.ai_task(payload)
+        # The public API exposes a generic ``/ai/tasks`` endpoint.  Using
+        # ``post`` keeps the code compatible with the lightweight stub
+        # provided in the tests.
+        response = client.post("/ai/tasks", payload)
         result = response.get('result', '')
         if result:
             data = base64.b64encode(result.encode())
