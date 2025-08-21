@@ -3,6 +3,7 @@ from odoo.http import request
 
 
 class ProjectPortal(http.Controller):
+
     """Website portal for project-related pages."""
 
     # ------------------------------------------------------------------
@@ -11,10 +12,12 @@ class ProjectPortal(http.Controller):
     @http.route("/my/projects", auth="user", website=True)
     def list_projects(self, **kw):
         """Display all projects for the current user."""
+
         projects = request.env["project.project"].sudo().search([])
         return request.render(
             "bibind_portal_projects.projects_portal", {"projects": projects}
         )
+
 
     @http.route("/my/projects/new", auth="user", website=True)
     def create_project(self, **kw):
@@ -78,3 +81,15 @@ class ProjectPortal(http.Controller):
             project_id=project_id
         ).run_studio_ai()
         return {"status": "ok"}
+
+
+    @http.route(
+        "/my/projects/<int:project_id>/milestones/<int:milestone_id>/invoice",
+        auth="user",
+        website=True,
+    )
+    def invoice_milestone(self, project_id, milestone_id, **kw):
+        milestone = request.env["kb.project.milestone"].sudo().browse(milestone_id)
+        milestone.action_invoice()
+        return request.redirect(f"/my/projects/{project_id}")
+
