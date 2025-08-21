@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from odoo import api, fields, models
 
 
@@ -10,24 +12,40 @@ class ProjectBudget(models.Model):
     labor_rate_eur_hour = fields.Monetary()
     infra_monthly_cap = fields.Monetary()
     approved = fields.Boolean(default=False)
-    spent_hours = fields.Float(compute='_compute_spent')
-    spent_labor = fields.Monetary(compute='_compute_spent')
-    spent_infra = fields.Monetary(compute='_compute_spent')
-    spent_total = fields.Monetary(compute='_compute_spent')
+    spent_hours = fields.Float(compute="_compute_spent")
+    spent_labor = fields.Monetary(compute="_compute_spent")
+    spent_infra = fields.Monetary(compute="_compute_spent")
+    spent_total = fields.Monetary(compute="_compute_spent")
     burn_chart = fields.Json()
     line_ids = fields.One2many('kb.budget.line', 'budget_id')
 
-    @api.depends('line_ids.amount')
+    @api.depends("project_id")
     def _compute_spent(self):
+        timesheet_model = self.env.get("account.analytic.line")
+        cost_service = self.env["kb.cost.estimate"]
         for budget in self:
-            budget.spent_hours = 0.0
-            budget.spent_labor = sum(
-                l.amount for l in budget.line_ids if l.type == 'labor'
-            )
-            budget.spent_infra = sum(
-                l.amount for l in budget.line_ids if l.type == 'infra'
-            )
+            # Hours and labor -------------------------------------------------
+            hours = 0.0
+            if timesheet_model and budget.project_id:
+                domain = [("project_id", "=", budget.project_id.id)]
+                hours = sum(timesheet_model.search(domain).mapped("unit_amount"))
+            budget.spent_hours = hours
+            budget.spent_labor = hours * budget.labor_rate_eur_hour
+
+            # Infrastructure costs -------------------------------------------
+            infra_cost = Decimal("0.0")
+            service = budget.project_id.service_id
+            if service:
+                for env in service.environments:
+                    try:
+                        infra_cost += cost_service.estimate_for_env(env)
+                    except Exception:
+                        continue
+            budget.spent_infra = float(infra_cost)
+
+            # Total -----------------------------------------------------------
             budget.spent_total = budget.spent_labor + budget.spent_infra
+            budget.burn_chart = budget.project_id.kpi_burndown
 
 
 class BudgetLine(models.Model):

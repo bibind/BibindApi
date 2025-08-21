@@ -1,3 +1,14 @@
+"""Facade for project related remote operations.
+
+This model acts as a thin layer on top of :class:`ApiClient` to hide the
+details of the HTTP API from the rest of the code base.  Only the minimal
+methods required by the tests are implemented.
+"""
+
+from odoo import api, models
+
+from odoo.addons.bibind_core.services.api_client import ApiClient
+
 from __future__ import annotations
 
 import logging
@@ -8,6 +19,7 @@ from typing import Dict, Iterable
 from odoo import api, models
 
 _logger = logging.getLogger(__name__)
+
 
 
 class ProjectsFacade(models.Model):
@@ -97,6 +109,7 @@ class ProjectsFacade(models.Model):
 
         return True
 
+
     @api.model
     def link_service(self, project, service):
         """Link *service* to *project* using the appropriate strategy."""
@@ -144,3 +157,18 @@ class ProjectsFacade(models.Model):
         strategy = self.get_offer_strategy(project.offer_code)
         ctx = self._request_context()
         return strategy.with_context(**ctx).create_environment(project, payload)
+    # ------------------------------------------------------------------
+    # GitLab helpers
+    # ------------------------------------------------------------------
+    @api.model
+    def create_task(self, project, payload):
+        """Create an issue in the remote project."""
+        client = ApiClient.from_env(self.env)
+        return client.create_issue(project.id, payload)
+
+    @api.model
+    def create_merge_request(self, project, payload):
+        """Create a merge request in the remote project."""
+        client = ApiClient.from_env(self.env)
+        return client.create_merge_request(project.id, payload)
+

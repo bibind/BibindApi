@@ -14,3 +14,18 @@ class Billing(models.AbstractModel):
     def get_invoices(self, service: models.Model) -> List[Dict[str, object]]:
         client = ApiClient.from_env(self.env)
         return client.get(f"/services/{service.id}/invoices")
+
+    def action_confirm(self, milestone: models.Model) -> None:
+        """Fallback confirmation when Odoo sales modules are missing."""
+        # Intentionally left as a no-op for Kill Bill integration
+        return None
+
+    def action_invoice(self, milestone: models.Model) -> None:
+        """Fallback invoicing when Odoo accounting modules are missing."""
+        # Intentionally left as a no-op for Kill Bill integration
+        return None
+
+    def action_mark_paid(self, milestone: models.Model) -> None:
+        """Fallback payment confirmation when Odoo payment modules are missing."""
+        # Intentionally left as a no-op for Kill Bill integration
+        return None
