@@ -90,6 +90,24 @@ class ProjectPortal(http.Controller):
     )
     def invoice_milestone(self, project_id, milestone_id, **kw):
         milestone = request.env["kb.project.milestone"].sudo().browse(milestone_id)
+        # When the sales and accounting apps are available we expose the
+        # standard invoice creation wizard.  Otherwise, we fallback to the
+        # Kill Bill integration provided by ``kb.billing``.
+        if (
+            milestone._module_installed("sale")
+            and milestone._module_installed("account")
+            and milestone.sale_order_id
+        ):
+            try:
+                action = (
+                    request.env.ref("sale.action_view_sale_advance_payment_inv")
+                    .sudo()
+                    .read()[0]
+                )
+                action["context"] = {"active_ids": milestone.sale_order_id.ids}
+                return request.redirect(f"/web#action={action['id']}")
+            except Exception:  # pragma: no cover - defensive
+                pass
         milestone.action_invoice()
         return request.redirect(f"/my/projects/{project_id}")
 
