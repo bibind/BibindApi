@@ -9,6 +9,8 @@ from typing import Any
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
+from .api_client import ApiClientError
+
 
 class ParamStore(models.AbstractModel):
     _name = "bibind.param.store"
@@ -116,7 +118,7 @@ class ResConfigSettings(models.TransientModel):
         client = self.env["bibind.api_client"]
         try:
             client.get_context("ping")
-        except ApiClientError as exc:  # type: ignore[name-defined]
+        except ApiClientError as exc:
             raise UserError(_("Connection failed: %s") % exc) from exc
         return {
             "type": "ir.actions.client",
