@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_kb_service_portal,kb.service portal,model_kb_service,base.group_portal,1,0,0,0
+access_kb_environment_portal,kb.environment portal,model_kb_environment,base.group_portal,1,0,0,0
+access_kb_deployment_portal,kb.deployment portal,model_kb_deployment,base.group_portal,1,0,0,0
+access_kb_doc_portal,kb.doc portal,model_kb_doc,base.group_portal,1,0,0,0
