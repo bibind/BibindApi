@@ -1,32 +1,101 @@
 <odoo>
-    <record id="project_tenant_rule" model="ir.rule">
-        <field name="name">Project tenant access</field>
+    <!-- Project access rules -->
+    <record id="project_rule_viewer" model="ir.rule">
+        <field name="name">Project viewer access</field>
         <field name="model_id" ref="project.model_project_project"/>
-        <field name="domain_force">['|',('service_id.tenant_id','=',user.tenant_id.id),('service_id.tenant_id','=',False)]</field>
+        <field name="domain_force">[('service_id', 'in', env['kb.service'].search(env['kb.service'].pce_domain()).ids)]</field>
         <field name="groups" eval="[(4, ref('bibind_portal_projects.group_project_viewer'))]"/>
     </record>
-    <record id="task_tenant_rule" model="ir.rule">
-        <field name="name">Task tenant access</field>
+    <record id="project_rule_member" model="ir.rule">
+        <field name="name">Project member access</field>
+        <field name="model_id" ref="project.model_project_project"/>
+        <field name="domain_force">[('service_id', 'in', env['kb.service'].search(env['kb.service'].pce_domain()).ids)]</field>
+        <field name="groups" eval="[(4, ref('bibind_portal_projects.group_project_member'))]"/>
+    </record>
+    <record id="project_rule_admin" model="ir.rule">
+        <field name="name">Project admin access</field>
+        <field name="model_id" ref="project.model_project_project"/>
+        <field name="domain_force">[('service_id', 'in', env['kb.service'].search(env['kb.service'].pce_domain()).ids)]</field>
+        <field name="groups" eval="[(4, ref('bibind_portal_projects.group_project_admin'))]"/>
+    </record>
+
+    <!-- Task access rules -->
+    <record id="task_rule_viewer" model="ir.rule">
+        <field name="name">Task viewer access</field>
         <field name="model_id" ref="project.model_project_task"/>
-        <field name="domain_force">['|',('project_id.service_id.tenant_id','=',user.tenant_id.id),('project_id.service_id.tenant_id','=',False)]</field>
+        <field name="domain_force">[('project_id.service_id', 'in', env['kb.service'].search(env['kb.service'].pce_domain()).ids)]</field>
         <field name="groups" eval="[(4, ref('bibind_portal_projects.group_project_viewer'))]"/>
     </record>
-    <record id="project_budget_tenant_rule" model="ir.rule">
-        <field name="name">Project budget tenant access</field>
+    <record id="task_rule_member" model="ir.rule">
+        <field name="name">Task member access</field>
+        <field name="model_id" ref="project.model_project_task"/>
+        <field name="domain_force">[('project_id.service_id', 'in', env['kb.service'].search(env['kb.service'].pce_domain()).ids)]</field>
+        <field name="groups" eval="[(4, ref('bibind_portal_projects.group_project_member'))]"/>
+    </record>
+    <record id="task_rule_admin" model="ir.rule">
+        <field name="name">Task admin access</field>
+        <field name="model_id" ref="project.model_project_task"/>
+        <field name="domain_force">[('project_id.service_id', 'in', env['kb.service'].search(env['kb.service'].pce_domain()).ids)]</field>
+        <field name="groups" eval="[(4, ref('bibind_portal_projects.group_project_admin'))]"/>
+    </record>
+
+    <!-- Project budget access rules -->
+    <record id="project_budget_rule_viewer" model="ir.rule">
+        <field name="name">Project budget viewer access</field>
         <field name="model_id" ref="model_kb_project_budget"/>
-        <field name="domain_force">['|',('project_id.service_id.tenant_id','=',user.tenant_id.id),('project_id.service_id.tenant_id','=',False)]</field>
+        <field name="domain_force">[('project_id.service_id', 'in', env['kb.service'].search(env['kb.service'].pce_domain()).ids)]</field>
         <field name="groups" eval="[(4, ref('bibind_portal_projects.group_project_viewer'))]"/>
     </record>
-    <record id="budget_line_tenant_rule" model="ir.rule">
-        <field name="name">Budget line tenant access</field>
+    <record id="project_budget_rule_member" model="ir.rule">
+        <field name="name">Project budget member access</field>
+        <field name="model_id" ref="model_kb_project_budget"/>
+        <field name="domain_force">[('project_id.service_id', 'in', env['kb.service'].search(env['kb.service'].pce_domain()).ids)]</field>
+        <field name="groups" eval="[(4, ref('bibind_portal_projects.group_project_member'))]"/>
+    </record>
+    <record id="project_budget_rule_admin" model="ir.rule">
+        <field name="name">Project budget admin access</field>
+        <field name="model_id" ref="model_kb_project_budget"/>
+        <field name="domain_force">[('project_id.service_id', 'in', env['kb.service'].search(env['kb.service'].pce_domain()).ids)]</field>
+        <field name="groups" eval="[(4, ref('bibind_portal_projects.group_project_admin'))]"/>
+    </record>
+
+    <!-- Budget line access rules -->
+    <record id="budget_line_rule_viewer" model="ir.rule">
+        <field name="name">Budget line viewer access</field>
         <field name="model_id" ref="model_kb_budget_line"/>
-        <field name="domain_force">['|',('budget_id.project_id.service_id.tenant_id','=',user.tenant_id.id),('budget_id.project_id.service_id.tenant_id','=',False)]</field>
+        <field name="domain_force">[('budget_id.project_id.service_id', 'in', env['kb.service'].search(env['kb.service'].pce_domain()).ids)]</field>
         <field name="groups" eval="[(4, ref('bibind_portal_projects.group_project_viewer'))]"/>
     </record>
-    <record id="project_milestone_tenant_rule" model="ir.rule">
-        <field name="name">Project milestone tenant access</field>
+    <record id="budget_line_rule_member" model="ir.rule">
+        <field name="name">Budget line member access</field>
+        <field name="model_id" ref="model_kb_budget_line"/>
+        <field name="domain_force">[('budget_id.project_id.service_id', 'in', env['kb.service'].search(env['kb.service'].pce_domain()).ids)]</field>
+        <field name="groups" eval="[(4, ref('bibind_portal_projects.group_project_member'))]"/>
+    </record>
+    <record id="budget_line_rule_admin" model="ir.rule">
+        <field name="name">Budget line admin access</field>
+        <field name="model_id" ref="model_kb_budget_line"/>
+        <field name="domain_force">[('budget_id.project_id.service_id', 'in', env['kb.service'].search(env['kb.service'].pce_domain()).ids)]</field>
+        <field name="groups" eval="[(4, ref('bibind_portal_projects.group_project_admin'))]"/>
+    </record>
+
+    <!-- Project milestone access rules -->
+    <record id="project_milestone_rule_viewer" model="ir.rule">
+        <field name="name">Project milestone viewer access</field>
         <field name="model_id" ref="model_kb_project_milestone"/>
-        <field name="domain_force">['|',('project_id.service_id.tenant_id','=',user.tenant_id.id),('project_id.service_id.tenant_id','=',False)]</field>
+        <field name="domain_force">[('project_id.service_id', 'in', env['kb.service'].search(env['kb.service'].pce_domain()).ids)]</field>
         <field name="groups" eval="[(4, ref('bibind_portal_projects.group_project_viewer'))]"/>
+    </record>
+    <record id="project_milestone_rule_member" model="ir.rule">
+        <field name="name">Project milestone member access</field>
+        <field name="model_id" ref="model_kb_project_milestone"/>
+        <field name="domain_force">[('project_id.service_id', 'in', env['kb.service'].search(env['kb.service'].pce_domain()).ids)]</field>
+        <field name="groups" eval="[(4, ref('bibind_portal_projects.group_project_member'))]"/>
+    </record>
+    <record id="project_milestone_rule_admin" model="ir.rule">
+        <field name="name">Project milestone admin access</field>
+        <field name="model_id" ref="model_kb_project_milestone"/>
+        <field name="domain_force">[('project_id.service_id', 'in', env['kb.service'].search(env['kb.service'].pce_domain()).ids)]</field>
+        <field name="groups" eval="[(4, ref('bibind_portal_projects.group_project_admin'))]"/>
     </record>
 </odoo>
