@@ -18,6 +18,12 @@
         'views/sync_views.xml',
         'views/project_wizard_views.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            'partenaires/bibind_portal_projects/static/src/js/burn_chart.js',
+            'partenaires/bibind_portal_projects/static/src/xml/burn_chart.xml',
+        ],
+    },
     'demo': ['data/demo.xml'],
     'installable': True,
     'application': False,
