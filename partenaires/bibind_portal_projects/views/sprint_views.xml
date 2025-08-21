@@ -1,0 +1,8 @@
+<odoo>
+    <templates xml:space="preserve">
+        <t t-name="kb.SprintBoard">
+            <div class="o_kb_sprint_board"/>
+        </t>
+    </templates>
+</odoo>
+

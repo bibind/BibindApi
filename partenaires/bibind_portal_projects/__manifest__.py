@@ -11,6 +11,7 @@
         'data/cron.xml',
         'views/portal_menu.xml',
         'views/project_views.xml',
+        'views/sprint_views.xml',
         'views/budget_views.xml',
         'views/billing_views.xml',
         'views/studio_views.xml',
