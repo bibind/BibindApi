@@ -1,9 +1,8 @@
 <odoo>
     <templates xml:space="preserve">
-        <t t-name="kb.SprintBoard">
+        <t t-name="kb.DocsBoard">
             <div class="o_ai_studio_panel"/>
-            <div class="o_kb_sprint_board"/>
+            <div class="o_kb_docs_board"/>
         </t>
     </templates>
 </odoo>
-
