@@ -1,4 +1,5 @@
 from odoo import _, api, fields, models
+from odoo.exceptions import RedirectWarning
 
 
 class Project(models.Model):
@@ -24,7 +25,14 @@ class Project(models.Model):
     def _check_service(self):
         for project in self:
             if not project.service_id:
-                raise models.ValidationError(_('A service is required for every project.'))
+                action = project.env.ref(
+                    "bibind_portal_projects.action_project_create_wizard"
+                )
+                raise RedirectWarning(
+                    _('A service is required for every project.'),
+                    action.id,
+                    _('Select or create a service'),
+                )
 
     def action_open_service(self):
         self.ensure_one()
