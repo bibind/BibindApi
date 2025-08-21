@@ -7,7 +7,7 @@
     'depends': [
         'base', 'contacts', 'mail', 'crm', 'sale', 'sale_subscription',
         'account', 'account_sepa', 'payment', 'website', 'portal',
-        'helpdesk', 'sign', 'documents'
+        'helpdesk', 'sign', 'documents', 'bibind_core'
     ],
     'data': [
         'security/groups.xml',

@@ -57,6 +57,31 @@ class TestSaasPartnerChannel(TransactionCase):
         retention = self.env['ir.config_parameter'].sudo().get_param('saas_retention_days', 30)
         self.assertAlmostEqual((ledger.hold_until - fields.Datetime.now()).days, int(retention), delta=1)
 
+    def test_op_bootstrap_payment_webhook(self):
+        move = self.env['account.move'].create({
+            'move_type': 'out_invoice',
+            'partner_id': self.env.ref('base.res_partner_1').id,
+            'invoice_date': fields.Date.today(),
+            'tenant_id': self.tenant.id,
+            'invoice_line_ids': [(0, 0, {
+                'name': 'Test',
+                'quantity': 1,
+                'price_unit': 50,
+                'account_id': self.env['account.account'].search([('internal_type', '=', 'receivable')], limit=1).id,
+            })]
+        })
+        move.action_post()
+        payload = {
+            'event': 'payment.succeeded',
+            'invoice_id': move.id,
+        }
+        secret = 'shhh'
+        self.env['ir.config_parameter'].sudo().set_param('SAAS_WEBHOOK_SECRET', secret)
+        body = json.dumps(payload).encode()
+        sig = hmac.new(secret.encode(), body, hashlib.sha256).hexdigest()
+        self.url_open('/webhooks/op_bootstrap', data=body, headers={'X-Signature': sig})
+        self.assertEqual(move.refresh().payment_state, 'paid')
+
     def test_payout_run_wizard(self):
         past = fields.Datetime.now() - timedelta(days=40)
         ledgers = self.env['saas.commission.ledger'].create([
