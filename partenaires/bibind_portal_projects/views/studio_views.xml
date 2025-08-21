@@ -14,20 +14,20 @@
                         <field name="content_html" widget="html"/>
                     </sheet>
                     <aside class="o_studio_ai_sidebar">
-                        <div class="o_ai_chat">
+                        <div class="o_ai_chat o_lateral_panel">
                             <field name="content_html" widget="html" readonly="1"/>
                         </div>
-                        <footer class="o_ai_actions">
+                        <div class="o_ai_actions o_lateral_panel">
                             <button name="action_ai_spec_from_idea" type="object" string="AI Spec"/>
                             <button name="action_ai_plan" type="object" string="AI Plan"/>
                             <button name="action_ai_organisation" type="object" string="Organisation"/>
                             <button name="action_ai_quality" type="object" string="Qualité"/>
                             <button name="action_ai_realisation" type="object" string="Réalisation"/>
-                        </footer>
-                        <footer class="o_ai_approval">
+                        </div>
+                        <div class="o_ai_approval o_lateral_panel">
                             <button name="action_approve" type="object" string="Approve" class="btn-primary"/>
                             <button name="action_reject" type="object" string="Reject"/>
-                        </footer>
+                        </div>
                     </aside>
                 </form>
             </field>

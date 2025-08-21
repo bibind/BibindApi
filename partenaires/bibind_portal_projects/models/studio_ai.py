@@ -2,7 +2,9 @@ import base64
 
 from odoo import fields, models
 
-from odoo.addons.bibind_core.services.api_client import ApiClient
+# The lightweight ``ApiClient`` is imported from the top-level module so
+# tests can monkeypatch it easily.
+from bibind_core import ApiClient
 
 
 class StudioAI(models.Model):
@@ -38,7 +40,8 @@ class StudioAI(models.Model):
                 'input': task.name,
             }
             try:
-                response = client.ai_task(payload)
+                # Interact with the generic ``/ai/tasks`` endpoint.
+                response = client.post("/ai/tasks", payload)
                 task.result = response.get('result', '')
                 task.state = 'done'
                 # store result as attachment
