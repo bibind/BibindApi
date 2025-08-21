@@ -109,6 +109,17 @@ class ProjectsFacade(models.Model):
 
         return True
 
+    @api.model
+    def sync_issues(self):
+        """Periodic job to synchronize all GitLab-backed projects."""
+
+        projects = self.env["project.project"].search([
+            ("gitlab_project_id", "!=", False)
+        ])
+        for project in projects:
+            self.with_context(project_id=project.id).sync_gitlab()
+        return True
+
 
     @api.model
     def run_studio_ai(self):
