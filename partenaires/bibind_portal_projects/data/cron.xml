@@ -1,20 +1,22 @@
 <odoo>
     <data>
-        <record id="ir_cron_project_sync" model="ir.cron">
-            <field name="name">Project Sync</field>
+        <record id="ir_cron_issue_sync" model="ir.cron">
+            <field name="name">Issue Sync</field>
             <field name="model_id" ref="model_kb_projects_facade"/>
             <field name="state">code</field>
-            <field name="code">model.sync_gitlab()</field>
+            <field name="code">model.sync_issues()</field>
             <field name="interval_number">1</field>
             <field name="interval_type">hours</field>
         </record>
-        <record id="ir_cron_project_backlog_kpi" model="ir.cron">
-            <field name="name">Backlog &amp; KPI Refresh</field>
+
+        <record id="ir_cron_kpi_budget_refresh" model="ir.cron">
+            <field name="name">KPI &amp; Budget Refresh</field>
             <field name="model_id" ref="model_kb_projects_facade"/>
             <field name="state">code</field>
-            <field name="code">model.sync_gitlab()</field>
+            <field name="code">model.refresh_kpis_budget()</field>
             <field name="interval_number">1</field>
             <field name="interval_type">days</field>
         </record>
     </data>
 </odoo>
+

@@ -1,8 +1,18 @@
 <odoo>
     <data>
+        <record id="service_demo" model="kb.service">
+            <field name="name">Demo Service</field>
+        </record>
+
         <record id="project_demo" model="project.project">
             <field name="name">Demo Project</field>
-            <field name="service_id" ref="bibind_portal.service_demo"/>
+            <field name="service_id" ref="service_demo"/>
+        </record>
+
+        <record id="task_backlog_demo" model="project.task">
+            <field name="name">Initial backlog item</field>
+            <field name="project_id" ref="project_demo"/>
         </record>
     </data>
 </odoo>
+
