@@ -8,6 +8,13 @@
                 <header position="inside">
                     <button name="action_open_studio" type="object" string="IA Studio" class="oe_highlight"/>
                 </header>
+                <form position="inside">
+                    <aside class="o_studio_ai_sidebar">
+                        <div class="o_ai_chat">
+                            <field name="description" widget="html" readonly="1"/>
+                        </div>
+                    </aside>
+                </form>
                 <sheet position="inside">
                     <group>
                         <field name="service_id"/>

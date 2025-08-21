@@ -11,5 +11,31 @@
                 </tree>
             </field>
         </record>
+
+        <record id="view_project_milestone_form" model="ir.ui.view">
+            <field name="name">kb.project.milestone.form</field>
+            <field name="model">kb.project.milestone</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="project_id"/>
+                            <field name="name"/>
+                            <field name="amount"/>
+                            <field name="state"/>
+                            <field name="due_date"/>
+                        </group>
+                        <group>
+                            <field name="description"/>
+                        </group>
+                    </sheet>
+                    <aside class="o_studio_ai_sidebar">
+                        <div class="o_ai_chat">
+                            <field name="description" readonly="1"/>
+                        </div>
+                    </aside>
+                </form>
+            </field>
+        </record>
     </data>
 </odoo>

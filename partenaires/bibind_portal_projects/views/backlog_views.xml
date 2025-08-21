@@ -5,4 +5,67 @@
             <div class="o_kb_backlog_board"/>
         </t>
     </templates>
+    <data>
+        <record id="view_task_tree_portal" model="ir.ui.view">
+            <field name="name">project.task.tree.portal</field>
+            <field name="model">project.task</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="stage_id"/>
+                    <field name="user_ids"/>
+                    <field name="story_points"/>
+                    <field name="sprint_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_task_form_portal" model="ir.ui.view">
+            <field name="name">project.task.form.portal</field>
+            <field name="model">project.task</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="project_id"/>
+                            <field name="stage_id"/>
+                            <field name="user_ids"/>
+                            <field name="issue_type"/>
+                            <field name="story_points"/>
+                            <field name="sprint_id"/>
+                        </group>
+                        <field name="description" widget="html"/>
+                    </sheet>
+                    <aside class="o_studio_ai_sidebar">
+                        <div class="o_ai_chat">
+                            <field name="description" widget="html" readonly="1"/>
+                        </div>
+                    </aside>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_task_kanban_portal" model="ir.ui.view">
+            <field name="name">project.task.kanban.portal</field>
+            <field name="model">project.task</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="name"/>
+                    <field name="stage_id"/>
+                    <field name="user_ids"/>
+                    <field name="story_points"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <strong><field name="name"/></strong>
+                                <div><field name="stage_id"/></div>
+                                <div><field name="story_points"/></div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+    </data>
 </odoo>

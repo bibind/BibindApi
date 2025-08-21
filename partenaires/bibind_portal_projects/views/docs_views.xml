@@ -1,8 +1,54 @@
 <odoo>
-    <templates xml:space="preserve">
+     <templates xml:space="preserve">
         <t t-name="kb.DocsBoard">
             <div class="o_ai_studio_panel"/>
             <div class="o_kb_docs_board"/>
         </t>
     </templates>
+    <data>
+        <record id="view_project_doc_tree" model="ir.ui.view">
+            <field name="name">kb.project.doc.tree</field>
+            <field name="model">kb.project.doc</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="title"/>
+                    <field name="project_id"/>
+                    <field name="tags"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_project_doc_form" model="ir.ui.view">
+            <field name="name">kb.project.doc.form</field>
+            <field name="model">kb.project.doc</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="project_id"/>
+                            <field name="title"/>
+                            <field name="tags"/>
+                        </group>
+                        <field name="content_html" widget="html"/>
+                    </sheet>
+                    <aside class="o_studio_ai_sidebar">
+                        <div class="o_ai_chat">
+                            <field name="content_html" widget="html" readonly="1"/>
+                        </div>
+                        <footer class="o_ai_actions">
+                            <button name="action_ai_spec_from_idea" type="object" string="AI Spec"/>
+                            <button name="action_ai_plan" type="object" string="AI Plan"/>
+                            <button name="action_ai_organisation" type="object" string="Organisation"/>
+                            <button name="action_ai_quality" type="object" string="Qualité"/>
+                            <button name="action_ai_realisation" type="object" string="Réalisation"/>
+                        </footer>
+                        <footer class="o_ai_approval">
+                            <button name="action_approve" type="object" string="Approve" class="btn-primary"/>
+                            <button name="action_reject" type="object" string="Reject"/>
+                        </footer>
+                    </aside>
+                </form>
+            </field>
+        </record>
+    </data>
 </odoo>
