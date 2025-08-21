@@ -2,7 +2,7 @@
     'name': 'Bibind Portal Projects',
     'version': '0.1.0',
     'summary': 'Project management and GitLab integration for Bibind portal',
-    'depends': ['bibind_portal', 'project', 'mail'],
+    'depends': ['bibind_portal', 'project', 'mail', 'queue_job'],
     'data': [
         'security/ir.model.access.csv',
         'security/rules.xml',

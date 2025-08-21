@@ -1,5 +1,11 @@
+import json
+import logging
+import uuid
+
 from odoo import http
 from odoo.http import request
+
+_logger = logging.getLogger(__name__)
 
 
 class ProjectPortal(http.Controller):
@@ -48,9 +54,22 @@ class ProjectPortal(http.Controller):
     @http.route("/my/projects/<int:project_id>/sync", auth="user", website=True)
     def sync_project(self, project_id: int, **kw):
         """Trigger an asynchronous synchronization with GitLab."""
+        correlation_id = (
+            request.httprequest.headers.get("X-Correlation-Id")
+            or str(uuid.uuid4())
+        )
+        _logger.info(
+            json.dumps(
+                {
+                    "event": "project.sync",
+                    "project_id": project_id,
+                    "correlation_id": correlation_id,
+                }
+            )
+        )
         request.env["kb.projects.facade"].sudo().with_context(
-            project_id=project_id
-        ).sync_gitlab()
+            project_id=project_id, correlation_id=correlation_id
+        ).with_delay().sync_gitlab()
         return request.redirect(f"/my/projects/{project_id}")
 
     @http.route("/my/projects/<int:project_id>/sprints/new", auth="user", website=True)
@@ -77,10 +96,25 @@ class ProjectPortal(http.Controller):
     )
     def studio_ai(self, project_id: int, **kw):
         """Launch a simple AI task for the project via the facade."""
+        correlation_id = (
+            request.httprequest.headers.get("X-Correlation-Id")
+            or str(uuid.uuid4())
+        )
+        _logger.info(
+            json.dumps(
+                {
+                    "event": "studio.ai",
+                    "project_id": project_id,
+                    "correlation_id": correlation_id,
+                }
+            )
+        )
         request.env["kb.projects.facade"].sudo().with_context(
-            project_id=project_id
-        ).run_studio_ai()
-        return {"status": "ok"}
+            project_id=project_id, correlation_id=correlation_id
+        ).with_delay().run_studio_ai()
+        response = {"status": "queued", "correlation_id": correlation_id}
+        _logger.info(json.dumps({"response": response}))
+        return response
 
 
     @http.route(
