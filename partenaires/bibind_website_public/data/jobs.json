@@ -1,0 +1,8 @@
+[
+    {"id": 1, "title": "Directeur", "location": "Paris", "contract": "CDI", "summary": "Piloter la vision."},
+    {"id": 2, "title": "Product Owner", "location": "Lyon", "contract": "CDI", "summary": "Porter la roadmap."},
+    {"id": 3, "title": "Développeur", "location": "Remote", "contract": "CDD", "summary": "Construire les features."},
+    {"id": 4, "title": "Architecte", "location": "Remote", "contract": "CDI", "summary": "Concevoir l'architecture."},
+    {"id": 5, "title": "Commercial", "location": "Paris", "contract": "CDI", "summary": "Développer le portefeuille."},
+    {"id": 6, "title": "DevOps", "location": "Toulouse", "contract": "CDI", "summary": "Automatiser les déploiements."}
+]

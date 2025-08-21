@@ -1,0 +1,46 @@
+:root {
+    --bg: #ffffff;
+    --fg: #222222;
+    --muted: #666666;
+    --accent: #0055aa;
+}
+
+body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: sans-serif;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--accent);
+    color: #fff;
+    padding: 8px;
+}
+.skip-link:focus {
+    top: 0;
+}
+
+.hero {
+    padding: 2rem;
+    text-align: center;
+}
+
+.btn {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    padding: 0.6rem 1.2rem;
+    text-decoration: none;
+}
+
+.footer {
+    padding: 1rem;
+    text-align: center;
+    background: var(--muted);
+    color: #fff;
+}

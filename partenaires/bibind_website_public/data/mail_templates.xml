@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="bibind_jobs_apply_mail" model="mail.template">
+        <field name="name">Bibind Job Application</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="subject">Nouvelle candidature: ${object.full_name} – ${object.role}</field>
+        <field name="body_html"><![CDATA[
+            <p>Une nouvelle candidature a été reçue.</p>
+        ]]></field>
+        <field name="email_to">hr@example.com</field>
+    </record>
+</odoo>
