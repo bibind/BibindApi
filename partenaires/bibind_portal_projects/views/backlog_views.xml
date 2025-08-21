@@ -1,4 +1,10 @@
 <odoo>
+    <templates xml:space="preserve">
+        <t t-name="kb.BacklogBoard">
+            <div class="o_ai_studio_panel"/>
+            <div class="o_kb_backlog_board"/>
+        </t>
+    </templates>
     <data>
         <record id="view_task_tree_portal" model="ir.ui.view">
             <field name="name">project.task.tree.portal</field>
