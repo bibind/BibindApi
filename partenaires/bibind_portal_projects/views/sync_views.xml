@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+        <record id="view_project_sync_form" model="ir.ui.view">
+            <field name="name">project.project.sync.form</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.view_project_form"/>
+            <field name="arch" type="xml">
+                <sheet position="inside">
+                    <group string="GitLab">
+                        <field name="gitlab_project_id"/>
+                    </group>
+                </sheet>
+            </field>
+        </record>
+    </data>
+</odoo>

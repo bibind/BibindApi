@@ -1,0 +1,10 @@
+<odoo>
+    <data>
+        <menuitem id="menu_my_projects" name="My Projects" parent="bibind_portal.menu_portal_root" action="bibind_portal_projects.project_action"/>
+        <record id="project_action" model="ir.actions.act_window">
+            <field name="name">Projects</field>
+            <field name="res_model">project.project</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,8 @@
+<odoo>
+    <data>
+        <record id="project_demo" model="project.project">
+            <field name="name">Demo Project</field>
+            <field name="service_id" ref="bibind_portal.service_demo"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_project_budget,access_project_budget,model_kb_project_budget,base.group_user,1,1,1,1
+access_budget_line,access_budget_line,model_kb_budget_line,base.group_user,1,1,1,1
+access_project_milestone,access_project_milestone,model_kb_project_milestone,base.group_user,1,1,1,1
+access_project_doc,access_project_doc,model_kb_project_doc,base.group_user,1,1,1,1
+access_studio_ai,access_studio_ai,model_kb_studio_ai,base.group_user,1,1,1,1
+access_sprint,access_sprint,model_kb_sprint,base.group_user,1,1,1,1

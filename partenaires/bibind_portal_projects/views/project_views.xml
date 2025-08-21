@@ -1,0 +1,17 @@
+<odoo>
+    <data>
+        <record id="view_project_form_inherit" model="ir.ui.view">
+            <field name="name">project.project.form.portal.projects</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.view_project_form"/>
+            <field name="arch" type="xml">
+                <sheet position="inside">
+                    <group>
+                        <field name="service_id"/>
+                        <field name="gitlab_project_id"/>
+                    </group>
+                </sheet>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,22 @@
+{
+    'name': 'Bibind Portal Projects',
+    'version': '0.1.0',
+    'summary': 'Project management and GitLab integration for Bibind portal',
+    'depends': ['bibind_portal', 'project', 'mail'],
+    'data': [
+        'security/ir.model.access.csv',
+        'security/rules.xml',
+        'data/res_groups.xml',
+        'data/mail_templates.xml',
+        'data/cron.xml',
+        'views/portal_menu.xml',
+        'views/project_views.xml',
+        'views/budget_views.xml',
+        'views/billing_views.xml',
+        'views/studio_views.xml',
+        'views/sync_views.xml',
+    ],
+    'demo': ['data/demo.xml'],
+    'installable': True,
+    'application': False,
+}
