@@ -1,4 +1,10 @@
 <odoo>
+     <templates xml:space="preserve">
+        <t t-name="kb.DocsBoard">
+            <div class="o_ai_studio_panel"/>
+            <div class="o_kb_docs_board"/>
+        </t>
+    </templates>
     <data>
         <record id="view_project_doc_tree" model="ir.ui.view">
             <field name="name">kb.project.doc.tree</field>
