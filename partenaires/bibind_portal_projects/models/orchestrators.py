@@ -13,6 +13,8 @@ from __future__ import annotations
 
 import logging
 import time
+import uuid
+from typing import Dict, Iterable
 
 from odoo import api, models
 
@@ -42,9 +44,28 @@ class ProjectsFacade(models.Model):
 
     @api.model
     def _release_lock(self, project_id: int) -> None:
-        self.env["ir.config_parameter"].sudo().set_param(
-            self._lock_key(project_id), ""
-        )
+        self.env["ir.config_parameter"].sudo().set_param(self._lock_key(project_id), "")
+
+    @api.model
+    def _request_context(self) -> Dict[str, str]:
+        """Return correlation and request identifiers for downstream calls."""
+
+        cid = self.env.context.get("correlation_id") or str(uuid.uuid4())
+        rid = self.env.context.get("request_id") or str(uuid.uuid4())
+        return {"correlation_id": cid, "request_id": rid}
+
+    @api.model
+    def get_offer_strategy(self, offer_code: str):
+        """Load the strategy model matching *offer_code*.
+
+        Fallback to the default strategy if no specific one is registered.
+        """
+
+        if offer_code:
+            model = f"kb.projects.strategy.{offer_code}"
+            if self.env.registry.get(model):
+                return self.env[model]
+        return self.env["kb.projects.strategy.default"]
 
     # ------------------------------------------------------------------
     # Public API
@@ -62,6 +83,8 @@ class ProjectsFacade(models.Model):
         if not project_id:
             return False
 
+        ctx = self._request_context()
+
         if not self._acquire_lock(project_id):
             _logger.debug("sync already queued for project %s", project_id)
             return True
@@ -71,10 +94,9 @@ class ProjectsFacade(models.Model):
         try:
             for attempt in range(max_retries):
                 try:
-                    self.env["kb.sync.gitlab"].pull_issues(project)
-                    self.env["bus.bus"].sendone(
-                        "gitlab.sync", {"project_id": project_id}
-                    )
+                    self.env["kb.sync.gitlab"].with_context(**ctx).pull_issues(project)
+                    payload = {"project_id": project_id, **ctx}
+                    self.env["bus.bus"].sendone("gitlab.sync", payload)
                     break
                 except Exception as exc:  # pragma: no cover - defensive
                     if attempt + 1 == max_retries:
@@ -87,6 +109,54 @@ class ProjectsFacade(models.Model):
 
         return True
 
+
+    @api.model
+    def link_service(self, project, service):
+        """Link *service* to *project* using the appropriate strategy."""
+
+        strategy = self.get_offer_strategy(project.offer_code or service.offer)
+        ctx = self._request_context()
+        return strategy.with_context(**ctx).link_service(project, service)
+
+    @api.model
+    def pull_issues(self, project):
+        """Pull external issues for *project*."""
+
+        strategy = self.get_offer_strategy(project.offer_code)
+        ctx = self._request_context()
+        return strategy.with_context(**ctx).pull_issues(project)
+
+    @api.model
+    def push_tasks(self, project, tasks: Iterable[models.Model]):
+        """Push local *tasks* to the external tracker."""
+
+        strategy = self.get_offer_strategy(project.offer_code)
+        ctx = self._request_context()
+        return strategy.with_context(**ctx).push_tasks(project, tasks)
+
+    @api.model
+    def plan_sprint(self, project, sprint):
+        """Plan a sprint for *project*."""
+
+        strategy = self.get_offer_strategy(project.offer_code)
+        ctx = self._request_context()
+        return strategy.with_context(**ctx).plan_sprint(project, sprint)
+
+    @api.model
+    def compute_kpis(self, project):
+        """Compute KPIs for *project*."""
+
+        strategy = self.get_offer_strategy(project.offer_code)
+        ctx = self._request_context()
+        return strategy.with_context(**ctx).compute_kpis(project)
+
+    @api.model
+    def create_environment(self, project, payload: Dict[str, object]):
+        """Provision an environment for *project*."""
+
+        strategy = self.get_offer_strategy(project.offer_code)
+        ctx = self._request_context()
+        return strategy.with_context(**ctx).create_environment(project, payload)
     # ------------------------------------------------------------------
     # GitLab helpers
     # ------------------------------------------------------------------
@@ -101,3 +171,4 @@ class ProjectsFacade(models.Model):
         """Create a merge request in the remote project."""
         client = ApiClient.from_env(self.env)
         return client.create_merge_request(project.id, payload)
+
