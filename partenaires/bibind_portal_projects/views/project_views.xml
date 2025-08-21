@@ -5,18 +5,61 @@
             <field name="model">project.project</field>
             <field name="inherit_id" ref="project.view_project_form"/>
             <field name="arch" type="xml">
+                <header position="inside">
+                    <button name="action_open_studio" type="object" string="IA Studio" class="oe_highlight"/>
+                </header>
                 <sheet position="inside">
                     <group>
                         <field name="service_id"/>
                         <field name="gitlab_project_id"/>
+                        <field name="kpi_velocity" string="Sprint"/>
+                        <field name="budget_id" string="Costs"/>
                     </group>
                 </sheet>
             </field>
         </record>
+
+        <record id="view_project_tree_portal" model="ir.ui.view">
+            <field name="name">project.project.tree.portal</field>
+            <field name="model">project.project</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="service_id"/>
+                    <field name="kpi_velocity" string="Sprint"/>
+                    <field name="budget_id" string="Costs"/>
+                    <field name="studio_ai_state" string="IA Studio"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_project_kanban_portal" model="ir.ui.view">
+            <field name="name">project.project.kanban.portal</field>
+            <field name="model">project.project</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="name"/>
+                    <field name="service_id"/>
+                    <field name="kpi_velocity"/>
+                    <field name="budget_id"/>
+                    <field name="studio_ai_state"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <strong><field name="name"/></strong>
+                                <div class="o_kanban_details">
+                                    <field name="service_id"/>
+                                    <field name="kpi_velocity" string="Sprint"/>
+                                    <field name="budget_id" string="Costs"/>
+                                </div>
+                                <div class="oe_kanban_footer">
+                                    <button type="object" name="action_open_studio" class="oe_link">IA Studio</button>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
     </data>
-    <templates xml:space="preserve">
-        <t t-name="kb.BacklogBoard">
-            <div class="o_kb_backlog_board"/>
-        </t>
-    </templates>
 </odoo>
