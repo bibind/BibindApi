@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_bibind_mixins,bibind.mixin,model_bibind_audit_mixin,,1,0,0,0
+access_bibind_pce_mixin,bibind.pce.mixin,model_bibind_pce_mixin,,1,0,0,0
+access_bibind_jsonlog_mixin,bibind.jsonlog.mixin,model_bibind_jsonlog_mixin,,1,0,0,0
