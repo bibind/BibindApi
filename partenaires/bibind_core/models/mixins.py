@@ -10,6 +10,8 @@ from typing import Any, Dict, List
 from odoo import api, fields, models, _
 
 _logger = logging.getLogger("bibind")
+# Fields whose values should never be logged
+_SENSITIVE_KEYS = {"password", "token", "secret"}
 
 
 class AuditMixin(models.AbstractModel):
@@ -82,20 +84,37 @@ class JsonLogMixin(models.AbstractModel):
             "message": msg,
         }
         data.update(kwargs)
+
+        # Filter out sensitive information
+        for key in list(data.keys()):
+            if any(s in key.lower() for s in _SENSITIVE_KEYS):
+                data[key] = "***"
+
+        # Ensure logger level is up to date with configuration
+        store = self.env["bibind.param.store"]
+        log_level = store.get_log_level()
+        if _logger.level != log_level:
+            _logger.setLevel(log_level)
+
         line = json.dumps(data, ensure_ascii=False)
         getattr(_logger, level.lower())(line)
 
     def log_info(self, msg: str, **kwargs: Any) -> None:
-        self._log("info", msg, **kwargs)
+        if _logger.isEnabledFor(logging.INFO):
+            self._log("info", msg, **kwargs)
 
     def log_debug(self, msg: str, **kwargs: Any) -> None:
-        self._log("debug", msg, **kwargs)
+        if _logger.isEnabledFor(logging.DEBUG):
+            self._log("debug", msg, **kwargs)
 
     def log_warning(self, msg: str, **kwargs: Any) -> None:
-        self._log("warning", msg, **kwargs)
+        if _logger.isEnabledFor(logging.WARNING):
+            self._log("warning", msg, **kwargs)
 
     def log_error(self, msg: str, **kwargs: Any) -> None:
-        self._log("error", msg, **kwargs)
+        if _logger.isEnabledFor(logging.ERROR):
+            self._log("error", msg, **kwargs)
 
     def log_exception(self, msg: str, **kwargs: Any) -> None:
-        self._log("exception", msg, **kwargs)
+        if _logger.isEnabledFor(logging.ERROR):
+            self._log("exception", msg, **kwargs)
