@@ -14,4 +14,9 @@
             </field>
         </record>
     </data>
+    <templates xml:space="preserve">
+        <t t-name="kb.BacklogBoard">
+            <div class="o_kb_backlog_board"/>
+        </t>
+    </templates>
 </odoo>
