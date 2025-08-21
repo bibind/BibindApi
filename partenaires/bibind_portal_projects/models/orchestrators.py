@@ -8,6 +8,7 @@ methods required by the tests are implemented.
 from odoo import api, models
 
 from odoo.addons.bibind_core.services.api_client import ApiClient
+from odoo.addons.queue_job.job import job
 
 from __future__ import annotations
 
@@ -70,6 +71,7 @@ class ProjectsFacade(models.Model):
     # ------------------------------------------------------------------
     # Public API
     # ------------------------------------------------------------------
+    @job
     @api.model
     def sync_gitlab(self, max_retries: int = 3):
         """Synchronize a project's backlog with GitLab.
@@ -117,10 +119,11 @@ class ProjectsFacade(models.Model):
             ("gitlab_project_id", "!=", False)
         ])
         for project in projects:
-            self.with_context(project_id=project.id).sync_gitlab()
+            self.with_context(project_id=project.id).with_delay().sync_gitlab()
         return True
 
 
+    @job
     @api.model
     def run_studio_ai(self):
         """Run a simple Studio AI task for the given project."""

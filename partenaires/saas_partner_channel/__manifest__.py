@@ -8,7 +8,8 @@
     'website': 'https://example.com',
     'depends': [
         'base', 'contacts', 'mail', 'crm', 'sale', 'sale_subscription',
-        'account', 'payment', 'website', 'portal', 'helpdesk', 'sign', 'documents'
+        'account', 'payment', 'website', 'portal', 'helpdesk', 'sign', 'documents',
+        'bibind_core'
     ],
     'data': [
         'security/rules.xml',
