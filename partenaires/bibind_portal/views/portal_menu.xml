@@ -1,0 +1,31 @@
+<odoo>
+    <template id="portal_menu" inherit_id="portal.portal_layout" name="Bibind portal menu">
+        <xpath expr="//ul[@id='portal_menu']" position="inside">
+            <li><a href="/my/services">Mes services</a></li>
+        </xpath>
+    </template>
+
+    <template id="portal_home" name="Portal Home">
+        <t t-call="portal.portal_layout">
+            <h2>Mes services</h2>
+            <ul>
+                <t t-foreach="services" t-as="service">
+                    <li><a t-att-href="'/my/services/%d' % service.id"><t t-esc="service.name"/></a></li>
+                </t>
+            </ul>
+        </t>
+    </template>
+
+    <template id="portal_services" name="Portal Services">
+        <t t-call="portal.portal_layout">
+            <t t-call="bibind_portal.portal_home"/>
+        </t>
+    </template>
+
+    <template id="portal_service_detail" name="Portal Service Detail">
+        <t t-call="portal.portal_layout">
+            <h2 t-esc="service.name"/>
+            <p>Total cost: <t t-esc="service.total_cost_estimate"/></p>
+        </t>
+    </template>
+</odoo>
