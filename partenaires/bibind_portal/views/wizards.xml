@@ -1,0 +1,84 @@
+<odoo>
+    <!-- Create Service Wizard -->
+    <record id="view_create_service_wizard" model="ir.ui.view">
+        <field name="name">kb.create.service.wizard.form</field>
+        <field name="model">kb.create.service.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Create Service">
+                <group>
+                    <field name="name"/>
+                    <field name="offer"/>
+                    <field name="plan"/>
+                    <field name="sla"/>
+                </group>
+                <footer>
+                    <button name="action_create" string="Create" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_create_service_wizard" model="ir.actions.act_window">
+        <field name="name">Create Service</field>
+        <field name="res_model">kb.create.service.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_create_service_wizard"/>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Create Environment Wizard -->
+    <record id="view_create_environment_wizard" model="ir.ui.view">
+        <field name="name">kb.create.environment.wizard.form</field>
+        <field name="model">kb.create.environment.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Create Environment">
+                <group>
+                    <field name="service_id"/>
+                    <field name="env"/>
+                    <field name="region"/>
+                    <field name="cluster"/>
+                    <field name="namespace"/>
+                </group>
+                <footer>
+                    <button name="action_create" string="Create" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_create_environment_wizard" model="ir.actions.act_window">
+        <field name="name">Create Environment</field>
+        <field name="res_model">kb.create.environment.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_create_environment_wizard"/>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Post Deploy Wizard -->
+    <record id="view_post_deploy_wizard" model="ir.ui.view">
+        <field name="name">kb.post.deploy.wizard.form</field>
+        <field name="model">kb.post.deploy.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Post Deploy">
+                <group>
+                    <field name="environment_id"/>
+                    <field name="ref"/>
+                </group>
+                <footer>
+                    <button name="action_post_deploy" string="Send" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_post_deploy_wizard" model="ir.actions.act_window">
+        <field name="name">Post Deploy</field>
+        <field name="res_model">kb.post.deploy.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_post_deploy_wizard"/>
+        <field name="target">new</field>
+    </record>
+</odoo>
