@@ -5,6 +5,13 @@
             <li><a href="/saas/portal/tenants">Tenants</a></li>
             <li><a href="/saas/portal/commissions">Commissions</a></li>
             <li><a href="/saas/portal/payouts">Payouts</a></li>
+            <li><a href="/saas/portal/services">Services</a></li>
+            <li><a href="/saas/portal/environments">Environments</a></li>
+            <li><a href="/saas/portal/deployments">Deployments</a></li>
+            <li><a href="/saas/portal/docs">Docs</a></li>
+            <li><a href="/saas/portal/billing">Billing</a></li>
+            <li><a href="/saas/portal/monitoring">Monitoring</a></li>
+            <li><a href="/saas/portal/tickets">Tickets</a></li>
         </xpath>
     </template>
 </odoo>
