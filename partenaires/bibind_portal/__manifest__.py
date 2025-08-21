@@ -5,6 +5,7 @@
     'author': 'Bibind',
     'depends': ['portal', 'web', 'mail', 'bus', 'bibind_core'],
     'data': [
+        'data/res_groups.xml',
         'security/ir.model.access.csv',
         'security/rules.xml',
         'views/portal_menu.xml',
