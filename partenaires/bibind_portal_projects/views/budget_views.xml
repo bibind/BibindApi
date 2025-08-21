@@ -10,6 +10,8 @@
                             <field name="project_id"/>
                             <field name="labor_rate_eur_hour"/>
                             <field name="infra_monthly_cap"/>
+                            <field name="burn_rate" readonly="1"/>
+                            <field name="velocity" readonly="1"/>
                         </group>
                         <notebook>
                             <page string="Lines">
@@ -23,6 +25,9 @@
                             </page>
                             <page string="Burn Chart">
                                 <field name="burn_chart" widget="burn_chart"/>
+                            </page>
+                            <page string="Velocity">
+                                <field name="velocity_chart" widget="burn_chart"/>
                             </page>
                         </notebook>
                     </sheet>
