@@ -1,10 +1,47 @@
 <odoo>
     <data>
         <menuitem id="menu_my_projects" name="My Projects" parent="bibind_portal.menu_portal_root" action="bibind_portal_projects.project_action"/>
+        <menuitem id="menu_project_backlog" name="Backlog" parent="menu_my_projects" action="bibind_portal_projects.project_backlog_action"/>
+        <menuitem id="menu_project_sprints" name="Sprints" parent="menu_my_projects" action="bibind_portal_projects.project_sprint_action"/>
+        <menuitem id="menu_project_docs" name="Docs" parent="menu_my_projects" action="bibind_portal_projects.project_docs_action"/>
+        <menuitem id="menu_project_billing" name="Billing" parent="menu_my_projects" action="bibind_portal_projects.project_billing_action"/>
+        <menuitem id="menu_project_sync" name="Sync" parent="menu_my_projects" action="bibind_portal_projects.project_sync_action"/>
+
         <record id="project_action" model="ir.actions.act_window">
             <field name="name">Projects</field>
             <field name="res_model">project.project</field>
             <field name="view_mode">kanban,tree,form</field>
+        </record>
+
+        <record id="project_backlog_action" model="ir.actions.act_window">
+            <field name="name">Backlog</field>
+            <field name="res_model">project.task</field>
+            <field name="view_mode">kanban,tree,form</field>
+        </record>
+
+        <record id="project_sprint_action" model="ir.actions.act_window">
+            <field name="name">Sprints</field>
+            <field name="res_model">kb.sprint</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="project_docs_action" model="ir.actions.act_window">
+            <field name="name">Docs</field>
+            <field name="res_model">kb.project.doc</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="project_billing_action" model="ir.actions.act_window">
+            <field name="name">Billing</field>
+            <field name="res_model">kb.project.milestone</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="project_sync_action" model="ir.actions.act_window">
+            <field name="name">Sync</field>
+            <field name="res_model">project.project</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="bibind_portal_projects.view_project_sync_form"/>
         </record>
     </data>
 </odoo>
