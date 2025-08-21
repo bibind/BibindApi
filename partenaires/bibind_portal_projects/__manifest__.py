@@ -16,6 +16,7 @@
         'views/billing_views.xml',
         'views/studio_views.xml',
         'views/sync_views.xml',
+        'views/project_wizard_views.xml',
     ],
     'demo': ['data/demo.xml'],
     'installable': True,
