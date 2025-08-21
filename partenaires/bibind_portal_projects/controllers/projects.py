@@ -84,6 +84,16 @@ class ProjectPortal(http.Controller):
 
 
     @http.route(
+        "/my/projects/<int:project_id>/milestones/<int:milestone_id>/confirm",
+        auth="user",
+        website=True,
+    )
+    def confirm_milestone(self, project_id, milestone_id, **kw):
+        milestone = request.env["kb.project.milestone"].sudo().browse(milestone_id)
+        milestone.action_confirm()
+        return request.redirect(f"/my/projects/{project_id}")
+
+    @http.route(
         "/my/projects/<int:project_id>/milestones/<int:milestone_id>/invoice",
         auth="user",
         website=True,
@@ -91,5 +101,15 @@ class ProjectPortal(http.Controller):
     def invoice_milestone(self, project_id, milestone_id, **kw):
         milestone = request.env["kb.project.milestone"].sudo().browse(milestone_id)
         milestone.action_invoice()
+        return request.redirect(f"/my/projects/{project_id}")
+
+    @http.route(
+        "/my/projects/<int:project_id>/milestones/<int:milestone_id>/paid",
+        auth="user",
+        website=True,
+    )
+    def mark_paid_milestone(self, project_id, milestone_id, **kw):
+        milestone = request.env["kb.project.milestone"].sudo().browse(milestone_id)
+        milestone.action_mark_paid()
         return request.redirect(f"/my/projects/{project_id}")
 
