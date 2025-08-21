@@ -111,6 +111,19 @@ class ProjectsFacade(models.Model):
 
 
     @api.model
+    def run_studio_ai(self):
+        """Run a simple Studio AI task for the given project."""
+        project_id = self.env.context.get("project_id")
+        if not project_id:
+            return False
+        task = self.env["kb.studio.ai"].create(
+            {"project_id": project_id, "name": "Studio AI"}
+        )
+        task.run_task()
+        return True
+
+
+    @api.model
     def link_service(self, project, service):
         """Link *service* to *project* using the appropriate strategy."""
 
@@ -171,4 +184,5 @@ class ProjectsFacade(models.Model):
         """Create a merge request in the remote project."""
         client = ApiClient.from_env(self.env)
         return client.create_merge_request(project.id, payload)
+
 
