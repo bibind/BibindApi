@@ -35,9 +35,32 @@ class ProjectMilestone(models.Model):
         kb_billing = self.env["kb.billing"]
         sale_installed = self._module_installed("sale")
         for milestone in self:
-            if sale_installed and milestone.sale_order_id:
+            if sale_installed:
+                # Lazily create the sale order the first time the milestone is
+                # confirmed.  This keeps the model lightweight when the sales
+                # application is not installed.
+                if not milestone.sale_order_id:
+                    partner = milestone.project_id.service_id.customer_id
+                    order = self.env["sale.order"].sudo().create(
+                        {
+                            "partner_id": partner.id,
+                            "origin": milestone.project_id.name,
+                        }
+                    )
+                    self.env["sale.order.line"].sudo().create(
+                        {
+                            "order_id": order.id,
+                            "name": milestone.name,
+                            "product_uom_qty": 1,
+                            "price_unit": milestone.amount,
+                            "product_uom": self.env.ref("uom.product_uom_unit").id,
+                        }
+                    )
+                    milestone.sale_order_id = order
                 milestone.sale_order_id.action_confirm()
             else:
+                # Fallback to Kill Bill integration when the sales module is
+                # missing.  The helper is provided by ``bibind_portal``.
                 kb_billing.action_confirm(milestone)
             milestone.state = "confirmed"
 
@@ -45,12 +68,36 @@ class ProjectMilestone(models.Model):
         kb_billing = self.env["kb.billing"]
         account_installed = self._module_installed("account")
         for milestone in self:
-            if account_installed and milestone.sale_order_id:
-                invoice = milestone.sale_order_id._create_invoices()
-                if invoice:
-                    invoice.action_post()
-                    milestone.account_move_id = invoice[0]
+            if account_installed:
+                if milestone.sale_order_id:
+                    invoice = milestone.sale_order_id._create_invoices()
+                    if invoice:
+                        invoice.action_post()
+                        milestone.account_move_id = invoice[0]
+                elif not milestone.account_move_id:
+                    partner = milestone.project_id.service_id.customer_id
+                    move = self.env["account.move"].sudo().create(
+                        {
+                            "move_type": "out_invoice",
+                            "partner_id": partner.id,
+                            "invoice_line_ids": [
+                                (
+                                    0,
+                                    0,
+                                    {
+                                        "name": milestone.name,
+                                        "quantity": 1,
+                                        "price_unit": milestone.amount,
+                                    },
+                                )
+                            ],
+                        }
+                    )
+                    move.action_post()
+                    milestone.account_move_id = move
             else:
+                # When accounting features are missing we simply delegate the
+                # process to the Kill Bill helper.
                 kb_billing.action_invoice(milestone)
             milestone.state = "invoiced"
 

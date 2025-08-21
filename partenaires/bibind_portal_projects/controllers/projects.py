@@ -84,12 +84,50 @@ class ProjectPortal(http.Controller):
 
 
     @http.route(
+        "/my/projects/<int:project_id>/milestones/<int:milestone_id>/confirm",
+        auth="user",
+        website=True,
+    )
+    def confirm_milestone(self, project_id, milestone_id, **kw):
+        milestone = request.env["kb.project.milestone"].sudo().browse(milestone_id)
+        milestone.action_confirm()
+        return request.redirect(f"/my/projects/{project_id}")
+
+    @http.route(
         "/my/projects/<int:project_id>/milestones/<int:milestone_id>/invoice",
         auth="user",
         website=True,
     )
     def invoice_milestone(self, project_id, milestone_id, **kw):
         milestone = request.env["kb.project.milestone"].sudo().browse(milestone_id)
+        # When the sales and accounting apps are available we expose the
+        # standard invoice creation wizard.  Otherwise, we fallback to the
+        # Kill Bill integration provided by ``kb.billing``.
+        if (
+            milestone._module_installed("sale")
+            and milestone._module_installed("account")
+            and milestone.sale_order_id
+        ):
+            try:
+                action = (
+                    request.env.ref("sale.action_view_sale_advance_payment_inv")
+                    .sudo()
+                    .read()[0]
+                )
+                action["context"] = {"active_ids": milestone.sale_order_id.ids}
+                return request.redirect(f"/web#action={action['id']}")
+            except Exception:  # pragma: no cover - defensive
+                pass
         milestone.action_invoice()
+        return request.redirect(f"/my/projects/{project_id}")
+
+    @http.route(
+        "/my/projects/<int:project_id>/milestones/<int:milestone_id>/paid",
+        auth="user",
+        website=True,
+    )
+    def mark_paid_milestone(self, project_id, milestone_id, **kw):
+        milestone = request.env["kb.project.milestone"].sudo().browse(milestone_id)
+        milestone.action_mark_paid()
         return request.redirect(f"/my/projects/{project_id}")
 

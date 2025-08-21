@@ -7,3 +7,4 @@ from . import docs
 from . import studio_ai
 from . import sync_gitlab
 from . import orchestrators
+from . import strategies

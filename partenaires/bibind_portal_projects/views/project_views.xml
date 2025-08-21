@@ -68,5 +68,29 @@
                 </kanban>
             </field>
         </record>
+
+        <!-- Backlog board showing unsprinted stories for the project -->
+        <record id="view_task_backlog_board" model="ir.ui.view">
+            <field name="name">kb.project.task.backlog.board</field>
+            <field name="model">project.task</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kb_backlog_kanban" create="false">
+                    <field name="name" invisible="1"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <t t-call="kb.BacklogBoard"/>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="action_project_backlog_board" model="ir.actions.act_window">
+            <field name="name">Backlog</field>
+            <field name="res_model">project.task</field>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="view_task_backlog_board"/>
+            <field name="context">{}</field>
+        </record>
     </data>
 </odoo>

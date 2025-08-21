@@ -1,5 +1,36 @@
 <odoo>
+    <templates xml:space="preserve">
+        <t t-name="kb.SprintBoard">
+            <div class="o_ai_studio_panel"/>
+            <div class="o_kb_sprint_board"/>
+        </t>
+    </templates>
+
     <data>
+        <!-- Sprint board using the generic sprint QWeb template -->
+        <record id="view_task_sprint_board" model="ir.ui.view">
+            <field name="name">kb.project.task.sprint.board</field>
+            <field name="model">project.task</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kb_sprint_kanban" create="false">
+                    <field name="name" invisible="1"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <t t-call="kb.SprintBoard"/>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="action_task_sprint_board" model="ir.actions.act_window">
+            <field name="name">Sprint Board</field>
+            <field name="res_model">project.task</field>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="view_task_sprint_board"/>
+            <field name="context">{}</field>
+        </record>
+        
         <record id="view_sprint_tree_portal" model="ir.ui.view">
             <field name="name">kb.sprint.tree.portal</field>
             <field name="model">kb.sprint</field>
@@ -39,5 +70,6 @@
                 </form>
             </field>
         </record>
+        
     </data>
 </odoo>
