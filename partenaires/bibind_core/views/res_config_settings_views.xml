@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="bibind_core_settings" model="ir.ui.view">
+    <field name="name">bibind.core.settings</field>
+    <field name="model">res.config.settings</field>
+    <field name="arch" type="xml">
+      <form string="Bibind Core">
+        <sheet>
+          <group string="Connexions">
+            <field name="op_bootstrap_base_url"/>
+            <field name="kc_token_url"/>
+            <field name="kc_client_id_ref"/>
+            <field name="kc_client_secret_ref"/>
+          </group>
+          <group string="HTTP">
+            <field name="http_timeout_s"/>
+            <field name="http_retry_total"/>
+            <field name="http_backoff_factor"/>
+          </group>
+          <group string="Résilience">
+            <field name="breaker_fail_max"/>
+            <field name="breaker_reset_s"/>
+          </group>
+          <group string="Logs">
+            <field name="log_level"/>
+          </group>
+          <footer>
+            <button string="Tester la connexion" type="object" name="action_test_connection" class="oe_highlight"/>
+            <button string="Save" type="object" name="execute" class="btn-primary"/>
+            <button string="Cancel" class="btn-secondary" special="cancel"/>
+          </footer>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="bibind_core_settings_action" model="ir.actions.act_window">
+    <field name="name">Bibind Core</field>
+    <field name="res_model">res.config.settings</field>
+    <field name="view_mode">form</field>
+    <field name="view_id" ref="bibind_core_settings"/>
+    <field name="target">new</field>
+  </record>
+
+  <menuitem id="menu_bibind_core_settings" name="Bibind Core" parent="base.menu_administration" action="bibind_core_settings_action" groups="base.group_system"/>
+</odoo>

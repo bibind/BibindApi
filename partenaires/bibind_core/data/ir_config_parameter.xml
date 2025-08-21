@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="param_op_bootstrap_base_url" model="ir.config_parameter">
+    <field name="key">op_bootstrap_base_url</field>
+    <field name="value">https://bootstrap.example</field>
+  </record>
+  <record id="param_kc_token_url" model="ir.config_parameter">
+    <field name="key">kc_token_url</field>
+    <field name="value">https://kc.example/token</field>
+  </record>
+  <record id="param_kc_client_id_ref" model="ir.config_parameter">
+    <field name="key">kc_client_id_ref</field>
+    <field name="value">vault:kc/client_id</field>
+  </record>
+  <record id="param_kc_client_secret_ref" model="ir.config_parameter">
+    <field name="key">kc_client_secret_ref</field>
+    <field name="value">vault:kc/client_secret</field>
+  </record>
+  <record id="param_http_timeout" model="ir.config_parameter">
+    <field name="key">http_timeout_s</field>
+    <field name="value">10</field>
+  </record>
+  <record id="param_http_retry_total" model="ir.config_parameter">
+    <field name="key">http_retry_total</field>
+    <field name="value">3</field>
+  </record>
+  <record id="param_http_backoff" model="ir.config_parameter">
+    <field name="key">http_backoff_factor</field>
+    <field name="value">0.5</field>
+  </record>
+  <record id="param_breaker_fail_max" model="ir.config_parameter">
+    <field name="key">breaker_fail_max</field>
+    <field name="value">5</field>
+  </record>
+  <record id="param_breaker_reset" model="ir.config_parameter">
+    <field name="key">breaker_reset_s</field>
+    <field name="value">60</field>
+  </record>
+  <record id="param_log_level" model="ir.config_parameter">
+    <field name="key">log_level</field>
+    <field name="value">INFO</field>
+  </record>
+</odoo>

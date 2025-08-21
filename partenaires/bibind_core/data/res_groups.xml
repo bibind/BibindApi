@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="group_bibind_portal" model="res.groups">
+    <field name="name">Bibind Portal</field>
+  </record>
+  <record id="group_bibind_customer_admin" model="res.groups">
+    <field name="name">Bibind Customer Admin</field>
+  </record>
+  <record id="group_bibind_partner_ops" model="res.groups">
+    <field name="name">Bibind Partner Ops</field>
+  </record>
+  <record id="group_bibind_sre" model="res.groups">
+    <field name="name">Bibind SRE</field>
+  </record>
+  <record id="group_bibind_pm" model="res.groups">
+    <field name="name">Bibind PM</field>
+  </record>
+</odoo>
