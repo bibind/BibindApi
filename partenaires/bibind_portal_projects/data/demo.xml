@@ -13,6 +13,27 @@
             <field name="name">Initial backlog item</field>
             <field name="project_id" ref="project_demo"/>
         </record>
+
+        <record id="budget_demo" model="kb.project.budget">
+            <field name="project_id" ref="project_demo"/>
+            <field name="labor_rate_eur_hour">80.0</field>
+        </record>
+
+        <record id="project_demo" model="project.project">
+            <field name="budget_id" ref="budget_demo"/>
+        </record>
+
+        <record id="milestone_design_demo" model="kb.project.milestone">
+            <field name="project_id" ref="project_demo"/>
+            <field name="name">Design Complete</field>
+            <field name="amount">1000</field>
+        </record>
+
+        <record id="milestone_launch_demo" model="kb.project.milestone">
+            <field name="project_id" ref="project_demo"/>
+            <field name="name">Launch</field>
+            <field name="amount">2000</field>
+        </record>
     </data>
 </odoo>
 
