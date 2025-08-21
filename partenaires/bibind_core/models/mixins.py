@@ -4,10 +4,12 @@ from __future__ import annotations
 
 import json
 import logging
+import re
 import uuid
 from typing import Any, Dict, List
 
 from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError
 
 _logger = logging.getLogger("bibind")
 
@@ -50,6 +52,23 @@ class PceMixin(models.AbstractModel):
     customer_id = fields.Many2one("res.partner", index=True)
     pce_instance_id = fields.Char(index=True)
 
+    _tenant_re = re.compile(r"^[A-Za-z0-9_-]+$")
+
+    @api.constrains("tenant_id", "pce_instance_id")
+    def _check_identifier_format(self):
+        for rec in self:
+            for field in ("tenant_id", "pce_instance_id"):
+                value = rec[field]
+                if value and not self._tenant_re.match(value):
+                    raise ValidationError(_("Invalid format for %s") % field)
+
+    @api.model_create_multi
+    def create(self, vals_list: List[Dict[str, Any]]):  # type: ignore[override]
+        helper = self.env["bibind.security.helpers"]
+        for vals in vals_list:
+            helper.propagate_tenant(vals)
+        return super().create(vals_list)
+
     def ensure_tenant(self) -> None:
         for rec in self:
             if not rec.tenant_id:
@@ -63,7 +82,7 @@ class PceMixin(models.AbstractModel):
         return []
 
     def with_tenant(self, tenant_id: str):
-        return self.with_context(default_tenant_id=tenant_id)
+        return self.search([("tenant_id", "=", tenant_id)])
 
 
 class JsonLogMixin(models.AbstractModel):
