@@ -16,6 +16,7 @@
         'views/budget_views.xml',
         'views/billing_views.xml',
         'views/docs_views.xml',
+        'views/studio_views.xml',
         'views/sync_views.xml',
         'views/project_wizard_views.xml',
     ],
