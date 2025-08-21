@@ -1,0 +1,15 @@
+<odoo>
+    <data>
+        <record id="view_project_milestone_tree" model="ir.ui.view">
+            <field name="name">kb.project.milestone.tree</field>
+            <field name="model">kb.project.milestone</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="amount"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>

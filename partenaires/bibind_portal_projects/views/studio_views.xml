@@ -1,0 +1,20 @@
+<odoo>
+    <data>
+        <record id="view_project_doc_form" model="ir.ui.view">
+            <field name="name">kb.project.doc.form</field>
+            <field name="model">kb.project.doc</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="project_id"/>
+                            <field name="title"/>
+                            <field name="tags"/>
+                        </group>
+                        <field name="content_html" widget="html"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>
