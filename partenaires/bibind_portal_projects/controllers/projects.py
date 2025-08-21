@@ -8,6 +8,15 @@ class ProjectPortal(http.Controller):
         projects = request.env['project.project'].sudo().search([])
         return request.render('bibind_portal_projects.projects_portal', {'projects': projects})
 
+    @http.route('/my/projects/new', auth='user', website=True)
+    def create_project(self, **kw):
+        action = (
+            request.env.ref("bibind_portal_projects.action_project_create_wizard")
+            .sudo()
+            .read()[0]
+        )
+        return request.redirect(f"/web#action={action['id']}")
+
     @http.route('/my/projects/<int:project_id>/sync', auth='user', website=True)
     def sync_project(self, project_id, **kw):
         project = request.env['project.project'].sudo().browse(project_id)

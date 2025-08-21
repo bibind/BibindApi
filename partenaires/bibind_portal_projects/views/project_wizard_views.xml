@@ -1,0 +1,26 @@
+<odoo>
+    <record id="view_project_create_wizard" model="ir.ui.view">
+        <field name="name">kb.project.create.wizard.form</field>
+        <field name="model">kb.project.create.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Create Project">
+                <group>
+                    <field name="name"/>
+                    <field name="service_id"/>
+                </group>
+                <footer>
+                    <button name="action_next" string="Next" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_project_create_wizard" model="ir.actions.act_window">
+        <field name="name">Create Project</field>
+        <field name="res_model">kb.project.create.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_project_create_wizard"/>
+        <field name="target">new</field>
+    </record>
+</odoo>
