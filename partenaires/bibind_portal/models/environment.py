@@ -7,7 +7,7 @@ from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 from odoo.addons.bibind_core.models.mixins import AuditMixin, PceMixin
-from odoo.addons.bibind_core.services.api_client import ApiClient
+from odoo.addons.bibind_core.services.orchestrator import ServiceOrchestrator
 
 _logger = logging.getLogger(__name__)
 
@@ -71,14 +71,35 @@ class Environment(models.Model, AuditMixin, PceMixin):
 
     # Command pattern wrappers -------------------------------------------------
 
+    def _validate_command(self, verb: str) -> None:
+        """Ensure the user and environment can execute a command."""
+        self.check_access_rights("write")
+        self.check_access_rule("write")
+        allowed = {
+            "start": ["stopped"],
+            "stop": ["running", "degraded"],
+            "scale": ["running", "degraded"],
+            "backup": ["running", "degraded"],
+            "restore": ["running", "degraded", "stopped"],
+            "promote": ["running"],
+            "rollback": ["running", "degraded"],
+            "extension_add": ["running", "stopped"],
+            "migrate": ["running", "stopped"],
+        }
+        if verb in allowed and self.status not in allowed[verb]:
+            raise UserError("Environment state does not allow this action")
+        if not self.env.context.get("deployment_window_open", True):
+            raise UserError("Deployment window is closed")
+
     def _run_command(self, verb: str, payload: Dict[str, object] | None = None) -> Dict[str, object]:
         self.ensure_one()
+        self._validate_command(verb)
         payload = payload or {}
-        client = ApiClient.from_env(self.env)
+        orchestrator: ServiceOrchestrator = self.env["bibind.service_orchestrator"]
         correlation_id = payload.get("correlation_id") or self.env.context.get("correlation_id")
         headers = {"X-Correlation-Id": correlation_id} if correlation_id else {}
         _logger.info("env command %s", verb, extra={"env": self.id, "payload": payload})
-        return client.environment_action(self.id, verb, payload=payload, headers=headers)
+        return orchestrator.run(self.id, verb, payload=payload, headers=headers)
 
     def do_start(self):
         self._run_command("start")
@@ -88,3 +109,21 @@ class Environment(models.Model, AuditMixin, PceMixin):
 
     def do_scale(self, replicas: int):
         self._run_command("scale", {"replicas": replicas})
+
+    def do_backup(self):
+        self._run_command("backup")
+
+    def do_restore(self):
+        self._run_command("restore")
+
+    def do_promote(self):
+        self._run_command("promote")
+
+    def do_rollback(self):
+        self._run_command("rollback")
+
+    def do_extension_add(self, extension: str):
+        self._run_command("extension_add", {"extension": extension})
+
+    def do_migrate(self, target: str):
+        self._run_command("migrate", {"target": target})
