@@ -21,6 +21,9 @@
                                     </tree>
                                 </field>
                             </page>
+                            <page string="Burn Chart">
+                                <field name="burn_chart" widget="burn_chart"/>
+                            </page>
                         </notebook>
                     </sheet>
                 </form>

@@ -1,0 +1,5 @@
+<templates id="template" xml:space="preserve">
+    <t t-name="bibind_portal_projects.BurnChart">
+        <canvas t-ref="canvas" style="max-width:400px; max-height:200px;"></canvas>
+    </t>
+</templates>

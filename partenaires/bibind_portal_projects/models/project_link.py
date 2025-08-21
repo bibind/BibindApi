@@ -8,8 +8,9 @@ class Project(models.Model):
     offer_code = fields.Char(related='service_id.offer', store=True, index=True)
     gitlab_project_id = fields.Integer(index=True)
     budget_id = fields.Many2one('kb.project.budget')
-    kpi_velocity = fields.Float(compute='_compute_kpi_velocity')
-    kpi_burndown = fields.Json()
+    sprint_ids = fields.One2many('kb.sprint', 'project_id')
+    kpi_velocity = fields.Float(compute='compute_kpis')
+    kpi_burndown = fields.Json(compute='compute_kpis')
     studio_ai_state = fields.Selection(
         [
             ('idle', 'Idle'),
@@ -47,6 +48,29 @@ class Project(models.Model):
             'target': 'self',
         }
 
-    def _compute_kpi_velocity(self):
+    @api.depends('task_ids.story_points', 'task_ids.stage_id', 'task_ids.sprint_id')
+    def compute_kpis(self):
         for project in self:
-            project.kpi_velocity = 0.0
+            # Gather sprints ordered by start date
+            sprints = self.env['kb.sprint'].search([
+                ('project_id', '=', project.id)
+            ], order='date_start')
+            total_points = sum(project.task_ids.mapped('story_points'))
+            done_points = 0.0
+            labels = []
+            values = []
+            velocities = []
+            for sprint in sprints:
+                completed = sum(
+                    sprint.task_ids.filtered(lambda t: t.stage_id and t.stage_id.fold).mapped('story_points')
+                )
+                done_points += completed
+                remaining = max(total_points - done_points, 0.0)
+                labels.append(sprint.name)
+                values.append(remaining)
+                velocities.append(completed)
+            project.kpi_velocity = sum(velocities) / len(velocities) if velocities else 0.0
+            project.kpi_burndown = {
+                'labels': labels,
+                'values': values,
+            }
