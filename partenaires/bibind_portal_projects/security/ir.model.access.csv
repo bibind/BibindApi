@@ -1,4 +1,12 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+# Projects
+access_project_viewer,project viewer,model_project_project,bibind_portal_projects.group_project_viewer,1,0,0,0
+access_project_member,project member,model_project_project,bibind_portal_projects.group_project_member,1,1,1,0
+access_project_admin,project admin,model_project_project,bibind_portal_projects.group_project_admin,1,1,1,1
+# Tasks
+access_task_viewer,task viewer,model_project_task,bibind_portal_projects.group_project_viewer,1,0,0,0
+access_task_member,task member,model_project_task,bibind_portal_projects.group_project_member,1,1,1,0
+access_task_admin,task admin,model_project_task,bibind_portal_projects.group_project_admin,1,1,1,1
 # Project budgets
 access_project_budget_viewer,project budget viewer,model_kb_project_budget,bibind_portal_projects.group_project_viewer,1,0,0,0
 access_project_budget_member,project budget member,model_kb_project_budget,bibind_portal_projects.group_project_member,1,1,1,0
